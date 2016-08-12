@@ -12,10 +12,21 @@ body.post-type-donation {
     }
 }
 
-#donation-overview {    
+#donation-overview { 
+    @include clearfix;
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
 
     .charitable-metabox {
         @include clearfix;
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
+        box-sizing: border-box;        
     }
 
     .postbox-title, 
@@ -26,11 +37,15 @@ body.post-type-donation {
     .inside {
         margin: 0;
         padding: 0;
-    }
+    }    
+}
+
+#charitable-donation-overview-metabox {
+    padding: 20px;
 
     #donor {
         float: left;
-        padding: 20px 10px 40px 20px;
+        padding: 0 10px 0 0;
         width: 300px;
         max-width: 67%;
     }
@@ -47,7 +62,7 @@ body.post-type-donation {
 
     #donation-summary {
         float: right;
-        padding: 20px 20px 40px 0;
+        padding: 0;
         max-width: 33%;
         text-align: right;
     }
@@ -61,55 +76,54 @@ body.post-type-donation {
     .donation-status .status {
         font-weight: bolder;
     }
+}
 
-    table#overview {
-        float: left;
-        width: 100%;
-        border-spacing: 0;
+#charitable-campaign-donations {
+    border-spacing: 0;
 
-        thead th {
-            padding: 0 0 0.8em;
-        }
+    thead th {
+        padding: 0.8em 0;
+    }
 
-        .col-campaign-name {
-            padding-left: 20px;
-            text-align: left;            
-        }
-        
-        .col-campaign-donation-amount {
-            padding-right: 20px;
-            text-align: right;
-        }
+    .col-campaign-name {
+        padding-left: 20px;
+        text-align: left;            
+    }
+    
+    .col-campaign-donation-amount {
+        padding-right: 20px;
+        text-align: right;
+    }
 
-        tbody td {
-            padding: 2em 0;
-            border-top: 1px solid #e5e5e5;
-        }
+    tbody td {
+        padding: 2em 0;
+        border-top: 1px solid #e5e5e5;
+    }
 
-        tbody tr:last-child td {
-            border-bottom: 1px solid #e5e5e5;
-        }
+    tbody tr:last-child td {
+        border-bottom: 1px solid #e5e5e5;
+    }
 
-        .campaign-name {
-            padding-left: 20px;
-            font-size: 18px;
-        }
+    .campaign-name {
+        padding-left: 20px;
+        font-size: 18px;
+    }
 
-        .campaign-donation-amount {
-            padding-right: 20px;
-            font-size: 16px;
-            text-align: right;
-        }
+    .campaign-donation-amount {
+        padding-right: 20px;
+        font-size: 16px;
+        text-align: right;
+    }
 
-        tfoot td, 
-        tfoot th {
-            padding: 0.8em 20px 0.8em 0;
-            background-color: #f8f8f8;
-            text-align: right;
-        }
+    tfoot td, 
+    tfoot th {
+        padding: 0.8em 20px 0.8em 0;
+        background-color: #f8f8f8;
+        text-align: right;
     }
 }
 
+#donation-actions,
 #donation-details, 
 #donation-log {
     padding: 12px 8px;

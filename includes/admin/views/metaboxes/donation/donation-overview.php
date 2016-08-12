@@ -36,45 +36,45 @@ $donor = $donation->get_donor();
             __( 'Status', 'charitable' ), 
             $donation->get_status( true ) ) ?></span>
     </div>
-    <table id="overview">
-        <thead>
-            <tr>
-                <th class="col-campaign-name"><?php _e( 'Campaign', 'charitable' ) ?></th>
-                <th class="col-campaign-donation-amount"><?php _e( 'Total', 'charitable' ) ?></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ( $donation->get_campaign_donations() as $campaign_donation ) : ?>
-            <tr>
-                <td class="campaign-name"><?php echo $campaign_donation->campaign_name ?></td>
-                <td class="campaign-donation-amount"><?php echo charitable_format_money( $campaign_donation->amount ) ?></td>
-            </tr>
-        <?php endforeach ?>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th><?php _e( 'Total', 'charitable' ) ?></th>
-                <td><?php echo charitable_format_money( $donation->get_total_donation_amount() ) ?></td>
-            </tr>
-            <tr>
-                <th><?php _e( 'Payment Method', 'charitable' ) ?></th>
-                <td><?php echo $donation->get_gateway_label() ?></td>
-            </tr>
-            <tr>
-                <th><?php _e( 'Change Status', 'charitable' ) ?></th>
-                <td>
-                    <select id="change-donation-status" name="post_status">
-                    <?php foreach ( charitable_get_valid_donation_statuses() as $status => $label ) : ?>
-                        <option value="<?php echo $status ?>" <?php selected( $status, $donation->get_status() ) ?>><?php echo $label ?></option>
-                    <?php endforeach ?>
-                    </select>
-                </td>
-            </tr>
-            <tr class="hide-if-js">
-                <td colspan="2">
-                    <input type="submit" name="update" class="button button-primary" value="<?php _e( 'Update Status', 'charitable' ) ?>" />
-                </td>
-            </tr>
-        </tfoot>
-    </table>
 </div>
+<table id="charitable-campaign-donations" class="charitable-metabox">
+    <thead>
+        <tr>
+            <th class="col-campaign-name"><?php _e( 'Campaign', 'charitable' ) ?></th>
+            <th class="col-campaign-donation-amount"><?php _e( 'Total', 'charitable' ) ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ( $donation->get_campaign_donations() as $campaign_donation ) : ?>
+        <tr>
+            <td class="campaign-name"><?php echo $campaign_donation->campaign_name ?></td>
+            <td class="campaign-donation-amount"><?php echo charitable_format_money( $campaign_donation->amount ) ?></td>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th><?php _e( 'Total', 'charitable' ) ?></th>
+            <td><?php echo charitable_format_money( $donation->get_total_donation_amount() ) ?></td>
+        </tr>
+        <tr>
+            <th><?php _e( 'Payment Method', 'charitable' ) ?></th>
+            <td><?php echo $donation->get_gateway_label() ?></td>
+        </tr>
+        <tr>
+            <th><?php _e( 'Change Status', 'charitable' ) ?></th>
+            <td>
+                <select id="change-donation-status" name="post_status">
+                <?php foreach ( charitable_get_valid_donation_statuses() as $status => $label ) : ?>
+                    <option value="<?php echo $status ?>" <?php selected( $status, $donation->get_status() ) ?>><?php echo $label ?></option>
+                <?php endforeach ?>
+                </select>
+            </td>
+        </tr>
+        <tr class="hide-if-js">
+            <td colspan="2">
+                <input type="submit" name="update" class="button button-primary" value="<?php _e( 'Update Status', 'charitable' ) ?>" />
+            </td>
+        </tr>
+    </tfoot>
+</table>
