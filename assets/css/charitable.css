@@ -148,25 +148,19 @@
 .charitable-repeatable-form-field-table {
   margin-bottom: 1em; }
 
-#charitable-donation-form,
-#charitable-donation-amount-form {
+.charitable-donation-form {
   padding-top: 1em; }
-  #charitable-donation-form .donation-amounts,
-  #charitable-donation-amount-form .donation-amounts {
+  .charitable-donation-form .donation-amounts {
     *zoom: 1;
     margin: 0 0 1em;
     padding: 0;
     list-style: none; }
-    #charitable-donation-form .donation-amounts:before, #charitable-donation-form .donation-amounts:after,
-    #charitable-donation-amount-form .donation-amounts:before,
-    #charitable-donation-amount-form .donation-amounts:after {
+    .charitable-donation-form .donation-amounts:before, .charitable-donation-form .donation-amounts:after {
       content: " ";
       display: table; }
-    #charitable-donation-form .donation-amounts:after,
-    #charitable-donation-amount-form .donation-amounts:after {
+    .charitable-donation-form .donation-amounts:after {
       clear: both; }
-    #charitable-donation-form .donation-amounts .donation-amount,
-    #charitable-donation-amount-form .donation-amounts .donation-amount {
+    .charitable-donation-form .donation-amounts .donation-amount {
       position: relative;
       float: left;
       width: 49%;
@@ -174,30 +168,24 @@
       border: 1px solid #ddd;
       background-color: transparent;
       list-style: none; }
-      #charitable-donation-form .donation-amounts .donation-amount label,
-      #charitable-donation-amount-form .donation-amounts .donation-amount label {
+      .charitable-donation-form .donation-amounts .donation-amount label {
         display: block;
         width: 100%;
         padding: 0.5em 1em;
         margin: 0;
         font-size: 1em;
         cursor: pointer; }
-      #charitable-donation-form .donation-amounts .donation-amount .amount,
-      #charitable-donation-amount-form .donation-amounts .donation-amount .amount {
+      .charitable-donation-form .donation-amounts .donation-amount .amount {
         font-weight: bolder; }
-      #charitable-donation-form .donation-amounts .donation-amount:nth-child(2n+2),
-      #charitable-donation-amount-form .donation-amounts .donation-amount:nth-child(2n+2) {
+      .charitable-donation-form .donation-amounts .donation-amount:nth-child(2n+2) {
         margin-right: 0; }
-      #charitable-donation-form .donation-amounts .donation-amount input[type=radio],
-      #charitable-donation-amount-form .donation-amounts .donation-amount input[type=radio] {
+      .charitable-donation-form .donation-amounts .donation-amount input[type=radio] {
         margin: 0 6px 0 0;
         vertical-align: middle; }
-    #charitable-donation-form .donation-amounts .donation-amount.selected,
-    #charitable-donation-amount-form .donation-amounts .donation-amount.selected {
+    .charitable-donation-form .donation-amounts .donation-amount.selected {
       color: #fff; }
     @media screen and (max-width: 37.5em) {
-      #charitable-donation-form .donation-amounts .donation-amount,
-      #charitable-donation-amount-form .donation-amounts .donation-amount {
+      .charitable-donation-form .donation-amounts .donation-amount {
         float: none;
         width: 100%;
         margin-right: 0; } }
