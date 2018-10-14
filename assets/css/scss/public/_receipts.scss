@@ -18,10 +18,38 @@
 }
 
 .charitable-table {
-    tr, td {
-        padding-right: 1.5em;
-    }
 
+	border: 1px solid #BBBBBB;
+	text-align: left;
+	vertical-align: top;
+
+	thead {
+		border-bottom: 1px solid #BBBBBB;
+		th {
+			border: 0;
+		}
+	}
+
+	tbody tr {
+		border-bottom: 1px solid #BBBBBB;
+		overflow: hidden;
+		td {
+			border: 0;
+			vertical-align: top;
+			.small {
+				font-size: .85em;
+			}
+			.actions {
+				padding: 0.25em 0;
+			}
+		}
+		&:nth-child(2n+1) {
+			background: #f4f4f4;
+		}
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
 
 	@include bp( 768, false ) {
 		border: none !important;
@@ -37,14 +65,19 @@
 
 			td {
 				display: block;
-				padding: 0.5em 0 !important;
-				text-align: right !important;
+				padding: .25em 0.5em!important;
 				border: none !important;
+				line-height: 1.3;
 
 				&::before {
 					content: attr(data-title) ": ";
 					font-weight: 700;
+					width: 100%;
 					float: left;
+				}
+
+				.actions {
+					text-align: right;
 				}
 			}
 		}

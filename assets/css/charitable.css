@@ -308,26 +308,66 @@
   display: block;
   clear: left; }
 
-.charitable-table tr, .charitable-table td {
-  padding-right: 1.5em; }
+
+.charitable-table {
+border: 1px solid #BBBBBB;
+text-align: left;
+vertical-align: top;
+}
+.charitable-table thead {
+border-bottom: 1px solid #BBBBBB;
+}
+.charitable-table thead th {
+border: 0;
+}
+.charitable-table tbody tr {
+border-bottom: 1px solid #BBBBBB;
+overflow: hidden;
+}
+.charitable-table tbody tr td {
+border: 0;
+vertical-align: top;
+}
+.charitable-table tbody tr td .small {
+font-size: 0.85em;
+}
+.charitable-table tbody tr td .actions {
+padding: 0.25em 0;
+}
+.charitable-table tbody tr:nth-child(2n+1) {
+background: #f4f4f4;
+}
+.charitable-table tbody tr:last-child {
+border-bottom: 0;
+}
 @media (max-width: 48em) {
-  .charitable-table {
-    border: none !important; }
-    .charitable-table thead {
-      display: none; }
-    .charitable-table tr {
-      display: block;
-      padding: 1em 0;
-      margin-bottom: 1em; }
-      .charitable-table tr td {
-        display: block;
-        padding: 0.5em 0 !important;
-        text-align: right !important;
-        border: none !important; }
-        .charitable-table tr td::before {
-          content: attr(data-title) ": ";
-          font-weight: 700;
-          float: left; } }
+	.charitable-table {
+		border: none !important;
+	}
+	.charitable-table thead {
+		display: none;
+	}
+	.charitable-table tr {
+		display: block;
+		padding: 1em 0;
+		margin-bottom: 1em;
+	}
+	.charitable-table tr td {
+		display: block;
+		padding: 0.25em 0.5em !important;
+		border: none !important;
+		line-height: 1.3;
+	}
+	.charitable-table tr td::before {
+		content: attr(data-title) ": ";
+		font-weight: 700;
+		width: 100%;
+		float: left;
+	}
+	.charitable-table tr td .actions {
+		text-align: right;
+	}
+}
 
 /* Campaigns grid */
 .campaign-loop.campaign-list,
