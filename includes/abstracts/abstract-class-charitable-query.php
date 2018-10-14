@@ -701,6 +701,31 @@ if ( ! class_exists( 'Charitable_Query' ) ) :
 		}
 
 		/**
+		 * Filter a query by donation_plan ID.
+		 *
+		 * @uses   WP_Meta_Query
+		 *
+		 * @since  1.7.0
+		 *
+		 * @global WPBD   $wpdb
+		 * @param  string $where_statement The default where statement.
+		 * @return string
+		 */
+		public function where_donation_plan_is_in( $where_statement ) {
+			global $wpdb;
+
+			$donation_plan = $this->get( 'donation_plan', false );
+
+			if ( ! $donation_plan ) {
+				return $where_statement;
+			}
+
+			$placeholders = $this->get_where_in_placeholders( $donation_plan, 'charitable_validate_absint', '%d' );
+
+			return $where_statement . " AND {$wpdb->posts}.post_parent IN ({$placeholders})";
+		}
+
+		/**
 		 * A method used to join the campaign donations table on the campaigns query.
 		 *
 		 * @global WPBD $wpdb

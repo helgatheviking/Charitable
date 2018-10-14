@@ -35,6 +35,8 @@ if ( ! class_exists( 'Charitable_Donations_Query' ) ) :
 			$defaults = array(
 				// Use 'posts' to get standard post objects.
 				'output'     => 'donations',
+				// Donation plan is post_parent.
+				'donation_plan'   => 0,
 				// Set to an array with statuses to only show certain statuses.
 				'status'     => false,
 				// Currently only supports 'date'.
@@ -161,6 +163,7 @@ if ( ! class_exists( 'Charitable_Donations_Query' ) ) :
 			remove_filter( 'charitable_query_where', array( $this, 'where_user_id_is_in' ), 8 );
 			remove_filter( 'charitable_query_where', array( $this, 'where_date' ), 9 );
 			remove_filter( 'charitable_query_where', array( $this, 'where_meta' ), 10 );
+			remove_filter( 'charitable_query_where', array( $this, 'where_donation_plan_is_in' ), 15 );
 			remove_action( 'charitable_pre_query', array( $this, 'setup_orderby' ) );
 			remove_filter( 'charitable_query_orderby', array( $this, 'orderby_date' ) );
 			remove_filter( 'charitable_query_orderby', array( $this, 'orderby_donation_amount' ) );
@@ -186,6 +189,7 @@ if ( ! class_exists( 'Charitable_Donations_Query' ) ) :
 			add_filter( 'charitable_query_where', array( $this, 'where_user_id_is_in' ), 8 );
 			add_filter( 'charitable_query_where', array( $this, 'where_date' ), 9 );
 			add_filter( 'charitable_query_where', array( $this, 'where_meta' ), 10 );
+			add_filter( 'charitable_query_where', array( $this, 'where_donation_plan_is_in' ), 15 );
 			add_filter( 'charitable_query_groupby', array( $this, 'groupby_donation_id' ) );
 			add_action( 'charitable_post_query', array( $this, 'unhook_callbacks' ) );
 		}
