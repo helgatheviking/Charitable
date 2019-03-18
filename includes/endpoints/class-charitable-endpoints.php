@@ -52,6 +52,7 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 
 			add_action( 'init', array( $this, 'setup_rewrite_rules' ) );
 			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
+			add_filter( 'posts_pre_query', array( $this, 'setup_query_object' ), 1, 2 );
 			add_filter( 'template_include', array( $this, 'template_loader' ), 12 );
 			add_filter( 'the_content', array( $this, 'get_content' ) );
 			add_filter( 'body_class', array( $this, 'add_body_classes' ) );
@@ -208,6 +209,81 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 
 			return array_merge( $vars, array( 'donation_id', 'cancel' ) );
 		}
+
+        /**
+         * Setup WP Query Object for Endpoint.
+         *
+         * @since   1.7.0
+         *
+         * @return  array
+         */
+        public function setup_query_object( $posts, $q ) {
+
+        	$endpoint = $this->get_current_endpoint();
+
+			if ( ! $endpoint ) {
+				return $posts;
+			}
+				
+            $q->posts_per_page = 1;
+            $q->nopaging = true;
+            $q->post_count = 1;
+            $q->found_posts = 1;
+            $q->is_single = false; //false -- so comments_template() doesn't add comments
+            $q->is_preview = false;
+            $q->is_page = true; //false -- so comments_template() doesn't add comments
+            $q->is_archive = false;
+            $q->is_date = false;
+            $q->is_year = false;
+            $q->is_month = false;
+            $q->is_day = false;
+            $q->is_time = false;
+            $q->is_author = false;
+            $q->is_category = false;
+            $q->is_tag = false;
+            $q->is_tax = false;
+            $q->is_search = false;
+            $q->is_feed = false;
+            $q->is_comment_feed = false;
+            $q->is_trackback = false;
+            $q->is_home = false;
+            $q->is_404 = false;
+            $q->is_comments_popup = false;
+            $q->is_paged = false;
+            $q->is_admin = false;
+            $q->is_attachment = false;
+            $q->is_singular = true;
+            $q->is_posts_page = false;
+            $q->is_post_type_archive = false;
+
+            $_post = new WP_Post( new stdClass() );
+
+            $_post->ID = 0;
+            $_post->post_date = current_time( 'mysql' );
+            $_post->post_date_gmt = current_time( 'mysql', 1 );
+            $_post->post_content = $this->endpoints[ $endpoint ]->get_content(); //$this->args[ 'content' ];
+            $_post->post_title = $this->endpoints[ $endpoint ]->get_title();
+            $_post->post_excerpt = '';
+            $_post->post_status = 'publish';
+            $_post->comment_status = false;
+            $_post->ping_status = false;
+            $_post->post_password = '';
+            $_post->post_name = 'charitable-ghost-' . $endpoint;
+            $_post->to_ping = '';
+            $_post->pinged = '';
+            $_post->post_modified = $_post->post_date;
+            $_post->post_modified_gmt = $_post->post_date_gmt;
+            $_post->post_content_filtered = '';
+            $_post->post_parent = 0;
+            $_post->guid = get_home_url() . '/' . $this->endpoints[ $endpoint ]->get_guid();
+            $_post->menu_order = 0;
+            $_post->post_type = 'page';
+            $_post->post_mime_type = '';
+            $_post->comment_count = 0;
+            $_post->filter = 'raw';
+
+            return array( $_post );
+        }
 
 		/**
 		 * Load templates for our endpoints.

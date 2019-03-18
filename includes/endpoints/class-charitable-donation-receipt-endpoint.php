@@ -113,20 +113,6 @@ if ( ! class_exists( 'Charitable_Donation_Receipt_Endpoint' ) ) :
 				return $template;
 			}
 
-			/**
-			 * Filter the title of the donation receipt page.
-			 *
-			 * @since 1.4.0
-			 *
-			 * @param string $title The page title.
-			 */
-			$donation_receipt_page_title = apply_filters( 'charitable_donation_receipt_page_title', __( 'Your Receipt', 'charitable' ) );
-
-			new Charitable_Ghost_Page( 'donation-receipt-page', array(
-				'title'   => $donation_receipt_page_title,
-				'content' => sprintf( '<p>%s</p>', __( 'Thank you for your donation!', 'charitable' ) ),
-			) );
-
 			return array( 'donation-receipt-page.php', 'page.php', 'index.php' );
 		}
 
@@ -138,7 +124,10 @@ if ( ! class_exists( 'Charitable_Donation_Receipt_Endpoint' ) ) :
 		 * @param  string $content
 		 * @return string
 		 */
-		public function get_content( $content ) {
+		public function get_content( $content = '' ) {
+
+			$content = sprintf( '<p>%s</p>', __( 'Thank you for your donation!', 'charitable' ) );
+
 			if ( ! in_the_loop() ) {
 				return $content;
 			}
@@ -160,6 +149,25 @@ if ( ! class_exists( 'Charitable_Donation_Receipt_Endpoint' ) ) :
 		 */
 		public function get_body_class() {
 			return 'campaign-donation-receipt';
+		}
+
+		/**
+		 * Get the title to display for the endpoint.
+		 *
+		 * @since  1.7.0
+		 *
+		 * @param  string $content
+		 * @return string
+		 */
+		public function get_title() {
+			/**
+			 * Filter the title of the donation receipt page.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @param string $title The page title.
+			 */
+			return apply_filters( 'charitable_donation_receipt_page_title', __( 'Your Receipt', 'charitable' ) );
 		}
 	}
 

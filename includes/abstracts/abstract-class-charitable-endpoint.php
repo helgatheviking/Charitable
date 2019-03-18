@@ -111,6 +111,28 @@ if ( ! class_exists( 'Charitable_Endpoint' ) ) :
 		public function is_cacheable() {
 			return $this->cacheable;
 		}
+
+		/**
+		 * Return the "Post Title" for the endpoint.
+		 *
+		 * By default, this will be blank.
+		 *
+		 * @since  1.7.0
+		 *
+		 * @return string
+		 */
+		public function get_title() {
+		}
+
+		/**
+         * Creates a guid based on the current view.
+         *
+         * @since   1.7.0
+         *
+         * @return  string
+         */
+        public function get_guid() {
+        }
 	}
 
 endif;
