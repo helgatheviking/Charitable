@@ -117,7 +117,7 @@ if ( ! class_exists( 'Charitable_Ghost_Page' ) ) :
             $wp_query->found_posts = 1;
             $wp_query->is_single = false; //false -- so comments_template() doesn't add comments
             $wp_query->is_preview = false;
-            $wp_query->is_page = false; //false -- so comments_template() doesn't add comments
+            $wp_query->is_page = true;
             $wp_query->is_archive = false;
             $wp_query->is_date = false;
             $wp_query->is_year = false;
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Charitable_Ghost_Page' ) ) :
             $wp_query->is_paged = false;
             $wp_query->is_admin = false;
             $wp_query->is_attachment = false;
-            $wp_query->is_singular = false;
+            $wp_query->is_singular = true;
             $wp_query->is_posts_page = false;
             $wp_query->is_post_type_archive = false;
 
