@@ -695,6 +695,21 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				$vars['post__in'] = charitable_get_table( 'campaign_donations' )->get_donation_ids_for_campaign( $_GET['campaign_id'] );
 			}
 
+			/* Filter by gateway. */
+			if ( isset( $_GET['gateway_id'] ) && 'all' != $_GET['gateway_id'] ) {
+				$donations_query = new Charitable_Donations_Query(
+					array(
+						'number'   => -1,
+						'output' => 'ids',
+						'meta_query' => array( 'donation_gateway' => sanitize_title( $_GET['gateway_id'] ) )
+					)
+				);
+
+				$donation_ids = wp_list_pluck( $donations_query->get_results(), 'ID' );
+
+				$vars['post__in'] = $donation_ids;
+			}
+
 			return $vars;
 		}
 

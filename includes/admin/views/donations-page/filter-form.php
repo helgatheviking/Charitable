@@ -44,6 +44,18 @@ $post_status = isset( $_GET['post_status'] ) ? $_GET['post_status'] : 'all';
 				<option value="<?php echo $campaign->ID; ?>" <?php selected( $campaign_id, $campaign->ID ); ?>><?php echo get_the_title( $campaign->ID ); ?></option>
 			<?php endforeach ?>
 		</select>
+		<label for="charitable-donations-filter-gateway"><?php _e( 'Filter by Gateway', 'charitable' ); ?></label>
+		<select id="charitable-donations-filter-gateway" name="gateway_id">
+			<option value="all"><?php _e( 'All Gateways', 'charitable' ); ?></option>
+			<?php
+			$helper             = charitable_get_helper( 'gateways' );
+			$gateways           = $helper->get_active_gateways();
+			foreach ( $gateways as $gateway_id => $gateway_class ) :
+				$gateway_obj = $helper->get_gateway_object( $gateway_id );
+			?>
+				<option value="<?php echo $gateway_obj::ID; ?>"><?php echo $gateway_obj->get_default_label(); ?></option>
+			<?php endforeach ?>
+		</select>
 		<?php do_action( 'charitable_filter_donations_form' ); ?>
 		<button type="submit" class="button button-primary"><?php _e( 'Filter', 'charitable' ); ?></button>
 	</form>
