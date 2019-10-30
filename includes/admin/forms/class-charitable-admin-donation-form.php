@@ -139,6 +139,9 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 					'priority'    => 41,
 					'value'       => '',
 					'description' => __( 'Select an existing donor or choose "Add a New Donor" to create a new donor.', 'charitable' ),
+					'attrs'       => array (
+						'data-nonce' => wp_create_nonce( 'charitable_get_donor' ),
+					),
 				);
 
 				$fields['user_fields']['attrs'] = array(

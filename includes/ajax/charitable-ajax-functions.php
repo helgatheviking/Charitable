@@ -278,3 +278,40 @@ function charitable_ajax_get_session_notices( $content ) {
 
 	return ob_get_clean();
 }
+
+
+if ( ! function_exists( 'charitable_ajax_get_donor_data' ) ) :
+
+	/**
+	 * Retrieves the donor data via AJAX.
+	 *
+	 * @since   1.7.0
+	 *
+	 * @return  void
+	 */
+	function charitable_ajax_get_donor_data() {
+
+		if ( ! isset( $_POST['donor_id'] ) ) {
+			wp_send_json_error( 'No donor id is set' );
+		}
+
+		if ( ! isset( $_POST['security'] ) || ! check_ajax_referer( 'charitable_get_donor', 'security', false ) ) {
+			wp_send_json_error( 'Security failure' );
+		}
+
+		$donor = new Charitable_Donor( absint( $_POST['donor_id'] ) );
+
+		// Get the registered user fields.
+		$user_fields = wp_list_pluck( charitable()->donation_fields()->get_admin_form_fields( 'user' ), 'admin_form' );
+
+		$user_data = array();
+
+		foreach ( $user_fields as $key => $field ) {
+			$user_data[$key] = $donor->get_donor_meta( $key );
+		}
+
+		wp_send_json_success( $user_data );
+
+	}
+
+endif;

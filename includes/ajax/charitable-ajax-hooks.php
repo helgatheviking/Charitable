@@ -54,3 +54,10 @@ add_filter( 'charitable_session_content_donation_form_amount_field', 'charitable
 add_filter( 'charitable_session_content_donation_form_current_amount_text', 'charitable_ajax_get_session_donation_form_current_amount_text', 10, 2 );
 add_filter( 'charitable_session_content_errors', 'charitable_ajax_get_session_errors' );
 add_filter( 'charitable_session_content_notices', 'charitable_ajax_get_session_notices' );
+
+/**
+ * Get donor data.
+ *
+ * @see charitable_ajax_get_donor_data()
+ */
+add_action( 'wp_ajax_charitable_get_donor_data', 'charitable_ajax_get_donor_data' );

@@ -483,6 +483,48 @@ CHARITABLE_ADMIN = window.CHARITABLE_ADMIN || {};
 		$('#change-donation-status').on( 'change', function() {
 			$(this).parents( 'form' ).submit();
 		});
+
+		// Fetch donor data for existing donors.
+		$('#donor-id').on( 'change', function() {
+
+			var $donor_select = $(this);
+			var donor_id = parseInt( $donor_select.val() );
+
+			if( Number.isInteger(donor_id) ) {
+
+				$donor_select.attr('disabled', true);
+
+				data = {
+					action 	 : 'charitable_get_donor_data',
+					donor_id : donor_id,
+					security : $(this).data( 'nonce' )
+				};
+
+				$.ajax({
+					type: "POST",
+					data: data,
+					dataType: "json",
+					url: ajaxurl,
+				}).done( function( response ) {
+
+					$.each( response.data, function( key, value ) {
+						key = key.replace( '_', '-' );
+						$( '#' + key ).val( value );
+					  });
+
+					// Disable the email field.
+					$('#email').attr('disabled', true);
+				}).fail(function(data) {
+					if ( window.console && window.console.log ) {
+						console.log( 'failure', data );
+					}
+				}).always(function(response) {
+					$( '#charitable-user-fields-wrap' ).show();
+					$donor_select.attr('disabled', false);
+				});
+			}
+		});
+
 	});
 
 })( jQuery );
