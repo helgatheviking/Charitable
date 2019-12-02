@@ -128,7 +128,7 @@ if ( ! class_exists( 'Charitable_Profile_Endpoint' ) ) :
 		 * @return object
 		 */
 		public function nav_menu_object() {
-			return $this->get_nav_menu_object( __( 'Profile', 'charitable' ) );
+			return charitable_get_option( 'profile_page', false ) ? $this->get_nav_menu_object( __( 'Profile', 'charitable' ) ) : null;
 		}
 	}
 
