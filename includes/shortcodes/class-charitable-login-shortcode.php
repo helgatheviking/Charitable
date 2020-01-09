@@ -4,10 +4,10 @@
  *
  * @package   Charitable/Shortcodes/Login
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.5.7
+ * @version   1.6.31
  */
 
 // Exit if accessed directly.
@@ -20,7 +20,7 @@ if ( ! class_exists( 'Charitable_Login_Shortcode' ) ) :
 	/**
 	 * Charitable_Login_Shortcode class.
 	 *
-	 * @since   1.0.0
+	 * @since 1.0.0
 	 */
 	class Charitable_Login_Shortcode {
 
@@ -29,10 +29,10 @@ if ( ! class_exists( 'Charitable_Login_Shortcode' ) ) :
 		 *
 		 * This receives the user-defined attributes and passes the logic off to the class.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param   array $atts User-defined shortcode attributes.
-		 * @return  string
+		 * @param  array $atts User-defined shortcode attributes.
+		 * @return string
 		 */
 		public static function display( $atts = array() ) {
 			$defaults = array(
@@ -58,7 +58,11 @@ if ( ! class_exists( 'Charitable_Login_Shortcode' ) ) :
 				if ( charitable_get_permalink( 'login_page' ) === $registration_link ) {
 					$args['registration_link'] = false;
 				} else {
-					$args['registration_link'] = add_query_arg( 'redirect_to', $args['redirect'], $registration_link );
+					$args['registration_link'] = add_query_arg(
+						'redirect_to',
+						urlencode( urldecode( $args['redirect'] ) ),
+						$registration_link
+					);
 				}
 			}
 
