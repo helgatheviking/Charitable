@@ -170,11 +170,13 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 		 * @return int
 		 */
 		private function run_donor_query() {
-			$query = new Charitable_Donor_Query( array(
-				'output'   => 'count',
-				'campaign' => $this->args['campaigns'],
-				'status'   => $this->args['status'],
-			) );
+			$query = new Charitable_Donor_Query(
+				array(
+					'output'   => 'count',
+					'campaign' => $this->args['campaigns'],
+					'status'   => $this->args['status'],
+				)
+			);
 
 			return $query->count();
 		}
