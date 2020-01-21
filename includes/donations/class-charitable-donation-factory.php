@@ -27,10 +27,10 @@ if ( ! class_exists( 'Charitable_Donation_Factory' ) ) :
 		/**
 		 * Get donation.
 		 *
-		 * @since   1.4.0
+		 * @since  1.4.0
 		 *
-		 * @param 	bool $donation (default: false)
-		 * @return 	Charitable_Donation|bool
+		 * @param  boolean|int|Charitable_Donation $donation A donation object, ID or false.
+		 * @return Charitable_Donation|boolean
 		 */
 		public function get_donation( $donation = false ) {
 			global $post;
@@ -47,7 +47,19 @@ if ( ! class_exists( 'Charitable_Donation_Factory' ) ) :
 				return false;
 			}
 
-			$valid_post_types = apply_filters( 'charitable_valid_donation_types', array( Charitable::DONATION_POST_TYPE ) );
+			/**
+			 * Filter the list of valid donation types.
+			 *
+			 * @since 1.4.7
+			 *
+			 * @param string[] $post_types List of post types that qualify as donations.
+			 */
+			$valid_post_types = apply_filters(
+				'charitable_valid_donation_types',
+				array(
+					Charitable::DONATION_POST_TYPE,
+				)
+			);
 
 			if ( ! in_array( $donation->post_type, $valid_post_types ) ) {
 				return false;

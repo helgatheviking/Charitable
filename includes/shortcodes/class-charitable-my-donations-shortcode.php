@@ -11,14 +11,16 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_My_Donations_Shortcode' ) ) :
 
 	/**
 	 * Charitable_My_Donations_Shortcode class.
 	 *
-	 * @since   1.4.0
+	 * @since 1.4.0
 	 */
 	class Charitable_My_Donations_Shortcode {
 
@@ -27,10 +29,10 @@ if ( ! class_exists( 'Charitable_My_Donations_Shortcode' ) ) :
 		 *
 		 * This receives the user-defined attributes and passes the logic off to the class.
 		 *
-		 * @since   1.4.0
+		 * @since  1.4.0
 		 *
-		 * @param   array $atts User-defined shortcode attributes.
-		 * @return  string
+		 * @param  array $atts User-defined shortcode attributes.
+		 * @return string
 		 */
 		public static function display( $atts ) {
 			$defaults = array(

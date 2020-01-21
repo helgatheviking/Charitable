@@ -404,9 +404,12 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		 * @return string
 		 */
 		public function get_campaign_categories_list() {
-			$categories = $this->get_campaign_categories_donated_to( 'campaign_category', array(
-				'fields' => 'names',
-			) );
+			$categories = $this->get_campaign_categories_donated_to(
+				'campaign_category',
+				array(
+					'fields' => 'names',
+				)
+			);
 
 			if ( is_wp_error( $categories ) ) {
 				return '';
