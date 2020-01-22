@@ -327,12 +327,16 @@ if ( ! class_exists( 'Charitable_Admin_Actions' ) ) :
 				return;
 			}
 
-			return esc_url( add_query_arg( array(
-				'charitable_admin_action' => $action,
-				'action_type'             => $this->get_type(),
-				'object_id'               => $object_id,
-				'_nonce'                  => wp_create_nonce( 'donation_action' ),
-			) ) );
+			return esc_url(
+				add_query_arg(
+					array(
+						'charitable_admin_action' => $action,
+						'action_type'             => $this->get_type(),
+						'object_id'               => $object_id,
+						'_nonce'                  => wp_create_nonce( 'donation_action' ),
+					)
+				)
+			);
 		}
 
 		/**

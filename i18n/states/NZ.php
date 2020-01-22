@@ -27,5 +27,5 @@ return array(
 	'WC' => __( 'West Coast', 'charitable' ),
 	'CT' => __( 'Canterbury', 'charitable' ),
 	'OT' => __( 'Otago', 'charitable' ),
-	'SL' => __( 'Southland', 'charitable'),
+	'SL' => __( 'Southland', 'charitable' ),
 );

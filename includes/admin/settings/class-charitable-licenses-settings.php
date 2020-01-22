@@ -160,7 +160,7 @@ if ( ! class_exists( 'Charitable_Licenses_Settings' ) ) :
 				return $button;
 			}
 
-			$html  = '<input style="margin-left:8px;height:29px;" type="submit" class="button button-secondary" name="recheck" value="' . esc_attr__( 'Save & Re-check All Licenses', 'charitable' ) . '" /></p>';
+			$html = '<input style="margin-left:8px;height:29px;" type="submit" class="button button-secondary" name="recheck" value="' . esc_attr__( 'Save & Re-check All Licenses', 'charitable' ) . '" /></p>';
 
 			return str_replace(
 				'</p>',

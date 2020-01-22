@@ -362,7 +362,8 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 
 				if ( ! isset( $links[ $campaign->campaign_id ] ) ) {
 
-					$links[ $campaign->campaign_id ] = sprintf( '<a href="%s" aria-label="%s">%s</a>',
+					$links[ $campaign->campaign_id ] = sprintf(
+						'<a href="%s" aria-label="%s">%s</a>',
 						get_permalink( $campaign->campaign_id ),
 						sprintf( '%s %s', _x( 'Go to', 'go to campaign', 'charitable' ), get_the_title( $campaign->campaign_id ) ),
 						get_the_title( $campaign->campaign_id )
@@ -439,7 +440,8 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		 * @return string
 		 */
 		protected function get_donation_summary_line( $campaign_donation ) {
-			$line_item = sprintf( '%s: %s%s',
+			$line_item = sprintf(
+				'%s: %s%s',
 				$campaign_donation->campaign_name,
 				charitable_format_money( $campaign_donation->amount ),
 				PHP_EOL
@@ -1014,7 +1016,7 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		public function set_gateway_transaction_id( $value ) {
 			$key   = '_gateway_transaction_id';
 			$value = charitable_sanitize_donation_meta( $value, $key );
-			return update_post_meta( $this->donation_id, $key , $value );
+			return update_post_meta( $this->donation_id, $key, $value );
 		}
 
 		/**
@@ -1026,7 +1028,7 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		 */
 		public function get_gateway_transaction_id() {
 			if ( ! isset( $this->gateway_transaction_id ) ) {
-				$this->gateway_transaction_id = get_post_meta( $this->donation_id, '_gateway_transaction_id' , true );
+				$this->gateway_transaction_id = get_post_meta( $this->donation_id, '_gateway_transaction_id', true );
 			}
 
 			return $this->gateway_transaction_id;
@@ -1179,8 +1181,8 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		 * @since  1.0.0
 		 * @since  1.4.0
 		 *
-		 * @param  mixed   $value
-		 * @param  string  $key
+		 * @param  mixed  $value
+		 * @param  string $key
 		 * @return mixed
 		 */
 		public function sanitize_meta( $value, $key ) {
