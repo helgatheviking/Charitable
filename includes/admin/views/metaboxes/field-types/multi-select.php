@@ -43,7 +43,7 @@ $is_required = array_key_exists( 'required', $view_args ) && $view_args['require
 			</optgroup>
 		<?php else : ?>
 			<option value="<?php echo esc_attr( $key ); ?>" <?php selected( in_array( $key, $value ) ); ?>><?php echo $option; ?></option>
-		<?php
+			<?php
 		endif;
 	endforeach;
 	?>

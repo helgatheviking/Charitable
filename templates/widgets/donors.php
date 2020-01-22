@@ -11,7 +11,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! charitable_is_campaign_page() && 'current' == $view_args['campaign_id'] ) {
 	return;

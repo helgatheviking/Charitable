@@ -7,22 +7,29 @@
  * @package Charitable/Templates/Donor
  * @author  Studio 164a
  * @since   1.5.0
- * @version 1.5.0
+ * @version 1.6.31
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /* Donors have to be included in the view args. */
 if ( ! array_key_exists( 'donors', $view_args ) ) {
 	return;
 }
 
-$donors      = $view_args['donors'];
-$args        = $view_args;
-$campaign_id = $view_args['campaign'];
+$donors            = $view_args['donors'];
+$args              = $view_args;
+$campaign_id       = $view_args['campaign'];
+$hide_if_no_donors = array_key_exists( 'hide_if_no_donors', $view_args ) && $view_args['hide_if_no_donors'];
 
 if ( ! charitable_is_campaign_page() && 'current' === $campaign_id ) {
+	return;
+}
+
+if ( ! $donors->count() && $hide_if_no_donors ) {
 	return;
 }
 
@@ -58,5 +65,5 @@ if ( $donors->count() ) :
 	</ol>
 <?php else : ?>
 	<p><?php _e( 'No donors yet. Be the first!', 'charitable' ); ?></p>
-<?php
+	<?php
 endif;
