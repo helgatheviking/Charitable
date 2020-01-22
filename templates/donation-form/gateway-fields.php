@@ -41,11 +41,7 @@ $default  = isset( $field['default'] ) && isset( $gateways[ $field['default'] ] 
 			<ul id="charitable-gateway-selector" class="charitable-radio-list charitable-form-field">
 				<?php foreach ( $gateways as $gateway_id => $details ) : ?>
 					<li><input type="radio"
-<<<<<<< HEAD
 							id="gateway-<?php echo esc_attr( $gateway_id ); ?>"
-=======
-							id="gateway-<?php echo esc_attr( $gateway_id ) ?>"
->>>>>>> stable
 							name="gateway"
 							value="<?php echo esc_attr( $gateway_id ); ?>"
 							aria-describedby="charitable-gateway-selector-header"
@@ -64,14 +60,8 @@ $default  = isset( $field['default'] ) && isset( $gateways[ $field['default'] ] 
 		endif;
 
 		?>
-<<<<<<< HEAD
 		<div id="charitable-gateway-fields-<?php echo $gateway_id; ?>" class="charitable-gateway-fields charitable-form-fields cf" data-gateway="<?php echo $gateway_id ?>">
 			<?php $form->view()->render_fields( $details['fields'] ); ?>
 		</div><!-- #charitable-gateway-fields-<?php echo $gateway_id; ?> -->
-=======
-		<div id="charitable-gateway-fields-<?php echo $gateway_id ?>" class="charitable-gateway-fields charitable-form-fields cf" data-gateway="<?php echo $gateway_id ?>">
-			<?php $form->view()->render_fields( $details['fields'] ) ?>
-		</div><!-- #charitable-gateway-fields-<?php echo $gateway_id ?> -->
->>>>>>> stable
 	<?php endforeach ?>
 </fieldset><!-- .charitable-fieldset -->
