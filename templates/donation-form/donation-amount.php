@@ -10,7 +10,9 @@
  * @version 1.5.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! isset( $view_args['form'] ) ) {
 	return;

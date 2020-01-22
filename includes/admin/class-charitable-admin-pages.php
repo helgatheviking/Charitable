@@ -4,10 +4,10 @@
  *
  * @package   Charitable/Classes/Charitable_Admin_Pages
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.0
+ * @version   1.6.31
  */
 
 // Exit if accessed directly.
@@ -162,6 +162,7 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 						'page_title' => __( 'Customize', 'charitable' ),
 						'menu_title' => __( 'Customize', 'charitable' ),
 						'menu_slug'  => 'customize.php?autofocus[panel]=charitable&url=' . $this->get_customizer_campaign_preview_url(),
+						'capability' => 'manage_charitable_settings',
 					),
 					array(
 						'page_title' => __( 'Charitable Settings', 'charitable' ),

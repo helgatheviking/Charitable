@@ -4,7 +4,7 @@
  *
  * @author    Studio 164a
  * @package   Charitable/Admin Views/Metaboxes
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @since     1.6.0
  * @version   1.6.0
  */

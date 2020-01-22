@@ -3,7 +3,7 @@
  * Renders the Campaign Creator metabox.
  *
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @package   Charitable/Admin Views/Metaboxes
  * @since     1.2.0
  * @version   1.2.0

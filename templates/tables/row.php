@@ -11,7 +11,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! array_key_exists( 'data', $view_args ) || ! array_key_exists( 'columns', $view_args ) ) {
     return;

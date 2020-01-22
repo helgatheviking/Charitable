@@ -12,7 +12,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! array_key_exists( 'redirect', $view_args ) || ! array_key_exists( 'text', $view_args ) ) {
 	return;

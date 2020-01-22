@@ -5,7 +5,7 @@
  * The responsibility of this class is to manage migrations between versions of Charitable.
  *
  * @package   Charitable/Classes/Charitable_Upgrade
- * @copyright Copyright (c) 2018, Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-1.0.0.php GNU Public License
  * @since     1.0.0
  * @version   1.6.0

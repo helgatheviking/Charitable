@@ -5,11 +5,13 @@
  * @package     Charitable/User Management/User Management
  * @version     1.4.0
  * @author      Rafe Colton
- * @copyright   Copyright (c) 2019, Studio 164a
+ * @copyright   Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_User_Management' ) ) :
 

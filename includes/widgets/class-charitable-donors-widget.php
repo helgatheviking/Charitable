@@ -8,7 +8,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 
@@ -93,11 +95,11 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 							<option value="<?php echo intval( $campaign->ID ) ?>" <?php selected( $campaign->ID, $args['campaign_id'] ) ?>><?php echo $campaign->post_title ?></option>
 						<?php endforeach ?>
 					</optgroup>
-				</select>                
+				</select>
 			</p>
 			<p>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'show_distinct' ) ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_distinct' ) ); ?>" <?php checked( $args['show_distinct'] ) ?>>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'show_distinct' ) ) ?>"><?php _e( 'Group donations by the same person', 'charitable' ) ?></label>        
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_distinct' ) ) ?>"><?php _e( 'Group donations by the same person', 'charitable' ) ?></label>
 			</p>
 			<p>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'show_avatar' ) ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_avatar' ) ); ?>" <?php checked( $args['show_avatar'] ) ?>>
@@ -105,17 +107,17 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 			</p>
 			<p>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'show_name' ) ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_name' ) ); ?>" <?php checked( $args['show_name'] ) ?>>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'show_name' ) ) ?>"><?php _e( 'Show donor\'s name', 'charitable' ) ?></label>            
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_name' ) ) ?>"><?php _e( 'Show donor\'s name', 'charitable' ) ?></label>
 			</p>
 			<p>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'show_amount' ) ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_amount' ) ); ?>" <?php checked( $args['show_amount'] ) ?>>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'show_amount' ) ) ?>"><?php _e( 'Show donor\'s donation amount', 'charitable' ) ?></label>            
+				<label for="<?php echo esc_attr( $this->get_field_id( 'show_amount' ) ) ?>"><?php _e( 'Show donor\'s donation amount', 'charitable' ) ?></label>
 			</p>
-			<p>            
+			<p>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'show_location' ) ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'show_location' ) ); ?>" <?php checked( $args['show_location'] ) ?>>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'show_location' ) ) ?>"><?php _e( 'Show donor\'s location', 'charitable' ) ?></label>
 			</p>
-			<p>            
+			<p>
 				<input id="<?php echo esc_attr( $this->get_field_id( 'hide_if_no_donors' ) ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'hide_if_no_donors' ) ); ?>" <?php checked( $args['hide_if_no_donors'] ) ?>>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'hide_if_no_donors' ) ) ?>"><?php _e( 'Hide if there are no donors', 'charitable' ) ?></label>
 			</p>

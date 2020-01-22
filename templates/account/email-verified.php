@@ -18,7 +18,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 <p><?php _e( 'Your email address has been verified.', 'charitable' ) ?></p>
