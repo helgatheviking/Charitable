@@ -5,12 +5,14 @@
  * @package     Charitable/Classes/Charitable_Licenses_Settings
  * @version     1.0.0
  * @author      Eric Daams
- * @copyright   Copyright (c) 2019, Studio 164a
+ * @copyright   Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Licenses_Settings' ) ) :
 
@@ -158,7 +160,7 @@ if ( ! class_exists( 'Charitable_Licenses_Settings' ) ) :
 				return $button;
 			}
 
-			$html  = '<input style="margin-left:8px;height:29px;" type="submit" class="button button-secondary" name="recheck" value="' . esc_attr__( 'Save & Re-check All Licenses', 'charitable' ) . '" /></p>';
+			$html = '<input style="margin-left:8px;height:29px;" type="submit" class="button button-secondary" name="recheck" value="' . esc_attr__( 'Save & Re-check All Licenses', 'charitable' ) . '" /></p>';
 
 			return str_replace(
 				'</p>',

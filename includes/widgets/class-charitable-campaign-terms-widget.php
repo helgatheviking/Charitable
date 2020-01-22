@@ -10,7 +10,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Campaign_Terms_Widget' ) ) :
 
@@ -28,11 +30,11 @@ if ( ! class_exists( 'Charitable_Campaign_Terms_Widget' ) ) :
          */
         public function __construct() {
             parent::__construct(
-                'charitable_campaign_terms_widget', 
-                __( 'Campaign Categories / Tags', 'charitable' ), 
-                array( 
+                'charitable_campaign_terms_widget',
+                __( 'Campaign Categories / Tags', 'charitable' ),
+                array(
                     'description' => __( 'Displays your Charitable campaign categories or tags.', 'charitable' ),
-                    // 'customize_selective_refresh' => true 
+                    // 'customize_selective_refresh' => true
                 )
             );
         }
@@ -61,7 +63,7 @@ if ( ! class_exists( 'Charitable_Campaign_Terms_Widget' ) ) :
          * @param  array $instance The current settings for the widget options.
          * @return void
          */
-        public function form( $instance ) {      
+        public function form( $instance ) {
             $title      = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
             $taxonomy   = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'campaign_category';
             $show_count = isset( $instance['show_count'] ) && $instance['show_count'];
@@ -111,7 +113,7 @@ if ( ! class_exists( 'Charitable_Campaign_Terms_Widget' ) ) :
             $instance['hide_empty'] = isset( $new_instance['hide_empty'] ) && $new_instance['hide_empty'] == 'on';
             $instance['dropdown']   = isset( $new_instance['dropdown'] ) && $new_instance['dropdown'] == 'on';
             return $instance;
-        }   
+        }
     }
 
 endif;

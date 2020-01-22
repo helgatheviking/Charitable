@@ -5,7 +5,7 @@
  * The responsibility of this class is to manage migrations between versions of Charitable.
  *
  * @package   Charitable/Classes/Charitable_Upgrade
- * @copyright Copyright (c) 2019, Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-1.0.0.php GNU Public License
  * @since     1.0.0
  * @version   1.6.0
@@ -327,12 +327,12 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			if ( array_key_exists( 'notice', $upgrade ) ) {
 				return $this->set_update_notice_transient( $upgrade, $action );
 			}
-?>
+			?>
 			<div class="updated">
-				<p><?php printf( '%s %s', $upgrade['message'], sprintf( __( 'Click <a href="%s">here</a> to start the upgrade.', 'charitable' ), esc_url( admin_url( 'index.php?page=charitable-upgrades&charitable-upgrade=' . $action ) ) ) ) ?>
+				<p><?php printf( '%s %s', $upgrade['message'], sprintf( __( 'Click <a href="%s">here</a> to start the upgrade.', 'charitable' ), esc_url( admin_url( 'index.php?page=charitable-upgrades&charitable-upgrade=' . $action ) ) ) ); ?>
 				</p>
 			</div>
-<?php
+			<?php
 		}
 
 		/**
@@ -440,7 +440,7 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			if ( isset( $upgrade_progress['page'] ) && 'charitable-upgrade' == $upgrade_progress['page'] ) {
 				$upgrade_progress['page'] = 'charitable-upgrades';
 			}
-?>
+			?>
 			<div class="error">
 				<p>
 					<?php
@@ -452,7 +452,7 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 					?>
 				</p>
 			</div>
-<?php
+			<?php
 			$this->notice_shown_for_upgrade_in_progress = true;
 		}
 
@@ -536,7 +536,7 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			/**
 			 * Update the campaign donations table to use DECIMAL for amounts.
 			 *
-			 * @see 	https://github.com/Charitable/Charitable/issues/56
+			 * @see     https://github.com/Charitable/Charitable/issues/56
 			 */
 			$table = new Charitable_Campaign_Donations_DB();
 			$table->create_table();
@@ -571,7 +571,7 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			$step   = isset( $_GET['step'] ) ? absint( $_GET['step'] ) : 1;
 			$number = 20;
 
-			$total  = Charitable_Donations::count_all();
+			$total = Charitable_Donations::count_all();
 
 			/**
 			 * If there are no donations to update, go ahead and wrap it up right now.
@@ -580,12 +580,14 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 				$this->finish_upgrade( 'fix_donation_dates' );
 			}
 
-			$donations = get_posts( array(
-				'post_type' => Charitable::DONATION_POST_TYPE,
-				'posts_per_page' => $number,
-				'paged' => $step,
-				'post_status' => array_keys( charitable_get_valid_donation_statuses() ),
-			) );
+			$donations = get_posts(
+				array(
+					'post_type'      => Charitable::DONATION_POST_TYPE,
+					'posts_per_page' => $number,
+					'paged'          => $step,
+					'post_status'    => array_keys( charitable_get_valid_donation_statuses() ),
+				)
+			);
 
 			if ( count( $donations ) ) {
 
@@ -618,22 +620,27 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 
 					$date = get_date_from_gmt( $date_gmt );
 
-					wp_update_post( array(
-						'ID' => $donation->ID,
-						'post_date' => $date,
-						'post_date_gmt' => $date_gmt,
-					) );
+					wp_update_post(
+						array(
+							'ID'            => $donation->ID,
+							'post_date'     => $date,
+							'post_date_gmt' => $date_gmt,
+						)
+					);
 				}//end foreach
 
 				$step++;
 
-				$redirect = add_query_arg( array(
-					'page' => 'charitable-upgrades',
-					'charitable-upgrade' => 'fix_donation_dates',
-					'step' => $step,
-					'number' => $number,
-					'total' => $total,
-				), admin_url( 'index.php' ) );
+				$redirect = add_query_arg(
+					array(
+						'page'               => 'charitable-upgrades',
+						'charitable-upgrade' => 'fix_donation_dates',
+						'step'               => $step,
+						'number'             => $number,
+						'total'              => $total,
+					),
+					admin_url( 'index.php' )
+				);
 
 				wp_redirect( $redirect );
 
@@ -736,13 +743,16 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 
 				$step++;
 
-				$redirect = add_query_arg( array(
-					'charitable-upgrade' => 'remove_duplicate_donors',
-					'page'               => 'charitable-upgrades',
-					'step'               => $step,
-					'number'             => $number,
-					'total'              => $total,
-				), admin_url( 'index.php' ) );
+				$redirect = add_query_arg(
+					array(
+						'charitable-upgrade' => 'remove_duplicate_donors',
+						'page'               => 'charitable-upgrades',
+						'step'               => $step,
+						'number'             => $number,
+						'total'              => $total,
+					),
+					admin_url( 'index.php' )
+				);
 
 				wp_redirect( $redirect );
 
@@ -1113,19 +1123,26 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			global $wpdb;
 
 			if ( empty( $skipped ) ) {
-				return $wpdb->get_col( "SELECT DISTINCT donation_id
+				return $wpdb->get_col(
+					"SELECT DISTINCT donation_id
 					FROM {$wpdb->prefix}charitable_campaign_donations
 					WHERE donor_id = 0
-					LIMIT $number;" );
+					LIMIT $number;"
+				);
 			}
 
 			$placeholders = charitable_get_query_placeholders( count( $skipped ), '%d' );
 
-			return $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT donation_id
+			return $wpdb->get_col(
+				$wpdb->prepare(
+					"SELECT DISTINCT donation_id
 				FROM {$wpdb->prefix}charitable_campaign_donations
 				WHERE donor_id = 0
 				AND donation_id NOT IN ( $placeholders )
-				LIMIT $number;", $skipped ) );
+				LIMIT $number;",
+					$skipped
+				)
+			);
 		}
 
 		/**
@@ -1179,18 +1196,24 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 					$donor_id = $donors_table->get_donor_id_by_email( $data['email'] );
 
 					if ( ! $donor_id ) {
-						$donor_id = $donors_table->insert( array(
-							'email'       => $data['email'],
-							'first_name'  => array_key_exists( 'first_name', $data ) ? $data['first_name'] : '',
-							'last_name'   => array_key_exists( 'last_name', $data ) ? $data['last_name'] : '',
-							'date_joined' => get_post_field( 'post_date_gmt', $donation_id ),
-						) );
+						$donor_id = $donors_table->insert(
+							array(
+								'email'       => $data['email'],
+								'first_name'  => array_key_exists( 'first_name', $data ) ? $data['first_name'] : '',
+								'last_name'   => array_key_exists( 'last_name', $data ) ? $data['last_name'] : '',
+								'date_joined' => get_post_field( 'post_date_gmt', $donation_id ),
+							)
+						);
 					}
 
 					if ( $donor_id ) {
-						$donations_table->update( $donation_id, array(
-							'donor_id' => $donor_id,
-						), 'donation_id' );
+						$donations_table->update(
+							$donation_id,
+							array(
+								'donor_id' => $donor_id,
+							),
+							'donation_id'
+						);
 					} else {
 						$skipped[] = $donation_id;
 					}
@@ -1200,13 +1223,16 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 
 				$step++;
 
-				$redirect = add_query_arg( array(
-					'charitable-upgrade' => 'fix_empty_donor_ids',
-					'page'               => 'charitable-upgrades',
-					'step'               => $step,
-					'number'             => $number,
-					'total'              => $total,
-				), admin_url( 'index.php' ) );
+				$redirect = add_query_arg(
+					array(
+						'charitable-upgrade' => 'fix_empty_donor_ids',
+						'page'               => 'charitable-upgrades',
+						'step'               => $step,
+						'number'             => $number,
+						'total'              => $total,
+					),
+					admin_url( 'index.php' )
+				);
 
 				wp_redirect( $redirect );
 
@@ -1253,10 +1279,10 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			 * array format.
 			 *
 			 * $upgrade_actions = array(
-			 * 	'1.0.1' => 'flush_permalinks',
-			 * 	'1.1.0' => 'upgrade_1_1_0',
-			 * 	'1.1.3' => 'flush_permalinks',
-			 * 	'1.2.0' => 'flush_permalinks',
+			 *  '1.0.1' => 'flush_permalinks',
+			 *  '1.1.0' => 'upgrade_1_1_0',
+			 *  '1.1.3' => 'flush_permalinks',
+			 *  '1.2.0' => 'flush_permalinks',
 			 * );
 			 */
 
@@ -1298,9 +1324,9 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			}
 
 			$log[] = array(
-				'timestamp'		=> time(),
-				'from'			=> $this->db_version,
-				'to'			=> $this->edge_version,
+				'timestamp' => time(),
+				'from'      => $this->db_version,
+				'to'        => $this->edge_version,
 			);
 
 			update_option( $this->upgrade_log_key, $log );

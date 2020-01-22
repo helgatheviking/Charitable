@@ -7,7 +7,7 @@
  *
  * @package   Charitable/Classes/Charitable_DB
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
  * @version   1.5.11
@@ -250,7 +250,7 @@ if ( ! class_exists( 'Charitable_DB' ) ) :
 			$data = array_intersect_key( $data, $column_formats );
 
 			/* Reorder $column_formats to match the order of columns given in $data */
-			$data_keys = array_keys( $data );
+			$data_keys      = array_keys( $data );
 			$column_formats = array_merge( array_flip( $data_keys ), $column_formats );
 
 			$inserted = $wpdb->insert( $this->table_name, $data, $column_formats );
@@ -315,7 +315,7 @@ if ( ! class_exists( 'Charitable_DB' ) ) :
 		 *
 		 * @since  1.0.0
 		 *
-		 * @param  int 	$row_id
+		 * @param  int  $row_id
 		 * @return  bool
 		 */
 		public function delete( $row_id = 0 ) {

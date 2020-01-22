@@ -5,10 +5,12 @@
  * @package   Charitable/Classes/Charitable_Reset_Password_Form
  * @version   1.5.1
  * @author    Rafe Colton, Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Reset_Password_Form' ) ) :
 

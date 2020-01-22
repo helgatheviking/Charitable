@@ -4,7 +4,7 @@
  *
  * @package   Charitable/Classes/Charitable_Admin_Actions
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
  * @version   1.6.0
@@ -327,12 +327,16 @@ if ( ! class_exists( 'Charitable_Admin_Actions' ) ) :
 				return;
 			}
 
-			return esc_url( add_query_arg( array(
-				'charitable_admin_action' => $action,
-				'action_type'             => $this->get_type(),
-				'object_id'               => $object_id,
-				'_nonce'                  => wp_create_nonce( 'donation_action' ),
-			) ) );
+			return esc_url(
+				add_query_arg(
+					array(
+						'charitable_admin_action' => $action,
+						'action_type'             => $this->get_type(),
+						'object_id'               => $object_id,
+						'_nonce'                  => wp_create_nonce( 'donation_action' ),
+					)
+				)
+			);
 		}
 
 		/**

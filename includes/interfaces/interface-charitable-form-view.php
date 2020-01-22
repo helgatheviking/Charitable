@@ -7,12 +7,14 @@
  * @version   1.5.0
  * @package   Charitable/Interfaces/Charitable_Form_View_Interface
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! interface_exists( 'Charitable_Form_View_Interface' ) ) :
 

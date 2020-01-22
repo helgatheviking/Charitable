@@ -4,7 +4,7 @@
  *
  * @package   Charitable/Classes/Charitable_Customize_Select_Sections_Control
  * @author    Eric Daams
- * @copyright Copyright (c) 2018 Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.6.5
  * @version   1.6.5

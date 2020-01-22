@@ -1,3 +1,10 @@
+# 1.6.31
+* FIX: Respect the `hide_if_no_donors` argument in the Donors shortcode. [#734](https://github.com/Charitable/Charitable/issues/734)
+* FIX: Ensure the redirect URL provided in the link to the registration page from the login form is encoded properly. [#734](https://github.com/Charitable/Charitable/issues/734)
+* FIX: Only show the Customize submenu link under Charitable to user with the `manage_charitable_settings` permission. [#736](https://github.com/Charitable/Charitable/issues/736)
+* FIX: Do not add the Profile page as a menu item if a profile page hasn't been set. [#733](https://github.com/Charitable/Charitable/issues/733)
+* Removed unused and outdated translations.
+
 # 1.6.30
 * NEW: Added `charitable_gateway_object_{gateway_id}` filter.
 * FIX: Preserve the name & value of the clicked button when submitting a form. [#723](https://github.com/Charitable/Charitable/issues/723)

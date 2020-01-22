@@ -5,12 +5,14 @@
  * @version		1.0.0
  * @package		Charitable/Classes/Charitable_Template_Part
  * @author 		Eric Daams
- * @copyright 	Copyright (c) 2019, Studio 164a
+ * @copyright 	Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Template_Part' ) ) :
 

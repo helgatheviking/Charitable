@@ -12,7 +12,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 <p><?php _e( 'We were unable to verify your email address.', 'charitable' ) ?></p>

@@ -4,7 +4,7 @@
  *
  * @package   Charitable/Classes/Charitable_Donation_Report
  * @author    Eric Daams
- * @copyright Copyright (c) 2019, Studio 164a
+ * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.6.0
  * @version   1.6.0
@@ -170,11 +170,13 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 		 * @return int
 		 */
 		private function run_donor_query() {
-			$query = new Charitable_Donor_Query( array(
-				'output'   => 'count',
-				'campaign' => $this->args['campaigns'],
-				'status'   => $this->args['status'],
-			) );
+			$query = new Charitable_Donor_Query(
+				array(
+					'output'   => 'count',
+					'campaign' => $this->args['campaigns'],
+					'status'   => $this->args['status'],
+				)
+			);
 
 			return $query->count();
 		}

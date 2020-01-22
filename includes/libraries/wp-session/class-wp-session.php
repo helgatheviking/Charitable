@@ -11,7 +11,9 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * WordPress Session class for managing user session data.
@@ -66,7 +68,7 @@ final class WP_Session extends Recursive_ArrayAccess {
 	 * Will rebuild the session collection from the given session ID if it exists. Otherwise, will
 	 * create a new session with that ID.
 	 *
-	 * @param $session_id	 
+	 * @param $session_id
 	 */
 	protected function __construct() {
 		if ( isset( $_COOKIE[WP_SESSION_COOKIE] ) ) {
@@ -84,7 +86,7 @@ final class WP_Session extends Recursive_ArrayAccess {
 				add_option( "_wp_session_expires_{$this->session_id}", $this->expires, '', 'no' );
 			}
 
-			$this->read_data();		
+			$this->read_data();
 		} else {
 			$this->session_id = '';
 			$this->container  = array();

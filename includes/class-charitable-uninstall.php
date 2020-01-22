@@ -8,11 +8,13 @@
  * @package		Charitable/Charitable_Uninstall
  * @version		1.0.0
  * @author 		Eric Daams
- * @copyright 	Copyright (c) 2019, Studio 164a
+ * @copyright 	Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Charitable_Uninstall' ) ) :
 

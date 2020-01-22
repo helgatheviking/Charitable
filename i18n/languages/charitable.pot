@@ -1,28 +1,28 @@
-# Copyright (C) 2019 WP Charitable
+# Copyright (C) 2020 WP Charitable
 # This file is distributed under the same license as the Charitable package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Charitable 1.6.30\n"
+"Project-Id-Version: Charitable 1.6.31\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2019-11-27 01:08:29+00:00\n"
+"POT-Creation-Date: 2020-01-22 06:16:24+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: WP-Translations (http://wp-translations.org/)\n"
 "Language-Team: WP-Translations <wpt@wp-translations.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
 "Language: en_US\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: charitable.php:810
 msgid "Cloning this object is forbidden."
@@ -4679,57 +4679,57 @@ msgstr ""
 msgid "Western Cape"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:578
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:583
 msgid ""
 "The $label argument is deprecated. Use "
 "Charitable_Donation::get_status_label() instead."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:718
-#: includes/admin/customizer/class-charitable-customizer.php:120
-#: includes/admin/customizer/class-charitable-customizer.php:167
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:723
+#: includes/admin/customizer/class-charitable-customizer.php:122
+#: includes/admin/customizer/class-charitable-customizer.php:169
 #: includes/emails/class-charitable-email-email-verification.php:147
 msgid "Yes"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:718
-#: includes/admin/customizer/class-charitable-customizer.php:121
-#: includes/admin/customizer/class-charitable-customizer.php:168
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:723
+#: includes/admin/customizer/class-charitable-customizer.php:123
+#: includes/admin/customizer/class-charitable-customizer.php:170
 #: includes/emails/class-charitable-email-email-verification.php:148
 msgid "No"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:736
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:741
 msgid "Withdrawn"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:736
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:741
 #: includes/admin/donor/class-charitable-donor-list-table.php:278
 msgid "Not Given"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:739
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:744
 #: includes/admin/donor/class-charitable-donor-list-table.php:278
 #: includes/fields/default-fields/donation-fields.php:416
 msgid "Given"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:739
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:744
 msgid "Given Later"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:853
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:858
 msgid ""
 "$donation_id is no longer required as get_donation_log() is used in object "
 "context. Use $donation->log()->get_meta_log() instead."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:905
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:910
 #. translators: %$1s: old status; %$2s: new status.
 msgid "Donation status updated from %1$s to %2$s."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:964
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:969
 msgid ""
 "$donation_id is no longer required as update_donation_log() is used in "
 "object context. Use $donation->update_donation_log($message)"
@@ -4740,7 +4740,7 @@ msgstr ""
 msgid "Action \"%s\" is not registered."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-admin-actions.php:384
+#: includes/abstracts/abstract-class-charitable-admin-actions.php:388
 #: includes/admin/views/metaboxes/actions.php:79
 msgid "Submit"
 msgstr ""
@@ -4813,67 +4813,67 @@ msgid ""
 "<code>[charitable_email]</code> shortcode:"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-form.php:99
+#: includes/abstracts/abstract-class-charitable-form.php:101
 #. translators: %s: class name
 msgid ""
 "None of the callbacks are required as of Charitable 1.5; use "
 "`Charitable_Public_Form_View` instead. Issue encountered in %s class."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-form.php:228
+#: includes/abstracts/abstract-class-charitable-form.php:230
 msgid "Unable to submit form. Please try again."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-form.php:234
+#: includes/abstracts/abstract-class-charitable-form.php:236
 #. translators: %1$s: nonce name; %2$s: nonce action; %3$s: submitted nonce
 msgid ""
 "Nonce verification failed for nonce with name \"%1$s\" and action \"%2$s\". "
 "Submitted nonce is \"%3$s\"."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-form.php:347
+#: includes/abstracts/abstract-class-charitable-form.php:349
 msgid ""
 "There were problems with your form submission. The following required "
 "fields were not filled out:"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-gateway.php:88
+#: includes/abstracts/abstract-class-charitable-gateway.php:90
 msgid "Gateway Label"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-gateway.php:89
+#: includes/abstracts/abstract-class-charitable-gateway.php:91
 msgid "The label that will be shown to donors on the donation form."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-gateway.php:186
+#: includes/abstracts/abstract-class-charitable-gateway.php:188
 msgid "Name on Card"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-gateway.php:193
+#: includes/abstracts/abstract-class-charitable-gateway.php:195
 msgid "Card Number"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-gateway.php:200
+#: includes/abstracts/abstract-class-charitable-gateway.php:202
 msgid "CVV Number"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-gateway.php:207
+#: includes/abstracts/abstract-class-charitable-gateway.php:209
 msgid "Expiration"
 msgstr ""
 
-#: includes/addons/charitable-benefactors/class-charitable-benefactor.php:59
+#: includes/addons/charitable-benefactors/class-charitable-benefactor.php:61
 msgid "Benefactor class does not exist for given extension."
 msgstr ""
 
-#: includes/addons/charitable-benefactors/class-charitable-benefactors-db.php:129
+#: includes/addons/charitable-benefactors/class-charitable-benefactors-db.php:131
 msgid "Campaign benefactors cannot be created without benefactor details."
 msgstr ""
 
-#: includes/addons/charitable-benefactors/class-charitable-benefactors-db.php:142
+#: includes/addons/charitable-benefactors/class-charitable-benefactors-db.php:144
 msgid "Campaign benefactors cannot be created without a contribution amount."
 msgstr ""
 
-#: includes/addons/charitable-benefactors/class-charitable-benefactors.php:232
+#: includes/addons/charitable-benefactors/class-charitable-benefactors.php:234
 msgid "No benefactor ID provided."
 msgstr ""
 
@@ -4884,7 +4884,7 @@ msgstr ""
 #: includes/admin/campaigns/class-charitable-campaign-list-table.php:72
 #: includes/admin/reports/class-charitable-export-campaigns.php:125
 #: includes/fields/default-fields/campaign-fields.php:118
-#: includes/widgets/class-charitable-donors-widget.php:72
+#: includes/widgets/class-charitable-donors-widget.php:74
 msgid "Title"
 msgstr ""
 
@@ -4907,7 +4907,7 @@ msgid "End Date"
 msgstr ""
 
 #: includes/admin/campaigns/class-charitable-campaign-list-table.php:76
-#: includes/admin/donations/class-charitable-donation-list-table.php:86
+#: includes/admin/donations/class-charitable-donation-list-table.php:88
 #: includes/admin/reports/class-charitable-export-campaigns.php:131
 #: includes/admin/views/metaboxes/donation/donation-overview.php:76
 #: templates/shortcodes/my-donations.php:70
@@ -4968,13 +4968,13 @@ msgid "Campaign updated. <a href=\"%s\">View Campaign</a>"
 msgstr ""
 
 #: includes/admin/campaigns/class-charitable-campaign-meta-boxes.php:302
-#: includes/admin/donations/class-charitable-donation-list-table.php:498
+#: includes/admin/donations/class-charitable-donation-list-table.php:500
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:411
 msgid "Custom field updated."
 msgstr ""
 
 #: includes/admin/campaigns/class-charitable-campaign-meta-boxes.php:303
-#: includes/admin/donations/class-charitable-donation-list-table.php:499
+#: includes/admin/donations/class-charitable-donation-list-table.php:501
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:412
 msgid "Custom field deleted."
 msgstr ""
@@ -5006,7 +5006,7 @@ msgid ""
 msgstr ""
 
 #: includes/admin/campaigns/class-charitable-campaign-meta-boxes.php:319
-#: includes/admin/donations/class-charitable-donation-list-table.php:510
+#: includes/admin/donations/class-charitable-donation-list-table.php:512
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:435
 msgid "M j, Y @ G:i"
 msgstr ""
@@ -5025,7 +5025,7 @@ msgstr ""
 #: includes/admin/class-charitable-admin-pages.php:152
 #: includes/admin/class-charitable-admin-pages.php:153
 #: includes/admin/donor/class-charitable-donor-list-table.php:76
-#: includes/widgets/class-charitable-donors-widget.php:30
+#: includes/widgets/class-charitable-donors-widget.php:32
 #: templates/donation-stats.php:38
 msgid "Donors"
 msgstr ""
@@ -5038,7 +5038,7 @@ msgstr ""
 #: includes/admin/class-charitable-admin-pages.php:159
 #: includes/class-charitable-post-types.php:248
 #: includes/fields/default-fields/campaign-fields.php:291
-#: includes/widgets/class-charitable-campaign-terms-widget.php:78
+#: includes/widgets/class-charitable-campaign-terms-widget.php:80
 msgid "Categories"
 msgstr ""
 
@@ -5049,7 +5049,7 @@ msgstr ""
 #: includes/admin/class-charitable-admin-pages.php:164
 #: includes/class-charitable-post-types.php:280
 #: includes/fields/default-fields/campaign-fields.php:302
-#: includes/widgets/class-charitable-campaign-terms-widget.php:79
+#: includes/widgets/class-charitable-campaign-terms-widget.php:81
 msgid "Tags"
 msgstr ""
 
@@ -5058,34 +5058,34 @@ msgstr ""
 msgid "Customize"
 msgstr ""
 
-#: includes/admin/class-charitable-admin-pages.php:173
+#: includes/admin/class-charitable-admin-pages.php:174
 msgid "Charitable Settings"
 msgstr ""
 
-#: includes/admin/class-charitable-admin-pages.php:174
-#: includes/admin/class-charitable-admin.php:397
+#: includes/admin/class-charitable-admin-pages.php:175
+#: includes/admin/class-charitable-admin.php:399
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-charitable-admin-pages.php:230
+#: includes/admin/class-charitable-admin-pages.php:231
 msgid ""
 "Donations page now rendered by WordPress default "
 "manage_edit-donation_columns"
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:113
+#: includes/admin/class-charitable-admin.php:115
 msgid "Action could not be executed."
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:117
+#: includes/admin/class-charitable-admin.php:119
 msgid "Action could not be executed. Nonce check failed."
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:121
+#: includes/admin/class-charitable-admin.php:123
 msgid "Action from an unknown action type executed."
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:179
+#: includes/admin/class-charitable-admin.php:181
 #: includes/admin/views/metaboxes/campaign-donation-options/suggested-amounts.php:23
 #: includes/admin/views/metaboxes/campaign-donation-options/suggested-amounts.php:24
 #: includes/admin/views/metaboxes/field-types/campaign-donations.php:43
@@ -5094,68 +5094,68 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:180
+#: includes/admin/class-charitable-admin.php:182
 #: includes/admin/views/metaboxes/campaign-donation-options/suggested-amounts.php:28
 msgid "Optional Description"
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:329
+#: includes/admin/class-charitable-admin.php:331
 #. translators: %s: link
 msgid ""
 "Charitable 1.5 is packed with new features and improvements. <a href='%s' "
 "target='_blank'>Find out what's new</a>."
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:333
+#: includes/admin/class-charitable-admin.php:335
 #. translators: %s: link
 msgid ""
 "Charitable 1.6 introduces important new user privacy features and other "
 "improvements. <a href=\"%s\" target=\"_blank\">Find out what's new</a>."
 msgstr ""
 
-#: includes/admin/class-charitable-admin.php:426
+#: includes/admin/class-charitable-admin.php:428
 #: includes/admin/settings/class-charitable-settings.php:135
 msgid "Extensions"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:90
+#: includes/admin/customizer/class-charitable-customizer.php:92
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:151
-#: includes/admin/settings/class-charitable-general-settings.php:136
+#: includes/admin/settings/class-charitable-general-settings.php:138
 msgid "Donation Form"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:101
+#: includes/admin/customizer/class-charitable-customizer.php:103
 msgid "How do you want a campaign's donation form to show?"
-msgstr ""
-
-#: includes/admin/customizer/class-charitable-customizer.php:104
-#: includes/admin/settings/class-charitable-general-settings.php:146
-msgid "Show on a Separate Page"
-msgstr ""
-
-#: includes/admin/customizer/class-charitable-customizer.php:105
-#: includes/admin/settings/class-charitable-general-settings.php:147
-msgid "Show on the Same Page"
 msgstr ""
 
 #: includes/admin/customizer/class-charitable-customizer.php:106
 #: includes/admin/settings/class-charitable-general-settings.php:148
+msgid "Show on a Separate Page"
+msgstr ""
+
+#: includes/admin/customizer/class-charitable-customizer.php:107
+#: includes/admin/settings/class-charitable-general-settings.php:149
+msgid "Show on the Same Page"
+msgstr ""
+
+#: includes/admin/customizer/class-charitable-customizer.php:108
+#: includes/admin/settings/class-charitable-general-settings.php:150
 msgid "Reveal in a Modal"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:117
+#: includes/admin/customizer/class-charitable-customizer.php:119
 msgid "Only show required fields"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:128
+#: includes/admin/customizer/class-charitable-customizer.php:130
 msgid "User Privacy"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:138
+#: includes/admin/customizer/class-charitable-customizer.php:140
 msgid "Privacy policy page"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:146
+#: includes/admin/customizer/class-charitable-customizer.php:148
 #: includes/privacy/charitable-privacy-functions.php:45
 #: includes/privacy/charitable-privacy-functions.php:121
 msgid ""
@@ -5164,28 +5164,28 @@ msgid ""
 "[privacy_policy]."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:151
+#: includes/admin/customizer/class-charitable-customizer.php:153
 msgid "Privacy policy"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:152
+#: includes/admin/customizer/class-charitable-customizer.php:154
 msgid ""
 "Information about your website privacy policy for people to see when they "
 "donate, register an account, or manage their profile. Leave empty to "
 "disable."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:163
+#: includes/admin/customizer/class-charitable-customizer.php:165
 msgid "Contact consent field"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:164
+#: includes/admin/customizer/class-charitable-customizer.php:166
 msgid ""
 "Display a checkbox asking people for their consent to being contacted when "
 "they donate, register an account, or manage their profile."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:175
+#: includes/admin/customizer/class-charitable-customizer.php:177
 #: includes/db/class-charitable-donors-db.php:267
 #: includes/forms/class-charitable-donation-form.php:952
 #: includes/forms/class-charitable-profile-form.php:327
@@ -5194,57 +5194,57 @@ msgstr ""
 msgid "Yes, I am happy for you to contact me via email or phone."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:180
+#: includes/admin/customizer/class-charitable-customizer.php:182
 msgid "Contact consent label"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:182
+#: includes/admin/customizer/class-charitable-customizer.php:184
 msgid "A short statement describing how you would like to contact people."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:188
+#: includes/admin/customizer/class-charitable-customizer.php:190
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:198
+#: includes/admin/customizer/class-charitable-customizer.php:200
 msgid "Terms and conditions page"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:206
+#: includes/admin/customizer/class-charitable-customizer.php:208
 #: includes/privacy/charitable-privacy-functions.php:30
 #: includes/privacy/charitable-privacy-functions.php:98
 msgid "I have read and agree to the website [terms]."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:211
+#: includes/admin/customizer/class-charitable-customizer.php:213
 msgid "Terms and conditions"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:212
+#: includes/admin/customizer/class-charitable-customizer.php:214
 msgid ""
 "Display a checkbox asking people to accept the website terms and conditions "
 "when they make a donation or register an account. Leave empty to disable."
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:248
+#: includes/admin/customizer/class-charitable-customizer.php:250
 msgid "Design Options"
 msgstr ""
 
-#: includes/admin/customizer/class-charitable-customizer.php:260
+#: includes/admin/customizer/class-charitable-customizer.php:262
 msgid "Highlight Color"
 msgstr ""
 
-#: includes/admin/dashboard-widgets/class-charitable-donations-dashboard-widget.php:39
+#: includes/admin/dashboard-widgets/class-charitable-donations-dashboard-widget.php:41
 msgid "Charitable Donation Statistics"
 msgstr ""
 
-#: includes/admin/dashboard-widgets/class-charitable-donations-dashboard-widget.php:52
+#: includes/admin/dashboard-widgets/class-charitable-donations-dashboard-widget.php:54
 #: templates/campaign-loop/donate-modal-window.php:36
 #: templates/donation-form/form-donation.php:61
 msgid "Loading&hellip;"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:82
+#: includes/admin/donations/class-charitable-donation-list-table.php:84
 #: includes/admin/views/metaboxes/donation/donation-form.php:21
 #: includes/admin/views/metaboxes/donation/donation-overview.php:46
 #: includes/class-charitable-post-types.php:135
@@ -5252,95 +5252,95 @@ msgstr ""
 msgid "Donation"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:83
+#: includes/admin/donations/class-charitable-donation-list-table.php:85
 #: includes/admin/reports/class-charitable-export-campaigns.php:129
 #: includes/fields/default-fields/campaign-fields.php:207
 #: includes/fields/default-fields/campaign-fields.php:215
 msgid "Amount Donated"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:84
+#: includes/admin/donations/class-charitable-donation-list-table.php:86
 msgid "Campaign(s)"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:85
+#: includes/admin/donations/class-charitable-donation-list-table.php:87
 #: templates/shortcodes/my-donations.php:34
 #: templates/shortcodes/my-donations.php:98
 msgid "Date"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:108
+#: includes/admin/donations/class-charitable-donation-list-table.php:110
 msgid "View Donation Details"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:240
+#: includes/admin/donations/class-charitable-donation-list-table.php:242
 #: includes/admin/views/metaboxes/donation/donation-overview.php:48
 msgid "Edit Donation"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:241
+#: includes/admin/donations/class-charitable-donation-list-table.php:243
 #: includes/admin/views/metaboxes/campaign-benefactors/summary.php:27
 #: includes/class-charitable-post-types.php:89
 #: includes/class-charitable-post-types.php:139
 msgid "Edit"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:250
+#: includes/admin/donations/class-charitable-donation-list-table.php:252
 msgid "View Details"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:251
+#: includes/admin/donations/class-charitable-donation-list-table.php:253
 msgid "View"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:285
+#: includes/admin/donations/class-charitable-donation-list-table.php:287
 #: includes/admin/views/donations-page/export-form.php:34
 #: includes/admin/views/donations-page/filter-form.php:35
 msgid "All"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:477
+#: includes/admin/donations/class-charitable-donation-list-table.php:479
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:445
 msgid "Donation status changed."
 msgid_plural "%s donation statuses changed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:497
+#: includes/admin/donations/class-charitable-donation-list-table.php:499
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:408
 #. translators: %s: link
 msgid "Donation updated. <a href=\"%s\">View Donation</a>"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:500
+#: includes/admin/donations/class-charitable-donation-list-table.php:502
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:413
 msgid "Donation updated."
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:501
+#: includes/admin/donations/class-charitable-donation-list-table.php:503
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:417
 #. translators: %s: revision title
 msgid "Donation restored to revision from %s"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:502
+#: includes/admin/donations/class-charitable-donation-list-table.php:504
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:423
 #. translators: %s: link
 msgid "Donation published. <a href=\"%s\">View Donation</a>"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:503
+#: includes/admin/donations/class-charitable-donation-list-table.php:505
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:426
 msgid "Donation saved."
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:505
+#: includes/admin/donations/class-charitable-donation-list-table.php:507
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:429
 #. translators: %s: link
 msgid "Donation submitted. <a target=\"_blank\" href=\"%s\">Preview Donation</a>"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:509
+#: includes/admin/donations/class-charitable-donation-list-table.php:511
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:434
 #. translators: %1$s: date and time; %2$s: link
 msgid ""
@@ -5348,7 +5348,7 @@ msgid ""
 "href=\"%2$s\">Preview Donation</a>"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:514
+#: includes/admin/donations/class-charitable-donation-list-table.php:516
 #: includes/admin/donations/class-charitable-donation-meta-boxes.php:440
 #. translators: %s: link
 msgid ""
@@ -5356,43 +5356,43 @@ msgid ""
 "Donation</a>"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:517
+#: includes/admin/donations/class-charitable-donation-list-table.php:519
 msgid "Donation updated and email sent."
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:518
+#: includes/admin/donations/class-charitable-donation-list-table.php:520
 msgid "Email could not be sent."
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:535
+#: includes/admin/donations/class-charitable-donation-list-table.php:537
 msgid "%d donation updated."
 msgid_plural "%d donations updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:536
+#: includes/admin/donations/class-charitable-donation-list-table.php:538
 msgid "1 donation not updated, somebody is editing it."
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:537
+#: includes/admin/donations/class-charitable-donation-list-table.php:539
 msgid "%s donation not updated, somebody is editing it."
 msgid_plural "%s donations not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:538
+#: includes/admin/donations/class-charitable-donation-list-table.php:540
 msgid "%s donation permanently deleted."
 msgid_plural "%s donations permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:539
+#: includes/admin/donations/class-charitable-donation-list-table.php:541
 msgid "%s donation moved to the Trash."
 msgid_plural "%s donations moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:540
+#: includes/admin/donations/class-charitable-donation-list-table.php:542
 msgid "%s donation restored from the Trash."
 msgid_plural "%s donations restored from the Trash."
 msgstr[0] ""
@@ -5448,7 +5448,7 @@ msgstr ""
 #: includes/admin/donor/class-charitable-donor-list-table.php:174
 #: includes/admin/forms/class-charitable-admin-donation-form.php:108
 #: includes/fields/default-fields/donation-fields.php:85
-#: includes/upgrades/class-charitable-upgrade.php:1063
+#: includes/upgrades/class-charitable-upgrade.php:1073
 #: includes/users/class-charitable-roles.php:72
 msgid "Donor"
 msgstr ""
@@ -5701,118 +5701,118 @@ msgstr ""
 msgid "Turn on Test Mode"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:76
+#: includes/admin/settings/class-charitable-general-settings.php:78
 msgid "Currency & Location"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:81
+#: includes/admin/settings/class-charitable-general-settings.php:83
 msgid "Base Country"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:88
+#: includes/admin/settings/class-charitable-general-settings.php:90
 msgid "Currency"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:95
+#: includes/admin/settings/class-charitable-general-settings.php:97
 msgid "Currency Format"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:107
+#: includes/admin/settings/class-charitable-general-settings.php:109
 msgid "Decimal Separator"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:117
+#: includes/admin/settings/class-charitable-general-settings.php:119
 msgid "Thousands Separator"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:122
+#: includes/admin/settings/class-charitable-general-settings.php:124
 msgid "Comma (10,000)"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:123
+#: includes/admin/settings/class-charitable-general-settings.php:125
 msgid "Period (10.000)"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:124
+#: includes/admin/settings/class-charitable-general-settings.php:126
 msgid "Space (10 000)"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:125
+#: includes/admin/settings/class-charitable-general-settings.php:127
 #: includes/admin/settings/class-charitable-privacy-settings.php:101
 msgid "None"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:129
+#: includes/admin/settings/class-charitable-general-settings.php:131
 msgid "Number of Decimals"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:141
+#: includes/admin/settings/class-charitable-general-settings.php:143
 msgid "Display Options"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:150
+#: includes/admin/settings/class-charitable-general-settings.php:152
 msgid "Choose how you want a campaign's donation form to show."
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:153
+#: includes/admin/settings/class-charitable-general-settings.php:155
 msgid "Pages"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:158
+#: includes/admin/settings/class-charitable-general-settings.php:160
 msgid "Login Page"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:163
+#: includes/admin/settings/class-charitable-general-settings.php:165
 msgid "Use WordPress Login"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:166
-#: includes/admin/settings/class-charitable-general-settings.php:180
-#: includes/admin/settings/class-charitable-general-settings.php:201
+#: includes/admin/settings/class-charitable-general-settings.php:168
+#: includes/admin/settings/class-charitable-general-settings.php:182
+#: includes/admin/settings/class-charitable-general-settings.php:203
 msgid "Choose a Static Page"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:169
+#: includes/admin/settings/class-charitable-general-settings.php:171
 msgid ""
 "Allow users to login via the normal WordPress login page or via a static "
 "page. The static page should contain the <code>[charitable_login]</code> "
 "shortcode."
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:172
+#: includes/admin/settings/class-charitable-general-settings.php:174
 msgid "Registration Page"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:177
+#: includes/admin/settings/class-charitable-general-settings.php:179
 msgid "Use WordPress Registration Page"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:183
+#: includes/admin/settings/class-charitable-general-settings.php:185
 msgid ""
 "Allow users to register via the default WordPress login or via a static "
 "page. The static page should contain the "
 "<code>[charitable_registration]</code> shortcode."
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:186
+#: includes/admin/settings/class-charitable-general-settings.php:188
 msgid "Profile Page"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:190
+#: includes/admin/settings/class-charitable-general-settings.php:192
 msgid ""
 "The static page should contain the <code>[charitable_profile]</code> "
 "shortcode."
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:193
+#: includes/admin/settings/class-charitable-general-settings.php:195
 msgid "Donation Receipt Page"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:198
+#: includes/admin/settings/class-charitable-general-settings.php:200
 msgid "Automatic"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-general-settings.php:204
+#: includes/admin/settings/class-charitable-general-settings.php:206
 msgid ""
 "Choose the page that users will be redirected to after donating. Leave it "
 "set to automatic to use the built-in Charitable receipt. If you choose a "
@@ -5820,11 +5820,11 @@ msgid ""
 "shortcode."
 msgstr ""
 
-#: includes/admin/settings/class-charitable-licenses-settings.php:74
+#: includes/admin/settings/class-charitable-licenses-settings.php:76
 msgid "Licenses"
 msgstr ""
 
-#: includes/admin/settings/class-charitable-licenses-settings.php:161
+#: includes/admin/settings/class-charitable-licenses-settings.php:163
 msgid "Save & Re-check All Licenses"
 msgstr ""
 
@@ -5938,7 +5938,7 @@ msgstr ""
 #: includes/admin/views/campaigns-page/export-form.php:19
 #: includes/class-charitable-post-types.php:84
 #: includes/fields/default-fields/donation-fields.php:239
-#: includes/widgets/class-charitable-campaigns-widget.php:32
+#: includes/widgets/class-charitable-campaigns-widget.php:34
 #: templates/donation-stats.php:17
 msgid "Campaigns"
 msgstr ""
@@ -6200,7 +6200,7 @@ msgstr ""
 #: includes/admin/views/metaboxes/donation/donation-overview.php:111
 #: includes/admin/views/metaboxes/field-types/campaign-donations.php:42
 #: includes/class-charitable-post-types.php:85
-#: templates/donation-receipt/details.php:25 templates/donation-stats.php:17
+#: templates/donation-receipt/details.php:27 templates/donation-stats.php:17
 #: templates/shortcodes/my-donations.php:46
 #: templates/shortcodes/my-donations.php:110
 msgid "Campaign"
@@ -6208,8 +6208,8 @@ msgstr ""
 
 #: includes/admin/views/metaboxes/donation/donation-overview.php:112
 #: includes/admin/views/metaboxes/donation/donation-overview.php:178
-#: templates/donation-receipt/details.php:26
-#: templates/donation-receipt/details.php:65
+#: templates/donation-receipt/details.php:28
+#: templates/donation-receipt/details.php:67
 msgid "Total"
 msgstr ""
 
@@ -6435,8 +6435,8 @@ msgstr ""
 #: includes/admin/views/welcome-page/page.php:130
 msgid ""
 "You can help us translate Charitable into %s by <a "
-"href=\"https://translate.wordpress.org/projects/wp-plugins/charitable\">"
-"contributing to the translation project</a>."
+"href=\"https://translate.wordpress.org/projects/wp-plugins/charitable\""
+">contributing to the translation project</a>."
 msgstr ""
 
 #: includes/admin/views/welcome-page/page.php:135
@@ -6517,7 +6517,7 @@ msgid ""
 msgstr ""
 
 #: includes/campaigns/class-charitable-campaign.php:346
-#: includes/emails/class-charitable-email-campaign-end.php:171
+#: includes/emails/class-charitable-email-campaign-end.php:173
 msgid "Campaign has ended"
 msgstr ""
 
@@ -6552,13 +6552,13 @@ msgid "This campaign failed to reach its funding goal %s ago"
 msgstr ""
 
 #: includes/campaigns/class-charitable-campaign.php:531
-#: includes/emails/class-charitable-email-campaign-end.php:195
+#: includes/emails/class-charitable-email-campaign-end.php:197
 #: includes/fields/default-fields/campaign-fields.php:202
 msgid "The campaign achieved its fundraising goal."
 msgstr ""
 
 #: includes/campaigns/class-charitable-campaign.php:546
-#: includes/emails/class-charitable-email-campaign-end.php:195
+#: includes/emails/class-charitable-email-campaign-end.php:197
 msgid "The campaign did not reach its fundraising goal."
 msgstr ""
 
@@ -6630,7 +6630,7 @@ msgid "Add New Donation"
 msgstr ""
 
 #: includes/class-charitable-post-types.php:141
-#: includes/emails/class-charitable-email-new-donation.php:221
+#: includes/emails/class-charitable-email-new-donation.php:223
 msgid "New Donation"
 msgstr ""
 
@@ -7027,7 +7027,7 @@ msgstr ""
 msgid "South African Rand (%s)"
 msgstr ""
 
-#: includes/db/class-charitable-campaign-donations-db.php:837
+#: includes/db/class-charitable-campaign-donations-db.php:839
 msgid ""
 "Field expected to be `campaign`, `campaign_id`, `donation`, `donation_id`, "
 "`donor` or `donor_id`."
@@ -7143,34 +7143,34 @@ msgstr ""
 msgid "Payment failed with errors: %s"
 msgstr ""
 
-#: includes/donations/class-charitable-donation-report.php:242
+#: includes/donations/class-charitable-donation-report.php:244
 #. translators: %s: report type
 msgid "%s is not a valid donation report type."
 msgstr ""
 
-#: includes/emails/class-charitable-email-campaign-end.php:62
+#: includes/emails/class-charitable-email-campaign-end.php:64
 msgid "Admin: Campaign Ended Notification"
 msgstr ""
 
-#: includes/emails/class-charitable-email-campaign-end.php:152
+#: includes/emails/class-charitable-email-campaign-end.php:154
 msgid "A campaign has finished"
 msgstr ""
 
-#: includes/emails/class-charitable-email-campaign-end.php:188
+#: includes/emails/class-charitable-email-campaign-end.php:190
 #. translators: %1$s: campaign title; %2$s: campaign creator; %3$s: campaign
 #. end date
 msgid "%1$s by %2$s finished on %3$s."
 msgstr ""
 
-#: includes/emails/class-charitable-email-campaign-end.php:199
+#: includes/emails/class-charitable-email-campaign-end.php:201
 msgid "Amount raised"
 msgstr ""
 
-#: includes/emails/class-charitable-email-campaign-end.php:203
+#: includes/emails/class-charitable-email-campaign-end.php:205
 msgid "Number of donors"
 msgstr ""
 
-#: includes/emails/class-charitable-email-campaign-end.php:207
+#: includes/emails/class-charitable-email-campaign-end.php:209
 msgid "Fundraising goal"
 msgstr ""
 
@@ -7188,12 +7188,12 @@ msgid "Your Donation Receipt"
 msgstr ""
 
 #: includes/emails/class-charitable-email-donation-receipt.php:244
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:248
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:250
 msgid "Dear [charitable_email show=donor_first_name],"
 msgstr ""
 
 #: includes/emails/class-charitable-email-donation-receipt.php:245
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:249
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:251
 msgid "Thank you so much for your generous donation."
 msgstr ""
 
@@ -7203,7 +7203,7 @@ msgid "Your Receipt"
 msgstr ""
 
 #: includes/emails/class-charitable-email-donation-receipt.php:248
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:254
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:256
 msgid "With thanks, [charitable_email show=site_name]"
 msgstr ""
 
@@ -7244,15 +7244,15 @@ msgid ""
 "clicking the link below:"
 msgstr ""
 
-#: includes/emails/class-charitable-email-new-donation.php:61
+#: includes/emails/class-charitable-email-new-donation.php:63
 msgid "Admin: New Donation Notification"
 msgstr ""
 
-#: includes/emails/class-charitable-email-new-donation.php:202
+#: includes/emails/class-charitable-email-new-donation.php:204
 msgid "You have received a new donation"
 msgstr ""
 
-#: includes/emails/class-charitable-email-new-donation.php:234
+#: includes/emails/class-charitable-email-new-donation.php:236
 msgid "[charitable_email show=donor] has just made a donation!"
 msgstr ""
 
@@ -7279,110 +7279,110 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:49
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:51
 msgid "Donor: Offline Donation Receipt"
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:73
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:75
 msgid "Show Offline Donation instructions."
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:77
-#: includes/gateways/class-charitable-gateway-offline.php:46
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:79
+#: includes/gateways/class-charitable-gateway-offline.php:48
 msgid "Thank you for your donation. We will contact you shortly for payment."
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:217
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:219
 msgid "Thank you for your offline donation"
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:235
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:237
 msgid "Your Offline Donation Receipt"
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:250
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:252
 msgid "Your donation details"
 msgstr ""
 
-#: includes/emails/class-charitable-email-offline-donation-receipt.php:252
+#: includes/emails/class-charitable-email-offline-donation-receipt.php:254
 msgid "Complete your donation"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:89
+#: includes/emails/class-charitable-email-password-reset.php:91
 msgid "User: Password Reset"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:131
+#: includes/emails/class-charitable-email-password-reset.php:133
 msgid "The link the user needs to click to reset their password"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:181
+#: includes/emails/class-charitable-email-password-reset.php:183
 msgid "Password Reset for [charitable_email show=site_name]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:200
+#: includes/emails/class-charitable-email-password-reset.php:202
 msgid "Reset your password"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:213
+#: includes/emails/class-charitable-email-password-reset.php:215
 msgid "Someone requested that the password be reset for the following account:"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:214
+#: includes/emails/class-charitable-email-password-reset.php:216
 msgid "Username: [charitable_email show=user_login]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:215
+#: includes/emails/class-charitable-email-password-reset.php:217
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:216
+#: includes/emails/class-charitable-email-password-reset.php:218
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:119
+#: includes/emails/class-charitable-emails.php:121
 msgid "Resend Email"
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:123
+#: includes/emails/class-charitable-emails.php:125
 msgid "Resend Donation Emails"
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:157
+#: includes/emails/class-charitable-emails.php:159
 #: includes/gateways/class-charitable-gateways.php:115
-#: includes/licensing/class-charitable-licenses.php:682
+#: includes/licensing/class-charitable-licenses.php:684
 msgid "Cheatin' eh?!"
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:164
+#: includes/emails/class-charitable-emails.php:166
 msgid "Missing email."
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:169
+#: includes/emails/class-charitable-emails.php:171
 msgid "Invalid email."
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:271
+#: includes/emails/class-charitable-emails.php:273
 msgid "Email enabled"
 msgstr ""
 
-#: includes/emails/class-charitable-emails.php:295
+#: includes/emails/class-charitable-emails.php:297
 msgid "Email disabled"
 msgstr ""
 
-#: includes/emails/fields/class-charitable-email-fields-user.php:59
+#: includes/emails/fields/class-charitable-email-fields-user.php:61
 msgid "The user login"
 msgstr ""
 
-#: includes/emails/fields/class-charitable-email-fields-user.php:63
+#: includes/emails/fields/class-charitable-email-fields-user.php:65
 msgid "The user's first name"
 msgstr ""
 
-#: includes/emails/fields/class-charitable-email-fields-user.php:67
+#: includes/emails/fields/class-charitable-email-fields-user.php:69
 msgid "The user's last name"
 msgstr ""
 
-#: includes/emails/fields/class-charitable-email-fields-user.php:71
+#: includes/emails/fields/class-charitable-email-fields-user.php:73
 msgid "The user's display name"
 msgstr ""
 
@@ -7409,7 +7409,7 @@ msgid "Missing email_id in args for email preview endpoint URL."
 msgstr ""
 
 #: includes/endpoints/class-charitable-email-verification-endpoint.php:121
-#: templates/account/email-verified.php:24
+#: templates/account/email-verified.php:26
 msgid "Your email address has been verified."
 msgstr ""
 
@@ -7464,7 +7464,7 @@ msgid ""
 msgstr ""
 
 #: includes/endpoints/class-charitable-reset-password-endpoint.php:134
-#: templates/account/forgot-password.php:42
+#: templates/account/forgot-password.php:44
 #: templates/account/reset-password.php:44
 #: templates/shortcodes/forgot-password.php:60
 #: templates/shortcodes/reset-password.php:62
@@ -7711,7 +7711,7 @@ msgstr ""
 
 #: includes/forms/class-charitable-donation-form.php:352
 #: templates/donation-form/donation-amount-header.php:10
-#: templates/donation-receipt/details.php:21
+#: templates/donation-receipt/details.php:23
 msgid "Your Donation"
 msgstr ""
 
@@ -7724,10 +7724,10 @@ msgid "Payment"
 msgstr ""
 
 #: includes/forms/class-charitable-donation-form.php:653
-#: includes/forms/class-charitable-forgot-password-form.php:98
+#: includes/forms/class-charitable-forgot-password-form.php:100
 #: includes/forms/class-charitable-profile-form.php:473
 #: includes/forms/class-charitable-registration-form.php:220
-#: includes/forms/class-charitable-reset-password-form.php:169
+#: includes/forms/class-charitable-reset-password-form.php:171
 msgid ""
 "There was an error with processing your form submission. Please reload the "
 "page and try again."
@@ -7771,23 +7771,23 @@ msgstr ""
 msgid "Your donation could not be processed. No payment gateway was selected."
 msgstr ""
 
-#: includes/forms/class-charitable-forgot-password-form.php:75
+#: includes/forms/class-charitable-forgot-password-form.php:77
 msgid "Email Address"
 msgstr ""
 
-#: includes/forms/class-charitable-forgot-password-form.php:103
+#: includes/forms/class-charitable-forgot-password-form.php:105
 msgid "<strong>ERROR</strong>: Enter a username or email address."
 msgstr ""
 
-#: includes/forms/class-charitable-forgot-password-form.php:116
+#: includes/forms/class-charitable-forgot-password-form.php:118
 msgid "<strong>ERROR</strong>: Invalid username or email."
 msgstr ""
 
-#: includes/forms/class-charitable-forgot-password-form.php:132
+#: includes/forms/class-charitable-forgot-password-form.php:134
 msgid "We were unable to send your password reset email."
 msgstr ""
 
-#: includes/forms/class-charitable-forgot-password-form.php:136
+#: includes/forms/class-charitable-forgot-password-form.php:138
 msgid ""
 "Your password reset request has been received. Please check your email for "
 "a link to reset your password."
@@ -7882,40 +7882,40 @@ msgid ""
 "address."
 msgstr ""
 
-#: includes/forms/class-charitable-reset-password-form.php:132
+#: includes/forms/class-charitable-reset-password-form.php:134
 msgid "New Password"
 msgstr ""
 
-#: includes/forms/class-charitable-reset-password-form.php:142
+#: includes/forms/class-charitable-reset-password-form.php:144
 msgid "Repeat New Password"
 msgstr ""
 
-#: includes/forms/class-charitable-reset-password-form.php:194
+#: includes/forms/class-charitable-reset-password-form.php:196
 msgid "<strong>ERROR:</strong> The two passwords you entered don't match."
 msgstr ""
 
-#: includes/forms/class-charitable-reset-password-form.php:201
+#: includes/forms/class-charitable-reset-password-form.php:203
 msgid "Your password was successfully changed."
 msgstr ""
 
-#: includes/forms/class-charitable-reset-password-form.php:223
-#: includes/forms/class-charitable-reset-password-form.php:230
+#: includes/forms/class-charitable-reset-password-form.php:225
+#: includes/forms/class-charitable-reset-password-form.php:232
 msgid "Missing password reset key."
 msgstr ""
 
-#: includes/gateways/class-charitable-gateway-offline.php:42
+#: includes/gateways/class-charitable-gateway-offline.php:44
 msgid "Offline"
 msgstr ""
 
-#: includes/gateways/class-charitable-gateway-offline.php:45
+#: includes/gateways/class-charitable-gateway-offline.php:47
 msgid "Offline Donation"
 msgstr ""
 
-#: includes/gateways/class-charitable-gateway-offline.php:66
+#: includes/gateways/class-charitable-gateway-offline.php:68
 msgid "Instructions"
 msgstr ""
 
-#: includes/gateways/class-charitable-gateway-offline.php:67
+#: includes/gateways/class-charitable-gateway-offline.php:69
 msgid "These are the instructions you provide to donors after they make a donation."
 msgstr ""
 
@@ -8235,27 +8235,27 @@ msgstr ""
 msgid "Gateway disabled"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:251
+#: includes/licensing/class-charitable-licenses.php:253
 msgid "You have not activated your license key. Activate your license to update: %s"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:255
+#: includes/licensing/class-charitable-licenses.php:257
 msgid ""
 "You have not activated your license key. <a href=\"%s\" "
 "target=\"_top\">Activate your license to update.</a>"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:268
+#: includes/licensing/class-charitable-licenses.php:270
 msgid "Your license has expired. Renew your license key: %s"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:272
+#: includes/licensing/class-charitable-licenses.php:274
 msgid ""
 "Your license has expired. <a href=\"%s\" target=\"_blank\">Renew your "
 "license key.</a>"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:307
+#: includes/licensing/class-charitable-licenses.php:309
 msgid ""
 "<p>There is a new version of %1$s available but you have not activated your "
 "license. <a target=\"_top\" href=\"%2$s\">Activate your license</a> or <a "
@@ -8263,7 +8263,7 @@ msgid ""
 "details</a>.</p>"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:321
+#: includes/licensing/class-charitable-licenses.php:323
 msgid ""
 "<p>There is a new version of %1$s available but your license has expired. "
 "<a target=\"_blank\" href=\"%2$s\">Renew your license</a> or <a "
@@ -8271,25 +8271,25 @@ msgid ""
 "details</a>.</p>"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:347
+#: includes/licensing/class-charitable-licenses.php:349
 msgid "<li>Requires PHP version %s or greater.</li>"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:358
+#: includes/licensing/class-charitable-licenses.php:360
 msgid "Requires Charitable version %s or greater."
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:373
+#: includes/licensing/class-charitable-licenses.php:375
 msgid ""
 "<p>There is a new version of %1$s available but you are missing the "
 "following minimum requirements:</p>%2$s"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:689
+#: includes/licensing/class-charitable-licenses.php:691
 msgid "Missing product key"
 msgstr ""
 
-#: includes/licensing/class-charitable-licenses.php:696
+#: includes/licensing/class-charitable-licenses.php:698
 msgid "This product is not valid or does not have a valid license key."
 msgstr ""
 
@@ -8307,8 +8307,8 @@ msgstr ""
 #: includes/licensing/class-charitable-plugin-updater.php:150
 #: includes/upgrades/class-charitable-upgrade.php:527
 #: includes/upgrades/class-charitable-upgrade.php:562
-#: includes/upgrades/class-charitable-upgrade.php:664
-#: includes/upgrades/class-charitable-upgrade.php:1142
+#: includes/upgrades/class-charitable-upgrade.php:671
+#: includes/upgrades/class-charitable-upgrade.php:1159
 msgid "Error"
 msgstr ""
 
@@ -8437,12 +8437,12 @@ msgid "[charitable_email] cannot be called until a class instance has been creat
 msgstr ""
 
 #: includes/shortcodes/class-charitable-login-shortcode.php:39
-#: includes/shortcodes/class-charitable-registration-shortcode.php:37
-#: templates/shortcodes/logged-in.php:18
+#: includes/shortcodes/class-charitable-registration-shortcode.php:39
+#: templates/shortcodes/logged-in.php:20
 msgid "You are already logged in!"
 msgstr ""
 
-#: includes/shortcodes/class-charitable-logout-shortcode.php:42
+#: includes/shortcodes/class-charitable-logout-shortcode.php:44
 msgid "Logout"
 msgstr ""
 
@@ -8457,12 +8457,12 @@ msgid ""
 "history."
 msgstr ""
 
-#: includes/shortcodes/class-charitable-registration-shortcode.php:39
+#: includes/shortcodes/class-charitable-registration-shortcode.php:41
 msgid "Signed up already? Login instead."
 msgstr ""
 
-#: includes/upgrades/class-charitable-upgrade-page.php:63
-#: includes/upgrades/class-charitable-upgrade-page.php:64
+#: includes/upgrades/class-charitable-upgrade-page.php:65
+#: includes/upgrades/class-charitable-upgrade-page.php:66
 msgid "Upgrade Charitable"
 msgstr ""
 
@@ -8503,21 +8503,21 @@ msgstr ""
 
 #: includes/upgrades/class-charitable-upgrade.php:527
 #: includes/upgrades/class-charitable-upgrade.php:562
-#: includes/upgrades/class-charitable-upgrade.php:664
-#: includes/upgrades/class-charitable-upgrade.php:1142
+#: includes/upgrades/class-charitable-upgrade.php:671
+#: includes/upgrades/class-charitable-upgrade.php:1159
 msgid "You do not have permission to do Charitable upgrades"
 msgstr ""
 
-#: includes/user-management/class-charitable-user-management.php:141
+#: includes/user-management/class-charitable-user-management.php:143
 msgid "<strong>ERROR</strong>: Invalid email address."
 msgstr ""
 
-#: includes/user-management/class-charitable-user-management.php:143
-#: includes/user-management/class-charitable-user-management.php:154
+#: includes/user-management/class-charitable-user-management.php:145
+#: includes/user-management/class-charitable-user-management.php:156
 msgid "Lost your password?"
 msgstr ""
 
-#: includes/user-management/class-charitable-user-management.php:150
+#: includes/user-management/class-charitable-user-management.php:152
 #. translators: %s: email address
 msgid "<strong>ERROR</strong>: The password you entered for %s is incorrect."
 msgstr ""
@@ -8530,159 +8530,159 @@ msgstr ""
 msgid "Unable to add donor. Email not set for logged out user."
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:32
+#: includes/widgets/class-charitable-campaign-terms-widget.php:34
 msgid "Campaign Categories / Tags"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:34
+#: includes/widgets/class-charitable-campaign-terms-widget.php:36
 msgid "Displays your Charitable campaign categories or tags."
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:72
-#: includes/widgets/class-charitable-campaigns-widget.php:74
-#: includes/widgets/class-charitable-donate-widget.php:81
-#: includes/widgets/class-charitable-donation-stats-widget.php:72
+#: includes/widgets/class-charitable-campaign-terms-widget.php:74
+#: includes/widgets/class-charitable-campaigns-widget.php:76
+#: includes/widgets/class-charitable-donate-widget.php:83
+#: includes/widgets/class-charitable-donation-stats-widget.php:74
 msgid "Title:"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:76
+#: includes/widgets/class-charitable-campaign-terms-widget.php:78
 msgid "Taxonomy"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:83
+#: includes/widgets/class-charitable-campaign-terms-widget.php:85
 msgid "Show count:"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:87
+#: includes/widgets/class-charitable-campaign-terms-widget.php:89
 msgid "Hide empty:"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaign-terms-widget.php:91
+#: includes/widgets/class-charitable-campaign-terms-widget.php:93
 msgid "Display as dropdown:"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaigns-widget.php:34
+#: includes/widgets/class-charitable-campaigns-widget.php:36
 msgid "Displays your Charitable campaigns."
 msgstr ""
 
-#: includes/widgets/class-charitable-campaigns-widget.php:78
+#: includes/widgets/class-charitable-campaigns-widget.php:80
 msgid "Number of campaigns to display:"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaigns-widget.php:83
+#: includes/widgets/class-charitable-campaigns-widget.php:85
 msgid "Show thumbnail"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaigns-widget.php:86
+#: includes/widgets/class-charitable-campaigns-widget.php:88
 msgid "Order:"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaigns-widget.php:88
+#: includes/widgets/class-charitable-campaigns-widget.php:90
 msgid "Date published"
 msgstr ""
 
-#: includes/widgets/class-charitable-campaigns-widget.php:89
+#: includes/widgets/class-charitable-campaigns-widget.php:91
 msgid "Ending soonest"
 msgstr ""
 
-#: includes/widgets/class-charitable-donate-widget.php:34
+#: includes/widgets/class-charitable-donate-widget.php:36
 msgid "Campaign Donation"
 msgstr ""
 
-#: includes/widgets/class-charitable-donate-widget.php:36
+#: includes/widgets/class-charitable-donate-widget.php:38
 msgid "Display a donation widget."
 msgstr ""
 
-#: includes/widgets/class-charitable-donate-widget.php:86
+#: includes/widgets/class-charitable-donate-widget.php:88
 msgid "Campaign:"
 msgstr ""
 
-#: includes/widgets/class-charitable-donate-widget.php:88
-#: includes/widgets/class-charitable-donors-widget.php:90
+#: includes/widgets/class-charitable-donate-widget.php:90
+#: includes/widgets/class-charitable-donors-widget.php:92
 msgid "Campaign currently viewed"
 msgstr ""
 
-#: includes/widgets/class-charitable-donate-widget.php:89
+#: includes/widgets/class-charitable-donate-widget.php:91
 msgid "Specific campaigns"
 msgstr ""
 
-#: includes/widgets/class-charitable-donation-stats-widget.php:32
+#: includes/widgets/class-charitable-donation-stats-widget.php:34
 msgid "Donation Stats"
 msgstr ""
 
-#: includes/widgets/class-charitable-donation-stats-widget.php:34
+#: includes/widgets/class-charitable-donation-stats-widget.php:36
 msgid "Show off your donation statistics."
 msgstr ""
 
-#: includes/widgets/class-charitable-donation-stats-widget.php:54
+#: includes/widgets/class-charitable-donation-stats-widget.php:56
 msgid "Donation Statistics"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:32
+#: includes/widgets/class-charitable-donors-widget.php:34
 msgid "Display a list of donors."
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:76
+#: includes/widgets/class-charitable-donors-widget.php:78
 msgid "Number of donors to display"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:80
+#: includes/widgets/class-charitable-donors-widget.php:82
 msgid "Order by"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:82
+#: includes/widgets/class-charitable-donors-widget.php:84
 msgid "Most recent"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:83
+#: includes/widgets/class-charitable-donors-widget.php:85
 msgid "Amount donated"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:87
+#: includes/widgets/class-charitable-donors-widget.php:89
 msgid "Show donors by campaign"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:89
+#: includes/widgets/class-charitable-donors-widget.php:91
 msgid "Include all campaigns"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:91
+#: includes/widgets/class-charitable-donors-widget.php:93
 msgid "Specific campaign"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:100
+#: includes/widgets/class-charitable-donors-widget.php:102
 msgid "Group donations by the same person"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:104
+#: includes/widgets/class-charitable-donors-widget.php:106
 msgid "Show donor's avatar"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:108
+#: includes/widgets/class-charitable-donors-widget.php:110
 msgid "Show donor's name"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:112
+#: includes/widgets/class-charitable-donors-widget.php:114
 msgid "Show donor's donation amount"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:116
+#: includes/widgets/class-charitable-donors-widget.php:118
 msgid "Show donor's location"
 msgstr ""
 
-#: includes/widgets/class-charitable-donors-widget.php:120
+#: includes/widgets/class-charitable-donors-widget.php:122
 msgid "Hide if there are no donors"
 msgstr ""
 
-#: templates/account/email-not-verified.php:18
+#: templates/account/email-not-verified.php:20
 msgid "We were unable to verify your email address."
 msgstr ""
 
-#: templates/account/email-not-verified.php:20
+#: templates/account/email-not-verified.php:22
 msgid "Resend verification email"
 msgstr ""
 
-#: templates/account/email-verified.php:25
+#: templates/account/email-verified.php:27
 msgid "Return home"
 msgstr ""
 
@@ -8777,7 +8777,7 @@ msgstr ""
 msgid "Donated"
 msgstr ""
 
-#: templates/donor-loop.php:60
+#: templates/donor-loop.php:67
 msgid "No donors yet. Be the first!"
 msgstr ""
 
@@ -8789,7 +8789,7 @@ msgstr ""
 msgid "Uploading..."
 msgstr ""
 
-#: templates/shortcodes/logged-in.php:23
+#: templates/shortcodes/logged-in.php:25
 msgid "Logout."
 msgstr ""
 
@@ -8824,7 +8824,7 @@ msgctxt "US state of Georgia"
 msgid "Georgia"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:367
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:368
 msgctxt "go to campaign"
 msgid "Go to"
 msgstr ""
@@ -8835,22 +8835,22 @@ msgctxt "argument key"
 msgid "Attempting to set an argument setting for a non-array argument. Argument: %s"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:112
+#: includes/admin/donations/class-charitable-donation-list-table.php:114
 msgctxt "number symbol"
 msgid "#%d by %s"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:117
+#: includes/admin/donations/class-charitable-donation-list-table.php:119
 msgctxt "number symbol"
 msgid "#%d"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:139
+#: includes/admin/donations/class-charitable-donation-list-table.php:141
 msgctxt "charitable"
 msgid "via %s"
 msgstr ""
 
-#: includes/admin/donations/class-charitable-donation-list-table.php:378
+#: includes/admin/donations/class-charitable-donation-list-table.php:380
 msgctxt "set donation status to x"
 msgid "Set to %s"
 msgstr ""
