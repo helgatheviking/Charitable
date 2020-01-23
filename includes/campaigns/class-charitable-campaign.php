@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.18
+ * @version   1.6.32
  */
 
 // Exit if accessed directly.
@@ -350,7 +350,8 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 				/* Condition 2: There is less than an hour left. */
 
 				$minutes_remaining = ceil( $seconds_left / 60 );
-				$time_left = apply_filters( 'charitabile_campaign_minutes_left',
+				$time_left         = apply_filters(
+					'charitabile_campaign_minutes_left',
 					sprintf( _n( '%s Minute Left', '%s Minutes Left', $minutes_remaining, 'charitable' ), '<span class="amount time-left minutes-left">' . $minutes_remaining . '</span>' ),
 					$this
 				);
@@ -360,7 +361,8 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 				/* Condition 3: There is less than a day left. */
 
 				$hours_remaining = floor( $seconds_left / 3600 );
-				$time_left = apply_filters( 'charitabile_campaign_hours_left',
+				$time_left       = apply_filters(
+					'charitabile_campaign_hours_left',
 					sprintf( _n( '%s Hour Left', '%s Hours Left', $hours_remaining, 'charitable' ), '<span class="amount time-left hours-left">' . $hours_remaining . '</span>' ),
 					$this
 				);
@@ -370,7 +372,8 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 				/* Condition 4: There is more than a day left. */
 
 				$days_remaining = floor( $seconds_left / 86400 );
-				$time_left = apply_filters( 'charitabile_campaign_days_left',
+				$time_left      = apply_filters(
+					'charitabile_campaign_days_left',
 					sprintf( _n( '%s Day Left', '%s Days Left', $days_remaining, 'charitable' ), '<span class="amount time-left days-left">' . $days_remaining . '</span>' ),
 					$this
 				);
@@ -781,12 +784,14 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 			$goal            = $this->get_meta( '_campaign_goal' );
 
 			if ( $goal ) {
-				$ret = sprintf( _x( '%s donated of %s goal', 'amount donated of goal', 'charitable' ),
+				$ret = sprintf(
+					_x( '%1$s donated of %2$s goal', 'amount donated of goal', 'charitable' ),
 					'<span class="amount">' . $currency_helper->get_monetary_amount( $amount ) . '</span>',
 					'<span class="goal-amount">' . $currency_helper->get_monetary_amount( $goal ) . '</span>'
 				);
 			} else {
-				$ret = sprintf( _x( '%s donated', 'amount donated', 'charitable' ),
+				$ret = sprintf(
+					_x( '%s donated', 'amount donated', 'charitable' ),
 					'<span class="amount">' . $currency_helper->get_monetary_amount( $amount ) . '</span>'
 				);
 			}
@@ -928,6 +933,55 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 		}
 
 		/**
+		 * Return the initial/default donation period when
+		 *
+		 * @since  1.6.32
+		 *
+		 * @return string
+		 */
+		public function get_initial_donation_period() {
+			$period = $this->get_donation_period_in_session();
+
+			if ( false !== $period ) {
+				return $period;
+			}
+
+			if ( ! class_exists( 'Charitable_Recurring' ) ) {
+				return 'once';
+			}
+
+			switch ( $this->get( 'recurring_donation_mode' ) ) {
+				case 'advanced':
+					$period = 'one-time' === $this->get( 'recurring_default_tab' ) ? 'once' : 'recurring';
+					break;
+
+				default:
+					$period = 'once';
+			}
+
+			return $period;
+		}
+
+		/**
+		 * Get the default donation amount for this campaign.
+		 *
+		 * @since  1.6.32
+		 *
+		 * @return int
+		 */
+		public function get_default_donation_amount() {
+			/**
+			 * Filter the default donation amount.
+			 *
+			 * @since 1.5.6
+			 *
+			 * @param float|int           $amount   The amount to be filtered. $0 by default.
+			 * @param Charitable_Campaign $campaign The instance of `Charitable_Campaign`.
+			 */
+			return apply_filters( 'charitable_default_donation_amount', 0, $this );
+		}
+
+		/**
 		 * Renders the donate button template.
 		 *
 		 * @since  1.0.0
@@ -1043,7 +1097,7 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 		 *
 		 * We use WP_Locale to parse the month that the user has set.
 		 *
-		 * @global 	WP_Locale $wp_locale
+		 * @global  WP_Locale $wp_locale
 		 *
 		 * @since  1.0.0
 		 *
