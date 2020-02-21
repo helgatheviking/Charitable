@@ -3,10 +3,11 @@
  * Class that manages the hook functions for the forgot password form.
  *
  * @package     Charitable/User Management/User Management
- * @version     1.4.0
  * @author      Rafe Colton
  * @copyright   Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.4.0
+ * @version     1.6.32
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
 Tested up to: 5.3.2
-Stable tag: 1.6.31
+Stable tag: 1.6.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -225,6 +225,11 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.32 =
+* NEW: Added ability to avoid resending an email verification email if one was sent within the last half hour. [#742](https://github.com/Charitable/Charitable/issues/742)
+* FIX: A bug was preventing the `charitable_default_donation_amount` filter from correctly setting the default donation amount. [#737](https://github.com/Charitable/Charitable/issues/737)
+* FIX: In Firefox, the way Charitable saved the clicked form button's name and value are not correctly passed through as a hidden field. [#740](https://github.com/Charitable/Charitable/issues/740)
 
 = 1.6.31 =
 * FIX: Respect the `hide_if_no_donors` argument in the Donors shortcode. [#734](https://github.com/Charitable/Charitable/issues/734)
