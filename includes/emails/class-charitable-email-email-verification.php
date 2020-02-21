@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.5.0
+ * @version   1.6.32
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -135,20 +135,23 @@ if ( ! class_exists( 'Charitable_Email_Email_Verification' ) ) :
 		 * @return array
 		 */
 		public function add_email_settings( $settings ) {
-			return array_merge( $settings, array(
-				'send_after_registration' => array(
-					'type'     => 'radio',
-					'title'    => __( 'Send after Registration', 'charitable' ),
-					'help'     => __( 'Whether to send an email verification message immediately after registration. If this is not set, users are only prompted to verify their email when they try to access their donation history.', 'charitable' ),
-					'priority' => 22,
-					'class'    => 'wide',
-					'default'  => 1,
-					'options'  => array(
-						'1' => __( 'Yes', 'charitable' ),
-						'0' => __( 'No', 'charitable' ),
+			return array_merge(
+				$settings,
+				array(
+					'send_after_registration' => array(
+						'type'     => 'radio',
+						'title'    => __( 'Send after Registration', 'charitable' ),
+						'help'     => __( 'Whether to send an email verification message immediately after registration. If this is not set, users are only prompted to verify their email when they try to access their donation history.', 'charitable' ),
+						'priority' => 22,
+						'class'    => 'wide',
+						'default'  => 1,
+						'options'  => array(
+							'1' => __( 'Yes', 'charitable' ),
+							'0' => __( 'No', 'charitable' ),
+						),
 					),
-				),
-			) );
+				)
+			);
 		}
 
 		/**
@@ -162,17 +165,23 @@ if ( ! class_exists( 'Charitable_Email_Email_Verification' ) ) :
 			$fields = array(
 				'confirmation_url' => array(
 					'description' => __( 'The link the user needs to verify their email address.', 'charitable' ),
-					'preview'     => add_query_arg( array(
-						'key'   => '123123123',
-						'login' => 'adam123',
-					), charitable_get_permalink( 'email_verification' ) ),
+					'preview'     => add_query_arg(
+						array(
+							'key'   => '123123123',
+							'login' => 'adam123',
+						),
+						charitable_get_permalink( 'email_verification' )
+					),
 				),
 			);
 
 			if ( $this->has_valid_user() ) {
-				$fields = array_merge_recursive( $fields, array(
-					'confirmation_url' => array( 'callback' => array( $this, 'get_confirmation_url' ) ),
-				) );
+				$fields = array_merge_recursive(
+					$fields,
+					array(
+						'confirmation_url' => array( 'callback' => array( $this, 'get_confirmation_url' ) ),
+					)
+				);
 			}
 
 			return $fields;
@@ -239,6 +248,52 @@ if ( ! class_exists( 'Charitable_Email_Email_Verification' ) ) :
 		}
 
 		/**
+		 * Send the email, then record the time that it was sent.
+		 *
+		 * @since  1.6.32
+		 *
+		 * @return boolean
+		 */
+		public function send() {
+			$sent = parent::send();
+
+			if ( $sent ) {
+				update_user_meta( $this->user->ID, '_charitable_email_verification_email_send_time', time() );
+			}
+
+			return $sent;
+		}
+
+		/**
+		 * Checks whether the email was sent recently.
+		 *
+		 * @since  1.6.32
+		 *
+		 * @return boolean
+		 */
+		public function sent_recently() {
+			$send_time = get_user_meta( $this->user->ID, '_charitable_email_verification_email_send_time', true );
+
+			if ( ! $send_time ) {
+				return false;
+			}
+
+			/**
+			 * Change the amount of minutes to wait before resending
+			 * the email (unless it's a force-resend).
+			 *
+			 * By default, this is set to wait 30 minutes.
+			 *
+			 * @since 1.6.32
+			 *
+			 * @param boolean $seconds The number of seconds to wait.
+			 */
+			$threshold = apply_filters( 'charitable_email_verification_resend_threshold_time', 1800 );
+
+			return time() - $send_time < $threshold;
+		}
+
+		/**
 		 * Return the default subject line for the email.
 		 *
 		 * @since  1.5.0
@@ -277,11 +332,11 @@ if ( ! class_exists( 'Charitable_Email_Email_Verification' ) ) :
 		 */
 		protected function get_default_body() {
 			ob_start();
-?>
-<p><?php _e( 'Welcome to [charitable_email show=site_name]', 'charitable' ) ?></p>
-<p><?php _e( 'To complete your registration, please confirm your email address by clicking the link below:', 'charitable' ) ?></p>
+			?>
+<p><?php _e( 'Welcome to [charitable_email show=site_name]', 'charitable' ); ?></p>
+<p><?php _e( 'To complete your registration, please confirm your email address by clicking the link below:', 'charitable' ); ?></p>
 <p><a href="[charitable_email show=confirmation_url]">[charitable_email show=confirmation_url]</a></p>
-<?php
+			<?php
 			/**
 			 * Filter the default email body.
 			 *

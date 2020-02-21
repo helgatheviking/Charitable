@@ -24,18 +24,10 @@ $form_id   = $view_args['form_id'];
 $suggested = $campaign->get_suggested_donations();
 $custom    = $campaign->get( 'allow_custom_donations' );
 $amount    = $campaign->get_donation_amount_in_session();
-$one_time  = 'once' == $campaign->get_donation_period_in_session();
+$one_time  = 'once' == $campaign->get_initial_donation_period();
 
 if ( 0 == $amount ) {
-	/**
-	 * Filter the default donation amount.
-	 *
-	 * @since 1.5.6
-	 *
-	 * @param float|int           $amount   The amount to be filtered. $0 by default.
-	 * @param Charitable_Campaign $campaign The instance of `Charitable_Campaign`.
-	 */
-	$amount = apply_filters( 'charitable_default_donation_amount', $amount, $campaign );
+	$amount = $campaign->get_default_donation_amount();
 }
 
 if ( empty( $suggested ) && ! $custom ) {
@@ -62,7 +54,7 @@ if ( count( $suggested ) ) :
 				$amount_is_suggestion = true;
 			endif;
 			?>
-			<li class="donation-amount suggested-donation-amount">
+			<li class="donation-amount suggested-donation-amount <?php echo strlen( $checked ) ? 'selected' : ''; ?>">
 				<label for="<?php echo $field_id; ?>">
 					<input
 						id="<?php echo $field_id; ?>"

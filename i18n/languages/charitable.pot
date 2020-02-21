@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Charitable package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Charitable 1.6.31\n"
+"Project-Id-Version: Charitable 1.6.32\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2020-01-22 06:16:24+00:00\n"
+"POT-Creation-Date: 2020-02-21 07:17:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,11 +24,11 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: charitable.php:810
+#: charitable.php:808
 msgid "Cloning this object is forbidden."
 msgstr ""
 
-#: charitable.php:825
+#: charitable.php:823
 msgid "Unserializing instances of this class is forbidden."
 msgstr ""
 
@@ -4688,14 +4688,14 @@ msgstr ""
 #: includes/abstracts/abstract-class-charitable-abstract-donation.php:723
 #: includes/admin/customizer/class-charitable-customizer.php:122
 #: includes/admin/customizer/class-charitable-customizer.php:169
-#: includes/emails/class-charitable-email-email-verification.php:147
+#: includes/emails/class-charitable-email-email-verification.php:149
 msgid "Yes"
 msgstr ""
 
 #: includes/abstracts/abstract-class-charitable-abstract-donation.php:723
 #: includes/admin/customizer/class-charitable-customizer.php:123
 #: includes/admin/customizer/class-charitable-customizer.php:170
-#: includes/emails/class-charitable-email-email-verification.php:148
+#: includes/emails/class-charitable-email-email-verification.php:150
 msgid "No"
 msgstr ""
 
@@ -5948,7 +5948,7 @@ msgid "Any"
 msgstr ""
 
 #: includes/admin/views/campaigns-page/export-form.php:23
-#: includes/donations/charitable-donation-functions.php:324
+#: includes/donations/charitable-donation-functions.php:326
 msgid "Pending"
 msgstr ""
 
@@ -6184,11 +6184,11 @@ msgstr ""
 msgid "Return to donation page"
 msgstr ""
 
-#: includes/admin/views/metaboxes/donation/donation-log.php:23
+#: includes/admin/views/metaboxes/donation/donation-log.php:24
 msgid "Date &amp; Time"
 msgstr ""
 
-#: includes/admin/views/metaboxes/donation/donation-log.php:24
+#: includes/admin/views/metaboxes/donation/donation-log.php:25
 msgid "Log"
 msgstr ""
 
@@ -7075,36 +7075,36 @@ msgstr ""
 msgid "%1$s was called <strong>incorrectly</strong>. %2$s %3$s"
 msgstr ""
 
-#: includes/donations/charitable-donation-functions.php:323
+#: includes/donations/charitable-donation-functions.php:325
 #: includes/fields/default-fields/donation-fields.php:334
 msgid "Paid"
 msgstr ""
 
-#: includes/donations/charitable-donation-functions.php:325
+#: includes/donations/charitable-donation-functions.php:327
 msgid "Failed"
 msgstr ""
 
-#: includes/donations/charitable-donation-functions.php:326
+#: includes/donations/charitable-donation-functions.php:328
 msgid "Cancelled"
 msgstr ""
 
-#: includes/donations/charitable-donation-functions.php:327
+#: includes/donations/charitable-donation-functions.php:329
 msgid "Refunded"
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:348
+#: includes/donations/class-charitable-donation-log.php:351
 msgid "%s was sent successfully."
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:351
+#: includes/donations/class-charitable-donation-log.php:354
 msgid "Resend it now"
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:367
+#: includes/donations/class-charitable-donation-log.php:370
 msgid "%s failed to send."
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:370
+#: includes/donations/class-charitable-donation-log.php:373
 msgid "Retry email send"
 msgstr ""
 
@@ -7211,34 +7211,34 @@ msgstr ""
 msgid "User: Email Verification"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:141
+#: includes/emails/class-charitable-email-email-verification.php:143
 msgid "Send after Registration"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:142
+#: includes/emails/class-charitable-email-email-verification.php:144
 msgid ""
 "Whether to send an email verification message immediately after "
 "registration. If this is not set, users are only prompted to verify their "
 "email when they try to access their donation history."
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:164
+#: includes/emails/class-charitable-email-email-verification.php:167
 msgid "The link the user needs to verify their email address."
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:249
+#: includes/emails/class-charitable-email-email-verification.php:304
 msgid "Verify your email for [charitable_email show=site_name]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:268
+#: includes/emails/class-charitable-email-email-verification.php:323
 msgid "Verify your email address"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:281
+#: includes/emails/class-charitable-email-email-verification.php:336
 msgid "Welcome to [charitable_email show=site_name]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:282
+#: includes/emails/class-charitable-email-email-verification.php:337
 msgid ""
 "To complete your registration, please confirm your email address by "
 "clicking the link below:"
@@ -7876,10 +7876,12 @@ msgid ""
 "charitable_form_after_fields instead."
 msgstr ""
 
-#: includes/forms/class-charitable-registration-form.php:260
+#: includes/forms/class-charitable-registration-form.php:262
+#: includes/shortcodes/class-charitable-my-donations-shortcode.php:81
+#. translators: %s: email verification link
 msgid ""
-"Thank you for registering. We have sent you an email to confirm your email "
-"address."
+"We have sent you an email to confirm your email address. Haven't received "
+"the email? <a href=\"%s\">Click here to send it again.</a>"
 msgstr ""
 
 #: includes/forms/class-charitable-reset-password-form.php:134
@@ -8446,11 +8448,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: includes/shortcodes/class-charitable-my-donations-shortcode.php:78
-msgid "We have sent you an email to confirm your email address."
-msgstr ""
-
-#: includes/shortcodes/class-charitable-my-donations-shortcode.php:82
+#: includes/shortcodes/class-charitable-my-donations-shortcode.php:87
 #. translators: %s: email verification link
 msgid ""
 "<a href=\"%s\">Confirm your email address</a> to access your full donation "
@@ -8508,16 +8506,16 @@ msgstr ""
 msgid "You do not have permission to do Charitable upgrades"
 msgstr ""
 
-#: includes/user-management/class-charitable-user-management.php:143
+#: includes/user-management/class-charitable-user-management.php:144
 msgid "<strong>ERROR</strong>: Invalid email address."
 msgstr ""
 
-#: includes/user-management/class-charitable-user-management.php:145
-#: includes/user-management/class-charitable-user-management.php:156
+#: includes/user-management/class-charitable-user-management.php:146
+#: includes/user-management/class-charitable-user-management.php:157
 msgid "Lost your password?"
 msgstr ""
 
-#: includes/user-management/class-charitable-user-management.php:152
+#: includes/user-management/class-charitable-user-management.php:153
 #. translators: %s: email address
 msgid "<strong>ERROR</strong>: The password you entered for %s is incorrect."
 msgstr ""
@@ -8526,7 +8524,7 @@ msgstr ""
 msgid "Campaign Manager"
 msgstr ""
 
-#: includes/users/class-charitable-user.php:699
+#: includes/users/class-charitable-user.php:702
 msgid "Unable to add donor. Email not set for logged out user."
 msgstr ""
 
@@ -8674,11 +8672,11 @@ msgstr ""
 msgid "Hide if there are no donors"
 msgstr ""
 
-#: templates/account/email-not-verified.php:20
+#: templates/account/email-not-verified.php:23
 msgid "We were unable to verify your email address."
 msgstr ""
 
-#: templates/account/email-not-verified.php:22
+#: templates/account/email-not-verified.php:25
 msgid "Resend verification email"
 msgstr ""
 
@@ -8705,11 +8703,11 @@ msgstr ""
 msgid "Read More"
 msgstr ""
 
-#: templates/donation-form/donation-amount-list.php:96
+#: templates/donation-form/donation-amount-list.php:88
 msgid "Custom amount"
 msgstr ""
 
-#: templates/donation-form/donation-amount-list.php:114
+#: templates/donation-form/donation-amount-list.php:106
 msgid "Enter donation amount"
 msgstr ""
 
@@ -8886,12 +8884,12 @@ msgctxt "error message when non-existent class is called"
 msgid "Class %s does not exist."
 msgstr ""
 
-#: includes/campaigns/class-charitable-campaign.php:786
+#: includes/campaigns/class-charitable-campaign.php:787
 msgctxt "amount donated of goal"
-msgid "%s donated of %s goal"
+msgid "%1$s donated of %2$s goal"
 msgstr ""
 
-#: includes/campaigns/class-charitable-campaign.php:791
+#: includes/campaigns/class-charitable-campaign.php:793
 msgctxt "amount donated"
 msgid "%s donated"
 msgstr ""

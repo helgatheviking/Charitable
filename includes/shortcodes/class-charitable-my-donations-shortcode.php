@@ -56,7 +56,7 @@ if ( ! class_exists( 'Charitable_My_Donations_Shortcode' ) ) :
 			}
 
 			/* If the user is logged in, show the my donations template. */
-			$user     = charitable_get_user( get_current_user_id() );
+			$user     = charitable_get_user( get_current_user_id(), true );
 			$donor_id = $user->get_donor_id();
 
 			if ( false === $donor_id ) {
@@ -75,12 +75,17 @@ if ( ! class_exists( 'Charitable_My_Donations_Shortcode' ) ) :
 					$query_args['user_id'] = $user->ID;
 
 					if ( array_key_exists( 'charitable_action', $_GET ) && 'verify_email' == $_GET['charitable_action'] ) {
-						$message = __( 'We have sent you an email to confirm your email address.', 'charitable' );
+						$redirect = array_key_exists( 'redirect_url', $_GET ) ? $_GET['redirect_url'] : false;
+						$message  = sprintf(
+							/* translators: %s: email verification link */
+							__( 'We have sent you an email to confirm your email address. Haven\'t received the email? <a href="%s">Click here to send it again.</a>', 'charitable' ),
+							esc_url_raw( charitable_get_email_verification_link( $user, $redirect, true ) )
+						);
 					} else {
 						$message = sprintf(
 							/* translators: %s: email verification link */
 							__( '<a href="%s">Confirm your email address</a> to access your full donation history.', 'charitable' ),
-							esc_url( charitable_get_email_verification_link( $user, charitable_get_current_url() ) )
+							esc_url( charitable_get_email_verification_link( $user, charitable_get_current_url(), true ) )
 						);
 					}
 

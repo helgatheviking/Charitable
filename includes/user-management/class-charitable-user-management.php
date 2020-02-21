@@ -3,10 +3,11 @@
  * Class that manages the hook functions for the forgot password form.
  *
  * @package     Charitable/User Management/User Management
- * @version     1.4.0
  * @author      Rafe Colton
  * @copyright   Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.4.0
+ * @version     1.6.32
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,7 +26,7 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		/**
 		 * The class instance.
 		 *
-		 * @var 	Charitable_User_Management
+		 * @var     Charitable_User_Management
 		 * @since   1.4.0
 		 */
 		private static $instance;
@@ -117,8 +118,8 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 *
 		 * @since   1.4.0
 		 *
-		 * @param 	WP_User|WP_Error $user_or_error
-		 * @param 	string 			 $username
+		 * @param   WP_User|WP_Error $user_or_error
+		 * @param   string           $username
 		 * @return  WP_User|void
 		 */
 		public function maybe_redirect_at_authenticate( $user_or_error, $username ) {
@@ -139,14 +140,14 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 				/* Make sure the error messages link to our forgot password page, not WordPress' */
 				switch ( $code ) {
 
-					case 'invalid_email' :
+					case 'invalid_email':
 						$error = __( '<strong>ERROR</strong>: Invalid email address.', 'charitable' ) .
 							' <a href="' . esc_url( charitable_get_permalink( 'forgot_password_page' ) ) . '">' .
 							__( 'Lost your password?' ) .
 							'</a>';
 						break;
 
-					case 'incorrect_password' :
+					case 'incorrect_password':
 						$error = sprintf(
 							/* translators: %s: email address */
 							__( '<strong>ERROR</strong>: The password you entered for %s is incorrect.' ),
@@ -157,7 +158,7 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 						'</a>';
 						break;
 
-					default :
+					default:
 						$error = $error[0];
 				}
 
@@ -203,7 +204,7 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 				return;
 			}
 
-			if ( $_SERVER[ 'REQUEST_METHOD' ] != 'GET' ) {
+			if ( $_SERVER['REQUEST_METHOD'] != 'GET' ) {
 				return;
 			}
 
@@ -221,7 +222,7 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 *
 		 * @since   1.4.0
 		 *
-		 * @param 	string $value
+		 * @param   string $value
 		 * @return  void
 		 */
 		public function set_reset_cookie( $value = '' ) {
@@ -242,7 +243,7 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 *
 		 * Uses the builtin show_admin_bar function.
 		 *
-		 * @see 	show_admin_bar()
+		 * @see     show_admin_bar()
 		 *
 		 * @since   1.4.0
 		 */
@@ -345,12 +346,15 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 * Send the user verification email.
 		 *
 		 * @since  1.5.0
+		 * @since  1.6.32
 		 *
-		 * @param  WP_User $user         An instance of `WP_User`.
-		 * @param  string  $redirect_url Where the user should be redirected to after verifying their email.
+		 * @param  WP_User      $user         An instance of `WP_User`.
+		 * @param  string       $redirect_url Where the user should be redirected to after verifying their email.
+		 * @param  boolean|null $force_send   Whether the link should include an argument to force
+		 *                                    resending the email, even if it was sent recently.
 		 * @return boolean True if the email is sent. False otherwise.
 		 */
-		public function send_verification_email( $user = '', $redirect_url = '' ) {
+		public function send_verification_email( $user = '', $redirect_url = '', $force_send = null ) {
 			if ( empty( $user ) && array_key_exists( 'user', $_GET ) ) {
 				$user = get_user_by( 'id', $_GET['user'] );
 			}
@@ -359,12 +363,20 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 				return false;
 			}
 
+			if ( is_null( $force_send ) ) {
+				$force_send = array_key_exists( 'force_send', $_GET ) && $_GET['force_send'];
+			}
+
 			if ( empty( $redirect_url ) && array_key_exists( 'redirect_url', $_GET ) ) {
 				$redirect_url = $_GET['redirect_url'];
 			}
 
 			/* Prepare the email. */
 			$email = new Charitable_Email_Email_Verification( array( 'user' => $user ) );
+
+			if ( ! $force_send && $email->sent_recently() ) {
+				return false;
+			}
 
 			if ( ! empty( $redirect_url ) ) {
 				/* Ensure that the redirect URL is encoded, but not double-encoded. */

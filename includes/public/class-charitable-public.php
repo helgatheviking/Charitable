@@ -196,7 +196,7 @@ if ( ! class_exists( 'Charitable_Public' ) ) :
 
 				wp_register_style(
 					'lean-modal-css',
-					$assets_dir . 'css/modal' . $suffix .'.css',
+					$assets_dir . 'css/modal' . $suffix . '.css',
 					array(),
 					$version
 				);
@@ -205,7 +205,7 @@ if ( ! class_exists( 'Charitable_Public' ) ) :
 
 			wp_register_style(
 				'charitable-datepicker',
-				$assets_dir . 'css/charitable-datepicker' . $suffix .'.css',
+				$assets_dir . 'css/charitable-datepicker' . $suffix . '.css',
 				array(),
 				$version
 			);
@@ -282,7 +282,7 @@ if ( ! class_exists( 'Charitable_Public' ) ) :
 		 *
 		 * @since   1.0.0
 		 *
-		 * @param 	string[] $classes List of classes to be added with post_class().
+		 * @param   string[] $classes List of classes to be added with post_class().
 		 * @return  string[]
 		 */
 		public function campaign_post_class( $classes ) {

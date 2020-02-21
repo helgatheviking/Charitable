@@ -1,3 +1,8 @@
+# 1.6.32
+* NEW: Added ability to avoid resending an email verification email if one was sent within the last half hour. [#742](https://github.com/Charitable/Charitable/issues/742)
+* FIX: A bug was preventing the `charitable_default_donation_amount` filter from correctly setting the default donation amount. [#737](https://github.com/Charitable/Charitable/issues/737)
+* FIX: In Firefox, the way Charitable saved the clicked form button's name and value are not correctly passed through as a hidden field. [#740](https://github.com/Charitable/Charitable/issues/740)
+
 # 1.6.31
 * FIX: Respect the `hide_if_no_donors` argument in the Donors shortcode. [#734](https://github.com/Charitable/Charitable/issues/734)
 * FIX: Ensure the redirect URL provided in the link to the registration page from the login form is encoded properly. [#734](https://github.com/Charitable/Charitable/issues/734)

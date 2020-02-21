@@ -208,6 +208,11 @@ if ( ! class_exists( 'Charitable_Email_Verification_Endpoint' ) ) :
 					$this->verification_result = check_password_reset_key( wp_unslash( $_GET['key'] ), wp_unslash( $_GET['login'] ) );
 				}
 
+				/* The user is logged in but the verification was for a different user. */
+				if ( is_user_logged_in() && get_current_user_id() !== $this->verification_result->ID ) {
+					$this->verification_result = false;
+				}
+
 				/* If everything checks out, mark the user as verified. */
 				if ( is_a( $this->verification_result, 'WP_User' ) ) {
 					charitable_get_user( get_user_by( 'login', $_GET['login'] ) )->mark_as_verified( true );
