@@ -257,7 +257,13 @@ if ( ! class_exists( 'Charitable_Registration_Form' ) ) :
 
 					/* If the confirmation link is generated correctly and the email is sent, set a notice. */
 					if ( Charitable_User_Management::get_instance()->send_verification_email( $user ) ) {
-						charitable_get_notices()->add_success( __( 'Thank you for registering. We have sent you an email to confirm your email address.', 'charitable' ) );
+						$message = sprintf(
+							/* translators: %s: email verification link */
+							__( 'We have sent you an email to confirm your email address. Haven\'t received the email? <a href="%s">Click here to send it again.</a>', 'charitable' ),
+							esc_url_raw( charitable_get_email_verification_link( $user, false, true ) )
+						);
+
+						charitable_get_notices()->add_success( $message );
 						charitable_get_session()->add_notices();
 					}
 				}

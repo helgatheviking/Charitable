@@ -182,12 +182,15 @@ if ( ! class_exists( 'Charitable_Donation_Log' ) ) :
 		private function query_email_logs() {
 			global $wpdb;
 
-			return $wpdb->get_results( $wpdb->prepare(
-				"SELECT meta_key, meta_value
-				FROM $wpdb->postmeta
-				WHERE meta_key LIKE '_email_%_log'
-				AND post_id = %d", $this->donation_id
-			) );
+			return $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT meta_key, meta_value
+					FROM $wpdb->postmeta
+					WHERE meta_key LIKE '_email_%_log'
+					AND post_id = %d",
+					$this->donation_id
+				)
+			);
 		}
 
 		/**

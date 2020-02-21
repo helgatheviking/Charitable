@@ -329,17 +329,21 @@ function charitable_table_template( array $columns, array $data, $args = array()
  * Return the email verification link.
  *
  * @since  1.5.0
+ * @since  1.6.32 Added $force_send argument.
  *
  * @param  WP_User      $user         An instance of `WP_User`.
  * @param  string|false $redirect_url The URL to redirect to after verification.
+ * @param  boolean      $force_send   Whether the link should include an argument to force
+ *                                    resending the email, even if it was sent recently.
  * @return string
  */
-function charitable_get_email_verification_link( WP_User $user, $redirect_url = false ) {
+function charitable_get_email_verification_link( WP_User $user, $redirect_url = false, $force_send = false ) {
 	return add_query_arg(
 		array(
 			'charitable_action' => 'verify_email',
 			'user'              => $user->ID,
 			'redirect_url'      => $redirect_url,
+			'force_send'        => (int) $force_send,
 		)
 	);
 }

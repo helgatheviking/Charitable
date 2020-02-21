@@ -784,8 +784,6 @@ if ( ! class_exists( 'Charitable' ) ) :
 
 				$action = $_REQUEST['charitable_action'];
 
-				error_log( var_export( 'charitable_' . $action, true ) );
-
 				/**
 				 * Handle Charitable action.
 				 *
