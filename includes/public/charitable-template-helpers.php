@@ -207,7 +207,8 @@ function charitable_campaign_loop_class( $view_args = array() ) {
 	 *
 	 * @since 1.5.7
 	 *
-	 * @param array $classes Array of classes.
+	 * @param array $classes   Array of classes.
+	 * @param array $view_args View args.
 	 */
 	$classes = apply_filters( 'charitable_campaign_loop_classes', $classes, $view_args );
 
