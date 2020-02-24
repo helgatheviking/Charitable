@@ -976,7 +976,7 @@ CHARITABLE = window.CHARITABLE || {};
                         $form.find( '[type=submit]' )
                             .attr( 'disabled', 'disabled' );
 
-                        return true;
+                        return $form.submit();
                     } );
                 }
             } );
