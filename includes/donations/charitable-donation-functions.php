@@ -38,6 +38,20 @@ function charitable_get_donation( $donation_id, $force = false ) {
 }
 
 /**
+ * Update the donation cache.
+ *
+ * @since  1.6.34
+ *
+ * @param  Charitable_Donation|Charitable_Recurring_Donation $donation The donation object.
+ * @return mixed
+ */
+function charitable_update_cached_donation( Charitable_Abstract_Donation $donation ) {
+	wp_cache_set( $donation->ID, $donation, 'charitable_donation' );
+}
+
+/**
+
+/**
  * Given a donation ID and a key, return the submitted value.
  *
  * @since  1.5.0

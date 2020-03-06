@@ -116,3 +116,11 @@ add_action( 'charitable_process_refund_paypal', array( 'Charitable_Gateway_Paypa
  * @see charitable_load_donation_form_script()
  */
 add_action( 'charitable_donation_form_before', 'charitable_load_donation_form_script' );
+
+/**
+ * Refresh a donation in cache after its status is updated.
+ *
+ * @see charitable_update_cached_donation()
+ */
+add_action( 'charitable_donation_status_changed', 'charitable_update_cached_donation' );
+add_action( 'charitable_recurring_donation_status_changed', 'charitable_update_cached_donation' );
