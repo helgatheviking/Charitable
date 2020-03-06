@@ -346,6 +346,7 @@ if ( ! class_exists( 'Charitable_Settings' ) ) :
 
 			$field['key']     = $keys;
 			$field['classes'] = $this->get_field_classes( $field );
+			$field['class']   = $this->get_field_wrapper_classes( $field );
 			$callback         = isset( $field['callback'] ) ? $field['callback'] : array( $this, 'render_field' );
 			$label            = $this->get_field_label( $field, end( $keys ) );
 
@@ -383,6 +384,39 @@ if ( ! class_exists( 'Charitable_Settings' ) ) :
 		}
 
 		/**
+		 * Return a space separated string of classes for the given field,
+		 * to be applied to the <tr> element.
+		 *
+		 * @since  1.6.34
+		 *
+		 * @param  array $field Field definition.
+		 * @return string
+		 */
+		private function get_field_wrapper_classes( $field ) {
+			$classes = array();
+
+			if ( isset( $field['wrapper_class'] ) ) {
+				$classes[] = $field['class'];
+			}
+
+			if ( array_key_exists( 'type', $field ) && 'hidden' == $field['type'] ) {
+				$classes[] = 'hidden';
+			}
+
+			/**
+			 * Filter the list of classes to apply to settings fields.
+			 *
+			 * @since 1.6.34
+			 *
+			 * @param array $classes The list of classes.
+			 * @param array $field   The field definition.
+			 */
+			$classes = apply_filters( 'charitable_settings_field_wrapper_classes', $classes, $field );
+
+			return implode( ' ', $classes );
+		}
+
+		/**
 		 * Return a space separated string of classes for the given field.
 		 *
 		 * @since  1.0.0
@@ -406,6 +440,8 @@ if ( ! class_exists( 'Charitable_Settings' ) ) :
 			 * @param array $field   The field definition.
 			 */
 			$classes = apply_filters( 'charitable_settings_field_classes', $classes, $field );
+
+			error_log( var_export( $classes, true ) );
 
 			return implode( ' ', $classes );
 		}

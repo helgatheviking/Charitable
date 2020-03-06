@@ -976,7 +976,7 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		}
 
 		/**
-		 * Return the parent donation, if exists
+		 * Return the parent donation, if exists.
 		 *
 		 * @since  1.4.5
 		 *

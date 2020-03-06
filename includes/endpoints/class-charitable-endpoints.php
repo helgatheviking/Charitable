@@ -174,7 +174,8 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 					__METHOD__,
 					sprintf(
 						/* translators: %s: endpoint id */
-						__( 'Endpoint %s has not been registered.', 'charitable' ), $endpoint
+						__( 'Endpoint %s has not been registered.', 'charitable' ),
+						$endpoint
 					),
 					'1.5.0'
 				);
@@ -373,7 +374,7 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 		 *
 		 * @since  1.6.29
 		 *
-		 * @param  object $object The meta box object
+		 * @param  object $object The meta box object.
 		 * @return object
 		 */
 		public function add_endpoints_menu_meta_box( $object ) {
@@ -410,7 +411,12 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 			<div id="charitable" class="categorydiv">
 				<ul id="charitable-tabs" class="charitable-tabs add-menu-item-tabs">
 					<li <?php echo ( 'all' == $current_tab ? ' class="tabs"' : '' ); ?>>
-						<a class="nav-tab-link" data-type="tabs-panel-charitable-all" href="<?php if ( $nav_menu_selected_id ) echo esc_url( add_query_arg( 'charitable-tab', 'all', remove_query_arg( $removed_args ) ) ); ?>#tabs-panel-charitable-all">
+						<a class="nav-tab-link" data-type="tabs-panel-charitable-all" href="
+						<?php
+						if ( $nav_menu_selected_id ) {
+							echo esc_url( add_query_arg( 'charitable-tab', 'all', remove_query_arg( $removed_args ) ) );}
+						?>
+						#tabs-panel-charitable-all">
 							<?php _e( 'View All', 'charitable' ); ?>
 						</a>
 					</li><!-- /.tabs -->
@@ -424,7 +430,19 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 				</div><!-- /.tabs-panel -->
 				<p class="button-controls wp-clearfix">
 					<span class="list-controls">
-						<a href="<?php echo esc_url( add_query_arg( array( 'charitable-tab' => 'all', 'selectall' => 1, ), remove_query_arg( $removed_args ) ) ); ?>#charitable" class="select-all"><?php _e( 'Select All', 'charitable' ); ?></a>
+						<a href="
+						<?php
+						echo esc_url(
+							add_query_arg(
+								array(
+									'charitable-tab' => 'all',
+									'selectall'      => 1,
+								),
+								remove_query_arg( $removed_args )
+							)
+						);
+						?>
+									#charitable" class="select-all"><?php _e( 'Select All', 'charitable' ); ?></a>
 					</span>
 					<span class="add-to-menu">
 						<input type="submit"<?php wp_nav_menu_disabled_check( $nav_menu_selected_id ); ?> class="button-secondary submit-add-to-menu right" value="<?php esc_attr_e( 'Add to Menu', 'charitable' ); ?>" name="add-charitable-menu-item" id="submit-charitable" />

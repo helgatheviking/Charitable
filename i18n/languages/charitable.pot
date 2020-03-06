@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Charitable package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Charitable 1.6.32\n"
+"Project-Id-Version: Charitable 1.6.33\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2020-02-21 07:17:35+00:00\n"
+"POT-Creation-Date: 2020-03-03 06:34:04+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -7426,15 +7426,15 @@ msgstr ""
 msgid "Endpoint %s has not been registered."
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:414
+#: includes/endpoints/class-charitable-endpoints.php:420
 msgid "View All"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:427
+#: includes/endpoints/class-charitable-endpoints.php:445
 msgid "Select All"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:430
+#: includes/endpoints/class-charitable-endpoints.php:448
 msgid "Add to Menu"
 msgstr ""
 
@@ -8954,12 +8954,12 @@ msgctxt "Taxonomy Singular Name"
 msgid "Campaign Tag"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:451
+#: includes/endpoints/class-charitable-endpoints.php:469
 msgctxt "customizer menu section title"
 msgid "Charitable"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:479
+#: includes/endpoints/class-charitable-endpoints.php:497
 msgctxt "customizer menu type label"
 msgid "Custom Link"
 msgstr ""
