@@ -21,6 +21,13 @@ $args   = array(
 	'steps'              => $steps,
 );
 
+$timeout_url  = 'index.php?charitable_action=' . $action;
+$timeout_url .= 'step=' . $step;
+
+if ( $total ) {
+	$timeout_url .= 'total=' . $total;
+}
+
 update_option( 'charitable_doing_upgrade', $args );
 
 if ( $step > $steps ) {
@@ -33,12 +40,11 @@ if ( $step > $steps ) {
 
 	<div id="charitable-upgrade-status">
 		<p><?php _e( 'The upgrade process has started, please be patient. This could take several minutes. You will be automatically redirected when the upgrade is finished.', 'charitable' ); ?></p>
-
 		<?php if ( ! empty( $total ) ) : ?>
 			<p><strong><?php printf( __( 'Step %d of approximately %d running', 'charitable' ), $step, $steps ); ?></strong></p>
 		<?php endif; ?>
 	</div>
 	<script type="text/javascript">
-		setTimeout(function() { document.location.href = "index.php?charitable_action=<?php echo $action; ?>&step=<?php echo $step; ?>&total=<?php echo $total; ?>"; }, 250);
+		setTimeout(function() { document.location.href = "<?php echo $timeout_url; ?>"; }, 250);
 	</script>
 </div>

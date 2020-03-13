@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.32
+ * @version   1.6.34
  */
 
 // Exit if accessed directly.
@@ -236,12 +236,16 @@ function charitable_get_arbitrary_attributes( $field ) {
 			continue;
 		}
 
-		/* Skip required attribute unless it's true. */
-		if ( 'required' == $attr && ! $field['required'] ) {
-			continue;
-		}
+		if ( 'required' == $attr ) {
+			/* Skip required attribute if it's not true. */
+			if ( ! $field['required'] ) {
+				continue;
+			}
 
-		$field['attrs'][ $attr ] = $field[ $attr ];
+			$field['attrs'][ $attr ] = 'required';
+		} else {
+			$field['attrs'][ $attr ] = $field[ $attr ];
+		}
 	}
 
 	$output = '';

@@ -4,11 +4,12 @@
  *
  * Action/filter hooks used for Charitable donations.
  *
- * @package     Charitable/Functions/Donations
- * @version     1.0.0
- * @author      Eric Daams
- * @copyright   Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Functions/Donations
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.34
  */
 
 // Exit if accessed directly.
@@ -116,3 +117,11 @@ add_action( 'charitable_process_refund_paypal', array( 'Charitable_Gateway_Paypa
  * @see charitable_load_donation_form_script()
  */
 add_action( 'charitable_donation_form_before', 'charitable_load_donation_form_script' );
+
+/**
+ * Refresh a donation in cache after its status is updated.
+ *
+ * @see charitable_update_cached_donation()
+ */
+add_action( 'charitable_donation_status_changed', 'charitable_update_cached_donation' );
+add_action( 'charitable_recurring_donation_status_changed', 'charitable_update_cached_donation' );

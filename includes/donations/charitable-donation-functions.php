@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.5.0
+ * @version   1.6.34
  */
 
 // Exit if accessed directly.
@@ -35,6 +35,18 @@ function charitable_get_donation( $donation_id, $force = false ) {
 	}
 
 	return $donation;
+}
+
+/**
+ * Update the donation cache.
+ *
+ * @since  1.6.34
+ *
+ * @param  Charitable_Donation|Charitable_Recurring_Donation $donation The donation object.
+ * @return mixed
+ */
+function charitable_update_cached_donation( Charitable_Abstract_Donation $donation ) {
+	wp_cache_set( $donation->ID, $donation, 'charitable_donation' );
 }
 
 /**

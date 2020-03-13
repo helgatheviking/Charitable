@@ -6,7 +6,7 @@
  * @author    Eric Daams
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since     1.0.0
+ * @since    1.0.0
  * @version   1.6.31
  */
 
@@ -20,7 +20,7 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 	/**
 	 * Charitable_Admin_Pages
 	 *
-	 * @since   1.0.0
+	 * @since  1.0.0
 	 */
 	final class Charitable_Admin_Pages {
 
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Create class object.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 */
 		private function __construct() {
 			$this->admin_menu_capability  = apply_filters( 'charitable_admin_menu_capability', 'view_charitable_sensitive_data' );
@@ -58,9 +58,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Returns and/or create the single instance of this class.
 		 *
-		 * @since   1.2.0
+		 * @since  1.2.0
 		 *
-		 * @return  Charitable_Admin_Pages
+		 * @return Charitable_Admin_Pages
 		 */
 		public static function get_instance() {
 			if ( is_null( self::$instance ) ) {
@@ -73,9 +73,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Add Settings menu item under the Campaign menu tab.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @return  void
+		 * @return void
 		 */
 		public function add_menu() {
 			add_menu_page(
@@ -113,9 +113,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Returns an array with all the submenu pages.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @return  array
+		 * @return array
 		 */
 		private function get_submenu_pages() {
 			$campaign_post_type = get_post_type_object( 'campaign' );
@@ -184,9 +184,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Set up the redirect to the welcome page.
 		 *
-		 * @since   1.3.0
+		 * @since  1.3.0
 		 *
-		 * @return  void
+		 * @return void
 		 */
 		public function setup_welcome_redirect() {
 			add_action( 'admin_init', array( self::get_instance(), 'redirect_to_welcome' ) );
@@ -195,9 +195,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Redirect to the welcome page.
 		 *
-		 * @since   1.3.0
+		 * @since  1.3.0
 		 *
-		 * @return  void
+		 * @return void
 		 */
 		public function redirect_to_welcome() {
 			wp_safe_redirect( admin_url( 'admin.php?page=charitable&install=true' ) );
@@ -207,9 +207,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Display the Charitable settings page.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @return  void
+		 * @return void
 		 */
 		public function render_settings_page() {
 			charitable_admin_view( 'settings/settings' );
@@ -218,9 +218,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Display the Charitable donations page.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @return  void
+		 * @return void
 		 *
 		 * @deprecated 1.4.0
 		 */
@@ -237,9 +237,9 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		/**
 		 * Display the Charitable welcome page.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @return  void
+		 * @return void
 		 */
 		public function render_welcome_page() {
 			charitable_admin_view( 'welcome-page/page' );
@@ -253,30 +253,35 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		 * @return string
 		 */
 		private function get_customizer_campaign_preview_url() {
-			$campaign = Charitable_Campaigns::query( array(
-				'posts_per_page' => 1,
-				'post_status'    => 'publish',
-				'fields'         => 'ids',
-				'meta_query'     => array(
-					'relation' => 'OR',
-					array(
-						'key'     => '_campaign_end_date',
-						'value'   => date( 'Y-m-d H:i:s' ),
-						'compare' => '>=',
-						'type'    => 'datetime',
+			$campaign = Charitable_Campaigns::query(
+				array(
+					'posts_per_page' => 1,
+					'post_status'    => 'publish',
+					'fields'         => 'ids',
+					'meta_query'     => array(
+						'relation' => 'OR',
+						array(
+							'key'     => '_campaign_end_date',
+							'value'   => date( 'Y-m-d H:i:s' ),
+							'compare' => '>=',
+							'type'    => 'datetime',
+						),
+						array(
+							'key'     => '_campaign_end_date',
+							'value'   => 0,
+							'compare' => '=',
+						),
 					),
-					array(
-						'key'     => '_campaign_end_date',
-						'value'   => 0,
-						'compare' => '=',
-					),
-				),
-			) );
+				)
+			);
 
 			if ( $campaign->found_posts ) {
-				$url = charitable_get_permalink( 'campaign_donation', array(
-					'campaign_id' => current( $campaign->posts ),
-				) );
+				$url = charitable_get_permalink(
+					'campaign_donation',
+					array(
+						'campaign_id' => current( $campaign->posts ),
+					)
+				);
 			}
 
 			if ( ! isset( $url ) || false === $url ) {
