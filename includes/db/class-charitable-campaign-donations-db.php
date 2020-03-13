@@ -585,12 +585,10 @@ if ( ! class_exists( 'Charitable_Campaign_Donations_DB' ) ) :
 			$sql_where_clauses = array();
 
 			if ( isset( $args['campaign_id'] ) ) {
-
 				list( $campaigns_in, $campaigns_parameters ) = $this->get_in_clause_params( $args['campaign_id'] );
 
 				$sql_where_clauses[] = "cd.campaign_id IN ( $campaigns_in )";
 				$parameters          = array_merge( $parameters, $campaigns_parameters );
-
 			}
 
 			if ( isset( $args['status'] ) ) {

@@ -327,9 +327,20 @@ if ( ! class_exists( 'Charitable_Upgrade' ) ) :
 			if ( array_key_exists( 'notice', $upgrade ) ) {
 				return $this->set_update_notice_transient( $upgrade, $action );
 			}
-?>
+			?>
 			<div class="updated">
-				<p><?php printf( '%s %s', $upgrade['message'], sprintf( __( 'Click <a href="%s">here</a> to start the upgrade.', 'charitable' ), esc_url( admin_url( 'index.php?page=charitable-upgrades&charitable-upgrade=' . $action ) ) ) ) ?>
+				<p>
+					<?php
+					printf(
+						'%s %s',
+						$upgrade['message'],
+						sprintf(
+							/* translators: %s: upgrade link */
+							__( 'Click <a href="%s">here</a> to start the upgrade.', 'charitable' ),
+							esc_url( admin_url( 'index.php?page=charitable-upgrades&charitable-upgrade=' . $action ) )
+						)
+					);
+					?>
 				</p>
 			</div>
 <?php
