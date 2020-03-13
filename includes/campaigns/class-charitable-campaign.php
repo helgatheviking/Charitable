@@ -1040,6 +1040,7 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 
 			charitable_template( $template_name, array( 'campaign' => $this ) );
 		}
+
 		/**
 		 * Returns the campaign creator.
 		 *

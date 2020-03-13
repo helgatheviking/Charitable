@@ -83,6 +83,7 @@ add_action( 'charitable_campaign_content_loop_after', 'charitable_template_campa
 add_action( 'charitable_campaign_content_loop_after', 'charitable_template_campaign_progress_bar', 6 );
 add_action( 'charitable_campaign_content_loop_after', 'charitable_template_campaign_loop_donation_stats', 8 );
 add_action( 'charitable_campaign_content_loop_after', 'charitable_template_campaign_loop_donate_link', 10, 2 );
+add_action( 'charitable_campaign_content_loop_after', 'charitable_template_campaign_loop_donate_link', 10, 2 );
 add_action( 'charitable_campaign_content_loop_after', 'charitable_template_campaign_loop_more_link', 10, 2 );
 
 /**
