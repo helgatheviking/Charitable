@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
 Tested up to: 5.3.2
-Stable tag: 1.6.33
+Stable tag: 1.6.34
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

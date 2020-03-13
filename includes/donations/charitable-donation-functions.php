@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.5.0
+ * @version   1.6.34
  */
 
 // Exit if accessed directly.
@@ -48,8 +48,6 @@ function charitable_get_donation( $donation_id, $force = false ) {
 function charitable_update_cached_donation( Charitable_Abstract_Donation $donation ) {
 	wp_cache_set( $donation->ID, $donation, 'charitable_donation' );
 }
-
-/**
 
 /**
  * Given a donation ID and a key, return the submitted value.
