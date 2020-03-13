@@ -1,3 +1,9 @@
+# 1.6.34
+* NEW: Cached `Charitable_Donation` objects are updated when a donation's status is changed.
+* FIX: Ensured that the client-side HTML form validation still works as expected across all browsers. This broke in Chrome with version 1.6.33.
+* FIX: More robust handling of upgrades, with total & step counter working more reliably.
+* FIX: Proper HTML value for the 'required' attribute.
+
 # 1.6.33
 * FIX: The fix to the Firefox form submission issue in 1.6.32 caused unexpected issues in other browsers, including Chrome. [#743](https://github.com/Charitable/Charitable/issues/743)
 
