@@ -458,6 +458,13 @@ if ( ! class_exists( 'Charitable_Campaign_Meta_Boxes' ) ) :
 
 			$keys = $registry->get_sanitized_keys( $fields, false );
 
+			if ( 'submission-details' == $section ) {
+				error_log( $section );
+				error_log( var_export( $keys, true ) );
+				error_log( var_export( array_map( array( $this, 'sanitize_campaign_field' ), wp_list_pluck( $fields, 'admin_form' ), $keys ), true ) );
+			}
+
+
 			return array_combine(
 				$keys,
 				array_map( array( $this, 'sanitize_campaign_field' ), wp_list_pluck( $fields, 'admin_form' ), $keys )

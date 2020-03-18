@@ -22,10 +22,10 @@ $args   = array(
 );
 
 $timeout_url  = 'index.php?charitable_action=' . $action;
-$timeout_url .= 'step=' . $step;
+$timeout_url .= '&step=' . $step;
 
 if ( $total ) {
-	$timeout_url .= 'total=' . $total;
+	$timeout_url .= '&total=' . $total;
 }
 
 update_option( 'charitable_doing_upgrade', $args );

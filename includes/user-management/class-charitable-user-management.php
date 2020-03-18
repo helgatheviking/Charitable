@@ -226,7 +226,6 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 * @return  void
 		 */
 		public function set_reset_cookie( $value = '' ) {
-
 			$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
 			$rp_path   = current( explode( '?', wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
 

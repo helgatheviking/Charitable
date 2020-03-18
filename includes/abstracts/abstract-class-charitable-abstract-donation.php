@@ -668,7 +668,13 @@ if ( ! class_exists( 'Charitable_Abstract_Donation' ) ) :
 		 * @return int|false
 		 */
 		public function get_donor_id() {
-			return current( $this->get_campaign_donations() )->donor_id;
+			$campaign_donation = current( $this->get_campaign_donations() );
+
+			if ( ! is_object( $campaign_donation ) ) {
+				return false;
+			}
+
+			return $campaign_donation->donor_id;
 		}
 
 		/**

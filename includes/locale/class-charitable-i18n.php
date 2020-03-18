@@ -2,11 +2,12 @@
 /**
  * Sets up translations for Charitable.
  *
- * @package     Charitable/Classes/Charitable_i18n
- * @version     1.1.2
- * @author      Eric Daams
- * @copyright   Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Classes/Charitable_i18n
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.1.2
+ * @version   1.6.35
  */
 
 // Exit if accessed directly.
@@ -26,42 +27,61 @@ if ( ! class_exists( 'Charitable_i18n' ) ) :
 		/**
 		 * The single instance of this class.
 		 *
-		 * @var     Charitable_i18n|null
+		 * @since 1.1.2
+		 *
+		 * @var   Charitable_i18n|null
 		 */
 		private static $instance = null;
 
 		/**
 		 * Plugin's textdomain.
 		 *
-		 * @var     string
+		 * @since 1.1.2
+		 *
+		 * @var   string
 		 */
 		protected $textdomain = 'charitable';
 
 		/**
 		 * The path to the languages directory.
 		 *
-		 * @var     string
+		 * @since 1.1.2
+		 *
+		 * @var   string
 		 */
 		protected $languages_directory;
 
 		/**
 		 * The site locale.
 		 *
-		 * @var     string
+		 * @since 1.1.2
+		 *
+		 * @var   string
 		 */
 		protected $locale;
 
 		/**
 		 * The MO filename.
 		 *
-		 * @var     string
+		 * @since 1.1.2
+		 *
+		 * @var   string
 		 */
 		protected $mofile;
 
 		/**
+		 * Whether decline months names is on.
+		 *
+		 * @since 1.6.35
+		 *
+		 * @var   boolean
+		 */
+		private $decline_months;
+
+		/**
 		 * Set up the class.
 		 *
-		 * @since   1.1.2
+		 * @since 1.1.2
 		 */
 		private function __construct() {
 			/**
@@ -102,7 +122,6 @@ if ( ! class_exists( 'Charitable_i18n' ) ) :
 		 */
 		public function load_textdomain() {
 			foreach ( array( 'global', 'local' ) as $source ) {
-
 				$mofile_path = $this->get_mofile_path( $source );
 
 				if ( ! file_exists( $mofile_path ) ) {
@@ -113,6 +132,73 @@ if ( ! class_exists( 'Charitable_i18n' ) ) :
 			}
 
 			load_plugin_textdomain( $this->textdomain, false, $this->languages_directory );
+		}
+
+		/**
+		 * Whether decline months is on or off.
+		 *
+		 * @since  1.6.35
+		 *
+		 * @return boolean
+		 */
+		public function decline_months() {
+			if ( ! isset( $this->decline_months ) ) {
+				$this->decline_months = 'on' === _x( 'off', 'decline months names: on or off' );
+			}
+
+			return $this->decline_months;
+		}
+
+		/**
+		 * Return the date format to use for datepickers, based
+		 * on whether decline months is on.
+		 *
+		 * @since  1.6.35
+		 *
+		 * @param  string $default The format to use when decline months is off.
+		 * @return string
+		 */
+		public function get_datepicker_format( $default = 'F d, Y' ) {
+			if ( ! $this->decline_months() ) {
+				return $default;
+			}
+
+			/**
+			 * Filter the date format used for datepickers
+			 * when decline months is on.
+			 *
+			 * @since 1.6.35
+			 *
+			 * @param string $format  The date format to use.
+			 * @param string $default The format that would be used if decline months is off.
+			 */
+			return apply_filters( 'charitable_datepicker_date_format_decline_months', 'Y-m-d', $default );
+		}
+
+		/**
+		 * Return the Javascript date format to use for datepickers,
+		 * based on whether decline months is on.
+		 *
+		 * @since  1.6.35
+		 *
+		 * @param  string $default The format to use when decline months is off.
+		 * @return string
+		 */
+		public function get_js_datepicker_format( $default = 'MM d, yy' ) {
+			if ( ! $this->decline_months() ) {
+				return $default;
+			}
+
+			/**
+			 * Filter the Javascript date format used for datepickers
+			 * when decline months is on.
+			 *
+			 * @since 1.6.35
+			 *
+			 * @param string $format  The date format to use.
+			 * @param string $default The format that would be used if decline months is off.
+			 */
+			return apply_filters( 'charitable_datepicker_date_format_decline_months', 'yy-mm-dd', $default );
 		}
 
 		/**

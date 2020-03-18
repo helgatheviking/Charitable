@@ -1108,7 +1108,12 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 		 */
 		public static function sanitize_campaign_end_date( $value, $submitted = array() ) {
 			$end_time = array_key_exists( '_campaign_end_time', $submitted ) ? $submitted['_campaign_end_time'] : '23:59:59';
-			$end_date = charitable_sanitize_date( $value, 'Y-m-d ' . $end_time );
+
+			if ( 'on' === _x( 'off', 'decline months names: on or off' ) ) {
+				$end_date = $value . ' ' . $end_time;
+			} else {
+				$end_date = charitable_sanitize_date( $value, 'Y-m-d ' . $end_time );
+			}
 
 			if ( ! $end_date ) {
 				$end_date = 0;
