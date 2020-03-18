@@ -2,11 +2,12 @@
 /**
  * Contains the class that provides a utility functions relating to locales.
  *
- * @package	  Charitable/Classes/Charitable_Locations
+ * @package   Charitable/Classes/Charitable_Locations
  * @author    Eric Daams
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since    1.0.0
+ * @since     1.0.0
+ * @version   1.6.35
  */
 
 // Exit if accessed directly.
