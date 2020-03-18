@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
 Tested up to: 5.3.2
-Stable tag: 1.6.34
+Stable tag: 1.6.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -225,6 +225,11 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.35 =
+* FIX: Fixed a problem prevening datepicker fields from working as expected in certain languages. Closes #747.
+* FIX: Fixed an error in the way upgrades are run preventing them from completing.
+* FIX: Removed timestamp from the donation log.
 
 = 1.6.34 =
 * NEW: Cached `Charitable_Donation` objects are updated when a donation's status is changed.

@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Charitable package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Charitable 1.6.34\n"
+"Project-Id-Version: Charitable 1.6.35\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2020-03-13 05:52:55+00:00\n"
+"POT-Creation-Date: 2020-03-18 09:38:14+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4685,51 +4685,51 @@ msgid ""
 "Charitable_Donation::get_status_label() instead."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:723
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:729
 #: includes/admin/customizer/class-charitable-customizer.php:122
 #: includes/admin/customizer/class-charitable-customizer.php:169
 #: includes/emails/class-charitable-email-email-verification.php:149
 msgid "Yes"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:723
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:729
 #: includes/admin/customizer/class-charitable-customizer.php:123
 #: includes/admin/customizer/class-charitable-customizer.php:170
 #: includes/emails/class-charitable-email-email-verification.php:150
 msgid "No"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:741
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:747
 msgid "Withdrawn"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:741
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:747
 #: includes/admin/donor/class-charitable-donor-list-table.php:278
 msgid "Not Given"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:744
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:750
 #: includes/admin/donor/class-charitable-donor-list-table.php:278
 #: includes/fields/default-fields/donation-fields.php:416
 msgid "Given"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:744
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:750
 msgid "Given Later"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:858
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:864
 msgid ""
 "$donation_id is no longer required as get_donation_log() is used in object "
 "context. Use $donation->log()->get_meta_log() instead."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:910
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:916
 #. translators: %$1s: old status; %$2s: new status.
 msgid "Donation status updated from %1$s to %2$s."
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-abstract-donation.php:969
+#: includes/abstracts/abstract-class-charitable-abstract-donation.php:975
 msgid ""
 "$donation_id is no longer required as update_donation_log() is used in "
 "object context. Use $donation->update_donation_log($message)"
@@ -4873,7 +4873,7 @@ msgstr ""
 msgid "Campaign benefactors cannot be created without a contribution amount."
 msgstr ""
 
-#: includes/addons/charitable-benefactors/class-charitable-benefactors.php:234
+#: includes/addons/charitable-benefactors/class-charitable-benefactors.php:247
 msgid "No benefactor ID provided."
 msgstr ""
 
@@ -5510,11 +5510,11 @@ msgstr ""
 msgid "Donation updated manually by <a href=\"%s\">%s</a>."
 msgstr ""
 
-#: includes/admin/forms/class-charitable-admin-donation-form.php:661
+#: includes/admin/forms/class-charitable-admin-donation-form.php:671
 msgid "Add a New Donor"
 msgstr ""
 
-#: includes/admin/forms/class-charitable-admin-donation-form.php:663
+#: includes/admin/forms/class-charitable-admin-donation-form.php:673
 msgid "Existing Donors"
 msgstr ""
 
@@ -6079,32 +6079,32 @@ msgstr ""
 msgid "Select an action"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:43
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:47
 #: includes/admin/views/metaboxes/donation/donation-form-meta.php:29
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:45
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:49
 msgid "Contribution Amount"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:47
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:51
 msgid "Enter amount. e.g. 10%, $2"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:49
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:53
 msgid "Apply to every matching item"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:50
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:54
 msgid "Apply only once per purchase"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:57
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:61
 msgid "Starting From:"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:65
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:71
 msgid "Ending:"
 msgstr ""
 
@@ -6184,11 +6184,11 @@ msgstr ""
 msgid "Return to donation page"
 msgstr ""
 
-#: includes/admin/views/metaboxes/donation/donation-log.php:24
+#: includes/admin/views/metaboxes/donation/donation-log.php:22
 msgid "Date &amp; Time"
 msgstr ""
 
-#: includes/admin/views/metaboxes/donation/donation-log.php:25
+#: includes/admin/views/metaboxes/donation/donation-log.php:23
 msgid "Log"
 msgstr ""
 
@@ -6326,17 +6326,17 @@ msgstr ""
 msgid "&#8592; Return to %s"
 msgstr ""
 
-#: includes/admin/views/upgrades-page/page.php:39
+#: includes/admin/views/upgrades-page/page.php:40
 msgid "Charitable - Upgrades"
 msgstr ""
 
-#: includes/admin/views/upgrades-page/page.php:42
+#: includes/admin/views/upgrades-page/page.php:43
 msgid ""
 "The upgrade process has started, please be patient. This could take several "
 "minutes. You will be automatically redirected when the upgrade is finished."
 msgstr ""
 
-#: includes/admin/views/upgrades-page/page.php:44
+#: includes/admin/views/upgrades-page/page.php:45
 msgid "Step %d of approximately %d running"
 msgstr ""
 
@@ -8968,6 +8968,11 @@ msgstr ""
 #: includes/forms/class-charitable-donation-form.php:1188
 msgctxt "enable payment gateway"
 msgid "Enable one now"
+msgstr ""
+
+#: includes/locale/class-charitable-i18n.php:146
+msgctxt "decline months names: on or off"
+msgid "off"
 msgstr ""
 
 #: includes/public/class-charitable-public.php:215

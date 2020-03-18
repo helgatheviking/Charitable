@@ -6,15 +6,19 @@
  * @package   Charitable/Admin Views/Metaboxes
  * @copyright Copyright (c) 2020, Studio 164a
  * @since     1.5.0
- * @version   1.6.29
+ * @version   1.6.35
  */
 
 if ( ! array_key_exists( 'form_view', $view_args ) || ! $view_args['form_view']->field_has_required_args( $view_args ) ) {
 	return;
 }
 
+$i18n       = charitable()->registry()->get( 'i18n' );
+$php_format = $i18n->get_datepicker_format( 'F d, Y' );
+$js_format  = $i18n->get_js_datepicker_format( 'MM d, yy' );
+
 if ( array_key_exists( 'value', $view_args ) ) {
-	$date = 'data-date="' . esc_attr( date_i18n( 'F d, Y', strtotime( $view_args['value'] ) ) ) . '"';
+	$date = 'data-date="' . esc_attr( date_i18n( $php_format, strtotime( $view_args['value'] ) ) ) . '"';
 } elseif ( array_key_exists( 'default', $view_args ) ) {
 	$date = 'data-date="' . esc_attr( $view_args['default'] ) . '"';
 } else {
@@ -42,6 +46,7 @@ $is_required = array_key_exists( 'required', $view_args ) && $view_args['require
 		name="<?php echo esc_attr( $view_args['key'] ); ?>"
 		class="charitable-datepicker"
 		tabindex="<?php echo esc_attr( $view_args['tabindex'] ); ?>"
+		data-format="<?php echo $js_format; ?>"
 		<?php echo $date; ?>
 	/>
 	<?php if ( isset( $view_args['description'] ) ) : ?>

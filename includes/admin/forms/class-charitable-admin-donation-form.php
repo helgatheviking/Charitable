@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.28
+ * @version   1.6.35
  */
 
 // Exit if accessed directly.
@@ -607,11 +607,17 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 		 * @return array
 		 */
 		protected function sanitize_submitted_date( $values ) {
-			$donation           = charitable_get_donation( $this->get_submitted_value( 'ID' ) );
-			$is_new             = false === $donation || 'Auto Draft' === $donation->post_title;
-			$date               = $this->get_submitted_value( 'date' );
-			$time               = $this->get_submitted_value( 'time', '00:00:00' );
-			$values['date_gmt'] = charitable_sanitize_date( $date, 'Y-m-d ' . $time );
+			$donation      = charitable_get_donation( $this->get_submitted_value( 'ID' ) );
+			$is_new        = false === $donation || 'Auto Draft' === $donation->post_title;
+			$date          = $this->get_submitted_value( 'date' );
+			$time          = $this->get_submitted_value( 'time', '00:00:00' );
+			$sanitize_date = ! charitable()->registry()->get( 'i18n' )->decline_months();
+
+			if ( $sanitize_date ) {
+				$values['date_gmt'] = charitable_sanitize_date( $date, 'Y-m-d ' . $time );
+			} else {
+				$values['date_gmt'] = $date . ' ' . $time;
+			}
 
 			/* If the date matches today's date and it's a new donation, save the time too. */
 			if ( date( 'Y-m-d 00:00:00' ) == $values['date_gmt'] && $is_new ) {
@@ -620,7 +626,11 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 
 			/* If the donation date has been changed, the time is always set to 00:00:00 */
 			if ( $values['date_gmt'] !== $donation->post_date_gmt && ! $is_new ) {
-				$values['date_gmt'] = charitable_sanitize_date( $date, 'Y-m-d 00:00:00' );
+				if ( $sanitize_date ) {
+					$values['date_gmt'] = charitable_sanitize_date( $date, 'Y-m-d 00:00:00' );
+				} else {
+					$values['date_gmt'] = $date . ' 00:00:00';
+				}
 			}
 
 			return $values;

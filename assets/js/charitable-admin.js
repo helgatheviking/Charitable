@@ -11,8 +11,8 @@ CHARITABLE_ADMIN = window.CHARITABLE_ADMIN || {};
 
 	var Datepicker = function( $el ) {
 		this.$el = $el;
-		options = {
-			dateFormat 	: 'MM d, yy',
+		var options = {
+			dateFormat 	: this.$el.data('format') || 'MM d, yy',
 			minDate 	: this.$el.data('min-date') || '',
 			beforeShow	: function( input, inst ) {
 				$('#ui-datepicker-div').addClass('charitable-datepicker-table');

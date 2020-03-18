@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.34
+ * @version   1.6.35
  */
 
 // Exit if accessed directly.
@@ -1107,7 +1107,12 @@ if ( ! class_exists( 'Charitable_Campaign' ) ) :
 		 */
 		public static function sanitize_campaign_end_date( $value, $submitted = array() ) {
 			$end_time = array_key_exists( '_campaign_end_time', $submitted ) ? $submitted['_campaign_end_time'] : '23:59:59';
-			$end_date = charitable_sanitize_date( $value, 'Y-m-d ' . $end_time );
+
+			if ( charitable()->registry()->get( 'i18n' )->decline_months() ) {
+				$end_date = $value . ' ' . $end_time;
+			} else {
+				$end_date = charitable_sanitize_date( $value, 'Y-m-d ' . $end_time );
+			}
 
 			if ( ! $end_date ) {
 				$end_date = 0;

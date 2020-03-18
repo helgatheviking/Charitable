@@ -5,6 +5,7 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Upgrades
  * @since   1.0.0
+ * @version 1.6.35
  */
 
 $page   = $view_args['page'];
@@ -22,10 +23,10 @@ $args   = array(
 );
 
 $timeout_url  = 'index.php?charitable_action=' . $action;
-$timeout_url .= 'step=' . $step;
+$timeout_url .= '&step=' . $step;
 
 if ( $total ) {
-	$timeout_url .= 'total=' . $total;
+	$timeout_url .= '&total=' . $total;
 }
 
 update_option( 'charitable_doing_upgrade', $args );
