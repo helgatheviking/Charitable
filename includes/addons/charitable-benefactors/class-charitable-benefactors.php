@@ -163,8 +163,15 @@ if ( ! class_exists( 'Charitable_Benefactors' ) ) :
 					continue;
 				}
 
+				$sanitize_date = ! charitable()->registry()->get( 'i18n' )->decline_months();
+
 				if ( isset( $data['date_created'] ) && strlen( $data['date_created'] ) ) {
-					$data['date_created'] = charitable_sanitize_date( $data['date_created'], 'Y-m-d 00:00:00' );
+					if ( $sanitize_date ) {
+						$data['date_created'] = charitable_sanitize_date( $data['date_created'], 'Y-m-d 00:00:00' );
+					} else {
+						$data['date_created'] = date( 'Y-m-d 00:00:00', strtotime( $data['date_created'] ) );
+					}
+
 				}
 
 				/**
@@ -175,7 +182,12 @@ if ( ! class_exists( 'Charitable_Benefactors' ) ) :
 				$campaign_end_date = get_post_meta( $post->ID, '_campaign_end_date', true );
 
 				if ( isset( $data['date_deactivated'] ) && strlen( $data['date_deactivated'] ) ) {
-					$date_deactivated = charitable_sanitize_date( $data['date_deactivated'], 'Y-m-d 00:00:00' );
+					if ( $sanitize_date ) {
+						$date_deactivated = charitable_sanitize_date( $data['date_deactivated'], 'Y-m-d 00:00:00' );
+					} else {
+						$date_deactivated = date( 'Y-m-d 00:00:00', strtotime( $data['date_deactivated'] ) );
+					}
+
 					$data['date_deactivated'] = ( $campaign_end_date && $campaign_end_date < $date_deactivated ) ? $campaign_end_date : $date_deactivated;
 				} elseif ( 0 != $campaign_end_date ) {
 					$data['date_deactivated'] = $campaign_end_date;

@@ -13,7 +13,6 @@ if ( ! array_key_exists( 'form_view', $view_args ) || ! $view_args['form_view']-
 	return;
 }
 
-
 $i18n       = charitable()->registry()->get( 'i18n' );
 $php_format = $i18n->get_datepicker_format( 'F d, Y' );
 $js_format  = $i18n->get_js_datepicker_format( 'MM d, yy' );
