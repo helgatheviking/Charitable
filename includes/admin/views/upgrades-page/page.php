@@ -5,6 +5,7 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Upgrades
  * @since   1.0.0
+ * @version 1.6.35
  */
 
 $page   = $view_args['page'];
