@@ -7,9 +7,8 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.0.0
+ * @version   1.6.35
  */
-
 
 $i18n       = charitable()->registry()->get( 'i18n' );
 $php_format = $i18n->get_datepicker_format( 'F d, Y' );

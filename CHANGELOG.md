@@ -1,7 +1,7 @@
 # 1.6.35
-* Fixed a problem prevening datepicker fields from working as expected in certain languages. Closes #747.
-* Fixed an error in the way upgrades are run preventing them from completing.
-* Removed timestamp from the donation log.
+* FIX: Fixed a problem prevening datepicker fields from working as expected in certain languages. Closes #747.
+* FIX: Fixed an error in the way upgrades are run preventing them from completing.
+* FIX: Removed timestamp from the donation log.
 
 # 1.6.34
 * NEW: Cached `Charitable_Donation` objects are updated when a donation's status is changed.

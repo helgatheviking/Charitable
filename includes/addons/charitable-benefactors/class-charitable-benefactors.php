@@ -2,11 +2,12 @@
 /**
  * Main class for setting up the Charitable Benefactors Addon, which is programatically activated by child themes.
  *
- * @package     Charitable/Classes/Charitable_Benefactors
- * @version     1.0.0
- * @author      Eric Daams
- * @copyright   Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Classes/Charitable_Benefactors
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.35
  */
 
 // Exit if accessed directly.
