@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Charitable 1.6.35\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2020-03-18 04:51:56+00:00\n"
+"POT-Creation-Date: 2020-03-18 09:19:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4871,7 +4871,7 @@ msgstr ""
 msgid "Campaign benefactors cannot be created without a contribution amount."
 msgstr ""
 
-#: includes/addons/charitable-benefactors/class-charitable-benefactors.php:234
+#: includes/addons/charitable-benefactors/class-charitable-benefactors.php:246
 msgid "No benefactor ID provided."
 msgstr ""
 
@@ -5472,11 +5472,11 @@ msgstr ""
 msgid "Donation updated manually by <a href=\"%s\">%s</a>."
 msgstr ""
 
-#: includes/admin/forms/class-charitable-admin-donation-form.php:661
+#: includes/admin/forms/class-charitable-admin-donation-form.php:671
 msgid "Add a New Donor"
 msgstr ""
 
-#: includes/admin/forms/class-charitable-admin-donation-form.php:663
+#: includes/admin/forms/class-charitable-admin-donation-form.php:673
 msgid "Existing Donors"
 msgstr ""
 
@@ -6047,32 +6047,32 @@ msgstr ""
 msgid "Select an action"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:43
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:48
 #: includes/admin/views/metaboxes/donation/donation-form-meta.php:29
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:45
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:50
 msgid "Contribution Amount"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:47
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:52
 msgid "Enter amount. e.g. 10%, $2"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:49
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:54
 msgid "Apply to every matching item"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:50
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:55
 msgid "Apply only once per purchase"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:57
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:62
 msgid "Starting From:"
 msgstr ""
 
-#: includes/admin/views/metaboxes/campaign-benefactors/form.php:65
+#: includes/admin/views/metaboxes/campaign-benefactors/form.php:72
 msgid "Ending:"
 msgstr ""
 
@@ -6293,17 +6293,17 @@ msgstr ""
 msgid "&#8592; Return to %s"
 msgstr ""
 
-#: includes/admin/views/upgrades-page/page.php:39
+#: includes/admin/views/upgrades-page/page.php:40
 msgid "Charitable - Upgrades"
 msgstr ""
 
-#: includes/admin/views/upgrades-page/page.php:42
+#: includes/admin/views/upgrades-page/page.php:43
 msgid ""
 "The upgrade process has started, please be patient. This could take several "
 "minutes. You will be automatically redirected when the upgrade is finished."
 msgstr ""
 
-#: includes/admin/views/upgrades-page/page.php:44
+#: includes/admin/views/upgrades-page/page.php:45
 msgid "Step %d of approximately %d running"
 msgstr ""
 
@@ -8859,12 +8859,6 @@ msgctxt "amount donated"
 msgid "%s donated"
 msgstr ""
 
-#: includes/campaigns/class-charitable-campaign.php:1112
-#: includes/locale/class-charitable-i18n.php:146
-msgctxt "decline months names: on or off"
-msgid "off"
-msgstr ""
-
 #: includes/class-charitable-post-types.php:86
 msgctxt "Admin menu name"
 msgid "Campaigns"
@@ -8938,6 +8932,11 @@ msgstr ""
 #: includes/forms/class-charitable-donation-form.php:1185
 msgctxt "enable payment gateway"
 msgid "Enable one now"
+msgstr ""
+
+#: includes/locale/class-charitable-i18n.php:146
+msgctxt "decline months names: on or off"
+msgid "off"
 msgstr ""
 
 #: includes/public/class-charitable-public.php:215

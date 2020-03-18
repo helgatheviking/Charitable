@@ -607,11 +607,11 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 		 * @return array
 		 */
 		protected function sanitize_submitted_date( $values ) {
-			$donation           = charitable_get_donation( $this->get_submitted_value( 'ID' ) );
-			$is_new             = false === $donation || 'Auto Draft' === $donation->post_title;
-			$date               = $this->get_submitted_value( 'date' );
-			$time               = $this->get_submitted_value( 'time', '00:00:00' );
-			$sanitize_date      = ! charitable()->registry()->get( 'i18n' )->decline_months();
+			$donation      = charitable_get_donation( $this->get_submitted_value( 'ID' ) );
+			$is_new        = false === $donation || 'Auto Draft' === $donation->post_title;
+			$date          = $this->get_submitted_value( 'date' );
+			$time          = $this->get_submitted_value( 'time', '00:00:00' );
+			$sanitize_date = ! charitable()->registry()->get( 'i18n' )->decline_months();
 
 			if ( $sanitize_date ) {
 				$values['date_gmt'] = charitable_sanitize_date( $date, 'Y-m-d ' . $time );

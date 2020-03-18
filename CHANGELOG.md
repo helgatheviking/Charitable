@@ -1,3 +1,8 @@
+# 1.6.35
+* Fixed a problem prevening datepicker fields from working as expected in certain languages. Closes #747.
+* Fixed an error in the way upgrades are run preventing them from completing.
+* Removed timestamp from the donation log.
+
 # 1.6.34
 * NEW: Cached `Charitable_Donation` objects are updated when a donation's status is changed.
 * FIX: Ensured that the client-side HTML form validation still works as expected across all browsers. This broke in Chrome with version 1.6.33.
