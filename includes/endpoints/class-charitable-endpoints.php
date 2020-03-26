@@ -57,6 +57,8 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 			add_filter( 'template_include', array( $this, 'template_loader' ), 12 );
 			add_filter( 'the_content', array( $this, 'get_content' ) );
 			add_filter( 'body_class', array( $this, 'add_body_classes' ) );
+			add_filter( 'comments_open', array( $this, 'maybe_disable_comments' ) );
+			add_filter( 'comments_template', array( $this, 'maybe_remove_comments_template' ) );
 			add_filter( 'nav_menu_meta_box_object', array( $this, 'add_endpoints_menu_meta_box' ) );
 			add_filter( 'customize_nav_menu_available_item_types', array( $this, 'add_endpoints_menu_meta_box_to_customizer' ) );
 			add_filter( 'customize_nav_menu_available_items', array( $this, 'add_endpoints_menu_meta_box_items_to_customizer' ), 10, 4 );
@@ -366,6 +368,48 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 			$classes[] = $this->endpoints[ $endpoint ]->get_body_class();
 
 			return $classes;
+		}
+
+		/**
+		 * If we're on an endpoint where comments should be disabled, do so.
+		 *
+		 * @since  1.6.36
+		 *
+		 * @param  boolean $open Whether comments are open.
+		 * @return boolean
+		 */
+		public function maybe_disable_comments( $open ) {
+			if ( ! $open ) {
+				return $open;
+			}
+
+			$endpoint = $this->get_current_endpoint();
+
+			if ( ! $endpoint ) {
+				return $open;
+			}
+
+			return ! $this->endpoints[ $endpoint ]->comments_disabled();
+		}
+
+		/**
+		 * If we are on an endpoint where comments are disabled, return an
+		 * empty string for the template, so WordPress will not display
+		 * anything.
+		 *
+		 * @since  1.6.36
+		 *
+		 * @param  string $template The path to the theme template file.
+		 * @return string
+		 */
+		public function maybe_remove_comments_template( $template ) {
+			$endpoint = $this->get_current_endpoint();
+
+			if ( $endpoint && $this->endpoints[ $endpoint ]->comments_disabled() ) {
+				$template = charitable_get_template_path( 'comments/disabled-comments.php' );
+			}
+
+			return $template;
 		}
 
 		/**

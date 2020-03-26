@@ -103,7 +103,8 @@ if ( ! class_exists( 'Charitable_DB' ) ) :
 		 * Retrieve a row by the primary key
 		 *
 		 * @since  1.0.0
-		 * @return  object
+		 *
+		 * @return object
 		 */
 		public function get( $row_id ) {
 			global $wpdb;

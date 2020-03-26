@@ -58,7 +58,7 @@ if ( ! class_exists( 'Charitable_Public' ) ) :
 			add_action( 'wp_enqueue_scripts', array( $this, 'maybe_enqueue_donation_form_scripts' ), 11 );
 			add_action( 'charitable_campaign_loop_before', array( $this, 'maybe_enqueue_donation_form_scripts' ) );
 			add_filter( 'post_class', array( $this, 'campaign_post_class' ) );
-			add_filter( 'comments_open', array( $this, 'disable_comments_on_application_pages' ) );
+			// add_filter( 'comments_open', array( $this, 'disable_comments_on_application_pages' ) );
 
 			do_action( 'charitable_public_start', $this );
 		}
