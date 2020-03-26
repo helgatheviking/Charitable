@@ -140,7 +140,7 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 					'value'         => '',
 					'description'   => __( 'Select an existing donor or choose "Add a New Donor" to create a new donor.', 'charitable' ),
 					'wrapper_class' => [ 'select2' ],
-					'attrs'         => [
+					'attrs' => [
 						'data-nonce' => wp_create_nonce( 'donor-select' ),
 					],
 				);

@@ -36,7 +36,7 @@ $field_attrs = array_key_exists( 'field_attrs', $view_args ) ? $view_args['field
 		name="<?php echo esc_attr( $view_args['key'] ); ?>"
 		tabindex="<?php echo esc_attr( $view_args['tabindex'] ); ?>"
 		multiple="true"
-		<?php echo charitable_get_arbitrary_attributes( $view_args ); ?>
+		<?php echo charitable_get_arbitrary_attributes( $field_attrs ); ?>
 	>
 	<?php
 	foreach ( $view_args['options'] as $key => $option ) :
