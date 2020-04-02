@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.5.0
+ * @version   1.6.36
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -171,6 +171,24 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 		}
 
 		/**
+		 * Add filters above the campaigns table.
+		 *
+		 * @since  1.6.36
+		 *
+		 * @global string $typenow The current post type.
+		 *
+		 * @return void
+		 */
+		public function add_filters() {
+			global $typenow;
+
+			/* Show custom filters to filter orders by donor. */
+			if ( in_array( $typenow, array( Charitable::CAMPAIGN_POST_TYPE ) ) ) {
+				charitable_admin_view( 'campaigns-page/filters' );
+			}
+		}
+
+		/**
 		 * Add modal template to footer.
 		 *
 		 * @since  1.6.0
@@ -179,6 +197,7 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 		 */
 		public function modal_forms() {
 			if ( $this->is_campaigns_page() ) {
+				charitable_admin_view( 'campaigns-page/filter-form' );
 				charitable_admin_view( 'campaigns-page/export-form' );
 			}
 		}
@@ -207,6 +226,138 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 		}
 
 		/**
+		 * Add custom filters to the query that returns the campaigns to be displayed.
+		 *
+		 * @since  1.6.36
+		 *
+		 * @global string $typenow The current post type.
+		 *
+		 * @param  array $vars The array of args to pass to WP_Query.
+		 * @return array
+		 */
+		public function filter_request_query( $vars ) {
+			if ( ! $this->is_campaigns_page() ) {
+				return $vars;
+			}
+
+			/* No Status: fix WP's crappy handling of "all" post status. */
+			if ( ! isset( $_GET['status'] ) || empty( $_GET['status'] ) || 'all' === $_GET['status'] ) {
+				$vars['post_status'] = array_keys( get_post_statuses() );
+			} else {
+				switch ( $_GET['status'] ) {
+					case 'active':
+						$vars['post_status'] = 'publish';
+						$vars['meta_query']  = array(
+							'relation' => 'OR',
+							array(
+								'key'     => '_campaign_end_date',
+								'value'   => date( 'Y-m-d H:i:s' ),
+								'compare' => '>',
+								'type'    => 'datetime',
+							),
+							array(
+								'key'     => '_campaign_end_date',
+								'value'   => 0,
+								'compare' => '=',
+							),
+						);
+						break;
+
+					case 'finish':
+						$vars['post_status'] = 'publish';
+						$vars['meta_query']  = array(
+							array(
+								'key'     => '_campaign_end_date',
+								'value'   => date( 'Y-m-d H:i:s' ),
+								'compare' => '<=',
+								'type'    => 'datetime',
+							),
+						);
+						break;
+
+					default:
+						$vars['post_status'] = $_GET['status'];
+				}
+			}
+
+			/* Set up start date query */
+			if ( isset( $_GET['start_date_from'] ) && ! empty( $_GET['start_date_from'] ) ) {
+				$start_date_from             = $this->get_parsed_date( $_GET['start_date_from'] );
+				$vars['date_query']['after'] = array(
+					'year'  => $start_date_from['year'],
+					'month' => $start_date_from['month'],
+					'day'   => $start_date_from['day'],
+				);
+			}
+
+			if ( isset( $_GET['start_date_to'] ) && ! empty( $_GET['start_date_to'] ) ) {
+				$start_date_to                = $this->get_parsed_date( $_GET['start_date_to'] );
+				$vars['date_query']['before'] = array(
+					'year'  => $start_date_to['year'],
+					'month' => $start_date_to['month'],
+					'day'   => $start_date_to['day'],
+				);
+			}
+
+			/* Set up end date query */
+			if ( isset( $_GET['end_date_from'] ) && ! empty( $_GET['end_date_from'] ) ) {
+				$end_date_from               = $this->get_parsed_date( $_GET['end_date_from'] );
+				$vars['meta_query'][] = array(
+					'key'     => '_campaign_end_date',
+					'value'   => sprintf( '%d-%d-%d 00:00:00', $end_date_from['year'], $end_date_from['month'], $end_date_from['day'] ),
+					'compare' => '>=',
+					'type'    => 'datetime',
+				);
+			}
+
+			if ( isset( $_GET['end_date_to'] ) && ! empty( $_GET['end_date_to'] ) ) {
+				$end_date_to                  = $this->get_parsed_date( $_GET['end_date_to'] );
+				$vars['meta_query'][] = array(
+					'key'     => '_campaign_end_date',
+					'value'   => sprintf( '%d-%d-%d 00:00:00', $end_date_to['year'], $end_date_to['month'], $end_date_to['day'] ),
+					'compare' => '<=',
+					'type'    => 'datetime',
+				);
+			}
+
+			if ( isset( $vars['date_query'] ) ) {
+				$vars['date_query']['inclusive'] = true;
+			}
+
+			/* Filter by campaign. */
+			if ( isset( $_GET['campaign_id'] ) && 'all' != $_GET['campaign_id'] ) {
+				$vars['post__in'] = charitable_get_table( 'campaign_donations' )->get_donation_ids_for_campaign( $_GET['campaign_id'] );
+			}
+
+			/**
+			 * Filter the campaign list query vars.
+			 *
+			 * @since 1.6.36
+			 *
+			 * @param array $vars The request query vars.
+			 */
+			return apply_filters( 'charitable_filter_campaigns_list_request_vars', $vars );
+		}
+
+		/**
+		 * Given a date, returns an array containing the date, month and year.
+		 *
+		 * @since  1.6.36
+		 *
+		 * @param  string $date A date as a string that can be parsed by strtotime.
+		 * @return string[]
+		 */
+		protected function get_parsed_date( $date ) {
+			$time = charitable_sanitize_date( $date );
+
+			return array(
+				'year'  => date( 'Y', $time ),
+				'month' => date( 'm', $time ),
+				'day'   => date( 'd', $time ),
+			);
+		}
+
+		/**
 		 * Checks whether this is the campaigns page.
 		 *
 		 * @since  1.6.0
@@ -219,7 +370,6 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 
 			return in_array( $typenow, array( Charitable::CAMPAIGN_POST_TYPE ) );
 		}
-
 	}
 
 endif;

@@ -498,18 +498,23 @@ if ( ! class_exists( 'Charitable_Admin' ) ) :
 			}
 
 			/**
-			 * Filter the donation export arguments.
+			 * Filter the campaign export arguments.
 			 *
 			 * @since 1.6.0
 			 *
 			 * @param array $args Export arguments.
 			 */
-			$export_args = apply_filters( 'charitable_campaigns_export_args', array(
-				'start_date'  => $_GET['start_date'],
-				'end_date'    => $_GET['end_date'],
-				'status'      => $_GET['status'],
-				'report_type' => $_GET['report_type'],
-			) );
+			$export_args = apply_filters(
+				'charitable_campaigns_export_args',
+				array(
+					'start_date_from' => $_GET['start_date_from'],
+					'start_date_to'   => $_GET['start_date_to'],
+					'end_date_from'   => $_GET['end_date_from'],
+					'end_date_to'     => $_GET['end_date_to'],
+					'status'          => $_GET['status'],
+					'report_type'     => $_GET['report_type'],
+				)
+			);
 
 			/**
 			 * Filter the export class name.
