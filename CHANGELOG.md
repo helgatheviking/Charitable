@@ -1,3 +1,9 @@
+# 1.6.36
+* NEW: Added date and status filter options to the Campaigns page in the WordPress dashboard, allowing you to find campaigns based on when they were created, when they ended, or according to their current status. [#753](https://github.com/Charitable/Charitable/issues/753)
+* NEW: Added ability to define arbitrary attributes to apply to the fields in admin meta boxes and in the admin donation form. [#752](https://github.com/Charitable/Charitable/issues/752)
+* FIX: The Campaigns Export tool opened, but nothing happened when you tried to export the report. This has now been fixed. [#748](https://github.com/Charitable/Charitable/issues/748)
+* FIX: Made sure that comments sections do not appear on most Charitable endpoints, other than the campaign page. [#751](https://github.com/Charitable/Charitable/issues/751)
+
 # 1.6.35
 * FIX: Fixed a problem prevening datepicker fields from working as expected in certain languages. Closes #747.
 * FIX: Fixed an error in the way upgrades are run preventing them from completing.
