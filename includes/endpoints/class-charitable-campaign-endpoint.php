@@ -27,6 +27,15 @@ if ( ! class_exists( 'Charitable_Campaign_Endpoint' ) ) :
 		const ID = 'campaign';
 
 		/**
+		 * Endpoint class constructor.
+		 *
+		 * @since 1.6.36
+		 */
+		public function __construct() {
+			$this->comments_disabled = false;
+		}
+
+		/**
 		 * Return the endpoint ID.
 		 *
 		 * @since  1.5.0

@@ -87,6 +87,13 @@ add_filter( 'manage_campaign_posts_custom_column', array( Charitable_Campaign_Li
 add_filter( 'bulk_post_updated_messages', array( Charitable_Campaign_List_Table::get_instance(), 'bulk_messages' ), 10, 2 );
 
 /**
+ * Add date-based filters above the campaigns table.
+ *
+ * @see Charitable_Campaign_List_Table::add_filters()
+ */
+add_action( 'restrict_manage_posts', array( Charitable_Campaign_List_Table::get_instance(), 'add_filters' ), 99 );
+
+/**
  * Add the export button above the campaigns table.
  *
  * @see Charitable_Campaign_List_Table::add_export()
@@ -106,3 +113,10 @@ add_action( 'admin_footer', array( Charitable_Campaign_List_Table::get_instance(
  * @see Charitable_Campaign_List_Table::load_scripts()
  */
 add_action( 'admin_enqueue_scripts', array( Charitable_Campaign_List_Table::get_instance(), 'load_scripts' ), 11 );
+
+/**
+ * Add custom filters to the query that returns the campaigns to be displayed.
+ *
+ * @see Charitable_Campaign_List_Table::filter_request_query()
+ */
+add_filter( 'request', array( Charitable_Campaign_List_Table::get_instance(), 'filter_request_query' ) );

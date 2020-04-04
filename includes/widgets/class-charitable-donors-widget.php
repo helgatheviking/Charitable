@@ -40,11 +40,11 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 		/**
 		 * Display the widget contents on the front-end.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param   array $args     Display arguments including 'before_title', 'after_title', 'before_widget' and 'after_widget'.
-		 * @param   array $instance The settings for the particular instance of the widget.
-		 * @return  void
+		 * @param  array $args     Display arguments including 'before_title', 'after_title', 'before_widget' and 'after_widget'.
+		 * @param  array $instance The settings for the particular instance of the widget.
+		 * @return void
 		 */
 		public function widget( $args, $instance ) {
 			$instance              = $this->get_parsed_args( $instance );
@@ -61,10 +61,10 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 		/**
 		 * Display the widget form in the admin.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param   array $instance The current settings for the widget options.
-		 * @return  void
+		 * @param  array $instance The current settings for the widget options.
+		 * @return void
 		 */
 		public function form( $instance ) {
 			$args      = $this->get_parsed_args( $instance );
@@ -134,11 +134,11 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 		/**
 		 * Update the widget settings in the admin.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param   array $new_instance The updated settings.
-		 * @param   array $old_instance The old settings.
-		 * @return  array
+		 * @param  array $new_instance The updated settings.
+		 * @param  array $old_instance The old settings.
+		 * @return array
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = $new_instance;
@@ -152,12 +152,11 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 			/**
 			 * Filter the instance arguments.
 			 *
-			 * @since   1.0.0
+			 * @since 1.0.0
 			 *
-			 * @param   array $instance     The parsed instance settings.
-			 * @param   array $new_instance The updated settings.
-		 	 * @param   array $old_instance The old settings.
-		 	 * @return  array
+			 * @param array $instance     The parsed instance settings.
+			 * @param array $new_instance The updated settings.
+		 	 * @param array $old_instance The old settings.
 		 	 */
 			return apply_filters( 'charitable_donors_widget_update_instance', $instance, $new_instance, $old_instance );
 		}
@@ -165,33 +164,36 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 		/**
 		 * Return parsed array of arguments.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param   array $instance The settings for the particular instance of the widget.
-		 * @return  mixed[]
+		 * @param  array $instance The settings for the particular instance of the widget.
+		 * @return mixed[]
 		 */
 		protected function get_parsed_args( $instance ) {
 			/**
 			 * Filter the default widget arguments.
 			 *
-			 * @since   1.0.0
+			 * @since 1.0.0
 			 *
-			 * @param   array $args     The default arguments.
-			 * @param   array $instance The widget instance settings.
-		 	 * @return  array
+			 * @param array $args     The default arguments.
+			 * @param array $instance The widget instance settings.
 		 	 */
-			$defaults = apply_filters( 'charitable_donors_widget_default_args', array(
-				'title'         	=> '',
-				'number'        	=> 10,
-				'order'         	=> 'recent',
-				'campaign_id'   	=> 'all',
-				'show_distinct' 	=> 1,
-				'show_avatar' 		=> 1,
-				'show_location' 	=> 0,
-				'show_amount'   	=> 0,
-				'show_name'     	=> 0,
-				'hide_if_no_donors' => 0,
-			), $instance );
+			$defaults = apply_filters(
+				'charitable_donors_widget_default_args',
+				array(
+					'title'             => '',
+					'number'            => 10,
+					'order'             => 'recent',
+					'campaign_id'       => 'all',
+					'show_distinct'     => 1,
+					'show_avatar'       => 1,
+					'show_location'     => 0,
+					'show_amount'       => 0,
+					'show_name'         => 0,
+					'hide_if_no_donors' => 0,
+				),
+				$instance
+			);
 
 			return wp_parse_args( $instance, $defaults );
 		}
@@ -199,10 +201,10 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 		/**
 		 * Return the donors to display in the widget.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param   mixed[] $instance The widget instance.
-		 * @return  Charitable_Donor_Query
+		 * @param  mixed[] $instance The widget instance.
+		 * @return Charitable_Donor_Query
 		 */
 		protected function get_widget_donors( $instance ) {
 			$query_args = charitable_array_subset( $instance, array( 'number', 'campaign' ) );
@@ -216,11 +218,10 @@ if ( ! class_exists( 'Charitable_Donors_Widget' ) ) :
 			/**
 			 * Filter the arguments passed to Charitable_Donor_Query.
 			 *
-			 * @since  1.0.0
+			 * @since 1.0.0
 			 *
-			 * @param  array $query_args The arguments to be passed to Charitable_Donor_Query::__construct.
-			 * @param  array $args       All the parsed arguments.
-			 * @return array
+			 * @param array $query_args The arguments to be passed to Charitable_Donor_Query::__construct.
+			 * @param array $args       All the parsed arguments.
 			 */
 			$query_args = apply_filters( 'charitable_donors_widget_donor_query_args', $query_args, $instance );
 
