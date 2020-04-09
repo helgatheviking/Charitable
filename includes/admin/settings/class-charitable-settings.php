@@ -441,8 +441,6 @@ if ( ! class_exists( 'Charitable_Settings' ) ) :
 			 */
 			$classes = apply_filters( 'charitable_settings_field_classes', $classes, $field );
 
-			error_log( var_export( $classes, true ) );
-
 			return implode( ' ', $classes );
 		}
 
