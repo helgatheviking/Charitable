@@ -260,7 +260,7 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 			}
 
 			/* Delete the time that the verification email was sent. */
-			delete_user_meta( $this->user->ID, '_charitable_email_verification_email_send_time' );
+			delete_user_meta( $this->ID, '_charitable_email_verification_email_send_time' );
 
 			/* Check for an existing donor account. */
 			$donor_id = $this->get_donor_id();
