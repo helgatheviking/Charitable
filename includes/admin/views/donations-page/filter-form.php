@@ -5,9 +5,18 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Donations Page
  * @since   1.0.0
+ * @version 1.0.0
  */
 
+/**
+ * Filter the class to use for the modal window.
+ *
+ * @since 1.0.0
+ *
+ * @param string $class The modal window class.
+ */
 $modal_class = apply_filters( 'charitable_modal_window_class', 'charitable-modal' );
+
 $campaign_id = isset( $_GET['campaign_id'] ) ? intval( $_GET['campaign_id'] ) : '';
 $campaigns   = get_posts( array(
 	'post_type'   => Charitable::CAMPAIGN_POST_TYPE,

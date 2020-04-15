@@ -38,21 +38,24 @@ if ( ! class_exists( 'Charitable_Donor_Query' ) ) :
 			 *
 			 * @param array $args The default arguments.
 			 */
-			$defaults = apply_filters( 'charitable_donor_query_default_args', array(
-				'output'          => 'donors',
-				'status'          => array( 'charitable-completed', 'charitable-preapproved' ),
-				'orderby'         => 'date',
-				'order'           => 'DESC',
-				'number'          => 20,
-				'paged'           => 1,
-				'fields'          => 'all',
-				'campaign'        => 0,
-				'distinct_donors' => true,
-				'donor_id'        => 0,
-				'include_erased'  => 1,
-				'date_query'      => array(),
-				'meta_query'      => array(),
-			) );
+			$defaults = apply_filters(
+				'charitable_donor_query_default_args',
+				array(
+					'output'          => 'donors',
+					'status'          => array( 'charitable-completed', 'charitable-preapproved' ),
+					'orderby'         => 'date',
+					'order'           => 'DESC',
+					'number'          => 20,
+					'paged'           => 1,
+					'fields'          => 'all',
+					'campaign'        => 0,
+					'distinct_donors' => true,
+					'donor_id'        => 0,
+					'include_erased'  => 1,
+					'date_query'      => array(),
+					'meta_query'      => array(),
+				)
+			);
 
 			$this->args             = wp_parse_args( $args, $defaults );
 			$this->args['campaign'] = $this->sanitize_campaign();

@@ -14,6 +14,7 @@ if ( ! array_key_exists( 'form_view', $view_args ) || ! $view_args['form_view']-
 }
 
 $is_required = array_key_exists( 'required', $view_args ) && $view_args['required'];
+$field_attrs = array_key_exists( 'field_attrs', $view_args ) ? $view_args['field_attrs'] : array();
 
 ?>
 <div id="<?php echo esc_attr( $view_args['wrapper_id'] ); ?>" class="<?php echo esc_attr( $view_args['wrapper_class'] ); ?>" <?php echo charitable_get_arbitrary_attributes( $view_args ); ?>>
@@ -31,11 +32,13 @@ $is_required = array_key_exists( 'required', $view_args ) && $view_args['require
 	<?php endif ?>
 	<ul class="charitable-checkbox-list options">
 	<?php foreach ( $view_args['options'] as $key => $option ) : ?>
-		<li><input type="checkbox"
+		<li>
+			<input type="checkbox"
 				id="<?php echo esc_attr( $view_args['key'] . '-' . $key ); ?>"
 				name="<?php echo esc_attr( $view_args['key'] ); ?>[]"
 				value="<?php echo esc_attr( $key ); ?>"
 				aria-describedby="charitable_field_<?php echo esc_attr( $view_args['key'] ); ?>_label"
+				<?php echo charitable_get_arbitrary_attributes( $field_attrs ); ?>
 				<?php checked( in_array( $key, $view_args['value'] ) ); ?>
 			/>
 			<label for="<?php echo esc_attr( $view_args['key'] . '-' . $key ); ?>"><?php echo $option; ?></label>

@@ -39,6 +39,15 @@ if ( ! class_exists( 'Charitable_Endpoint' ) ) :
 		protected $cacheable = true;
 
 		/**
+		 * Whether comments are disabled on this endpoint.
+		 *
+		 * @since 1.6.36
+		 *
+		 * @var   boolean
+		 */
+		protected $comments_disabled = true;
+
+		/**
 		 * Add rewrite rules for the endpoint.
 		 *
 		 * Unless the child class defines this, this won't do anything for an endpoint.
@@ -126,6 +135,17 @@ if ( ! class_exists( 'Charitable_Endpoint' ) ) :
 		 */
 		public function is_cacheable() {
 			return $this->cacheable;
+		}
+
+		/**
+		 * Whether comments are disabled for this endpoint.
+		 *
+		 * @since  1.6.36
+		 *
+		 * @return boolean
+		 */
+		public function comments_disabled() {
+			return $this->comments_disabled;
 		}
 
 		/**

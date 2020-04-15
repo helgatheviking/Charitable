@@ -5,17 +5,36 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Donations Page
  * @since   1.0.0
+ * @version 1.0.0
  */
 
+/**
+ * Filter the class to use for the modal window.
+ *
+ * @since 1.0.0
+ *
+ * @param string $class The class name.
+ */
 $modal_class  = apply_filters( 'charitable_modal_window_class', 'charitable-modal' );
+
 $start_date   = isset( $_GET['start_date'] ) ? sanitize_text_field( $_GET['start_date'] ) : null;
 $end_date     = isset( $_GET['end_date'] ) ? sanitize_text_field( $_GET['end_date'] ) : null;
 $post_status  = isset( $_GET['post_status'] ) ? $_GET['post_status'] : 'all';
 $report_type  = isset( $_GET['report_type'] ) ? $_GET['report_type'] : 'donations';
-$report_types = apply_filters( 'charitable_donation_export_report_types', array(
-	'donations' => __( 'Donations', 'charitable' ),
-) );
 
+/**
+ * Filter the type of exportable report types.
+ *
+ * @since 1.6.0
+ *
+ * @param array $types Types of reports.
+ */
+$report_types = apply_filters(
+	'charitable_donation_export_report_types',
+	array(
+		'donations' => __( 'Donations', 'charitable' ),
+	)
+);
 ?>
 <div id="charitable-donations-export-modal" style="display: none;" class="charitable-donations-modal <?php echo esc_attr( $modal_class ); ?>" tabindex="0">
 	<a class="modal-close"></a>

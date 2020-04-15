@@ -315,8 +315,7 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 		 * @since   1.5.0
 		 */
 		public function bulk_action_handler( $redirect_to, $action, $post_ids ) {
-
-			// Bail out if this is not a status-changing action
+			/* Bail out if this is not a status-changing action. */
 			if ( strpos( $action, 'set-' ) === false ) {
 				$sendback = remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'locked', 'ids' ), wp_get_referer() );
 				wp_redirect( esc_url_raw( $sendback ) );
@@ -327,11 +326,12 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 			$donation_statuses = charitable_get_valid_donation_statuses();
 
 			$new_status    = str_replace( 'set-', '', $action ); // get the status name from action
-
 			$report_action = 'bulk_' . Charitable::DONATION_POST_TYPE . '_status_update';
 
-			// Sanity check: bail out if this is actually not a status, or is
-			// not a registered status
+			/**
+			 * Sanity check: bail out if this is actually not a status, or is
+			 * not a registered status.
+			 */
 			if ( ! isset( $donation_statuses[ $new_status ] ) ) {
 				return $redirect_to;
 			}
@@ -351,9 +351,10 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 		/**
 		 * Remove edit from the bulk actions.
 		 *
-		 * @param   array $actions
-		 * @return  array
-		 * @since   1.5.0
+		 * @since  1.5.0
+		 *
+		 * @param  array $actions List of bulk actions.
+		 * @return array
 		 */
 		public function remove_bulk_actions( $actions ) {
 			if ( isset( $actions['edit'] ) ) {

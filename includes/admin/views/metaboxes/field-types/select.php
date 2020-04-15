@@ -34,7 +34,12 @@ $is_required = array_key_exists( 'required', $view_args ) && $view_args['require
 			?>
 		</label>
 	<?php endif ?>
-	<select id="<?php echo esc_attr( $view_args['id'] ); ?>" name="<?php echo esc_attr( $view_args['key'] ); ?>" tabindex="<?php echo esc_attr( $view_args['tabindex'] ); ?>" <?php echo charitable_get_arbitrary_attributes( $view_args ); ?>>
+	<select
+		id="<?php echo esc_attr( $view_args['id'] ); ?>"
+		name="<?php echo esc_attr( $view_args['key'] ); ?>"
+		tabindex="<?php echo esc_attr( $view_args['tabindex'] ); ?>"
+		<?php echo charitable_get_arbitrary_attributes( $view_args ); ?>
+	>
 	<?php
 	foreach ( $view_args['options'] as $key => $option ) :
 		if ( is_array( $option ) ) :
