@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.29
+ * @version   1.6.37
  */
 
 // Exit if accessed directly.
@@ -32,6 +32,15 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 		 * @var   Charitable_Endpoint[]
 		 */
 		protected $endpoints;
+
+		/**
+		 * Endpoints ordered by priority.
+		 *
+		 * @since 1.6.37
+		 *
+		 * @var   array
+		 */
+		protected $endpoints_prioritized = array();
 
 		/**
 		 * Current endpoint.
@@ -87,6 +96,13 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 			}
 
 			$this->endpoints[ $endpoint_id ] = $endpoint;
+
+			/* Record the endpoint by priority. */
+			if ( ! array_key_exists( $endpoint::PRIORITY, $this->endpoints_prioritized ) ) {
+				$this->endpoints_prioritized[ $endpoint::PRIORITY ] = array();
+			}
+
+			$this->endpoints_prioritized[ $endpoint::PRIORITY ][] = $endpoint_id;
 
 			return true;
 		}
@@ -514,11 +530,29 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 		public function get_current_endpoint() {
 			if ( ! isset( $this->current_endpoint ) ) {
 
-				foreach ( $this->endpoints as $endpoint_id => $endpoint ) {
-					if ( $this->is_page( $endpoint_id, array( 'strict' => true ) ) ) {
-						$this->current_endpoint = $endpoint_id;
+				ksort( $this->endpoints_prioritized, SORT_NUMERIC );
 
-						return $this->current_endpoint;
+				foreach ( $this->endpoints_prioritized as $priority => $endpoint_ids ) {
+					foreach ( $endpoint_ids as $endpoint_id ) {
+
+						/* Sanity check to ensure the endpoint was properly registered. */
+						if ( ! isset( $this->endpoints[ $endpoint_id ] ) ) {
+							error_log(
+								sprintf(
+									/* translators: %s: endpoint id */
+									__( 'Endpoint %s was incorrectly registered.', 'charitable' ),
+									$endpoint_id
+								)
+							);
+
+							continue;
+						}
+
+						if ( $this->is_page( $endpoint_id, array( 'strict' => true ) ) ) {
+							$this->current_endpoint = $endpoint_id;
+
+							return $this->current_endpoint;
+						}
 					}
 				}
 
