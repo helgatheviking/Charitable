@@ -36,12 +36,13 @@ function charitable() {
  *
  * @since  1.0.0
  *
- * @param  mixed $key      Accepts an array of strings or a single string.
- * @param  mixed $default  The value to return if key is not set.
- * @param  array $settings Optional. Used when $key is an array.
+ * @param  mixed $key          Accepts an array of strings or a single string.
+ * @param  mixed $default      The value to return if key is not set.
+ * @param  array $settings     Optional. Used when $key is an array.
+ * @param  mixed $original_key Optional. Original array of keys.
  * @return mixed
  */
-function charitable_get_option( $key, $default = false, $settings = array() ) {
+function charitable_get_option( $key, $default = false, $settings = array(), $original_key = array() ) {
 	if ( empty( $settings ) ) {
 		$settings = get_option( 'charitable_settings' );
 	}
@@ -52,6 +53,10 @@ function charitable_get_option( $key, $default = false, $settings = array() ) {
 
 	$current_key = current( $key );
 
+	if ( empty( $original_key ) ) {
+		$original_key = $key;
+	}
+
 	/* Key does not exist */
 	if ( ! isset( $settings[ $current_key ] ) ) {
 		return $default;
@@ -60,10 +65,19 @@ function charitable_get_option( $key, $default = false, $settings = array() ) {
 	array_shift( $key );
 
 	if ( ! empty( $key ) ) {
-		return charitable_get_option( $key, $default, $settings[ $current_key ] );
+		return charitable_get_option( $key, $default, $settings[ $current_key ], $original_key );
 	}
 
-	return $settings[ $current_key ];
+	/**
+	 * Filter the option value.
+	 *
+	 * @since 1.6.37
+	 *
+	 * @param mixed $value   The option value.
+	 * @param mixed $key     The key, or list of keys.
+	 * @param mixed $default The default value.
+	 */
+	return apply_filters( 'charitable_option_' . $current_key, $settings[ $current_key ], $original_key, $default );
 }
 
 /**
