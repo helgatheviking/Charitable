@@ -1,3 +1,10 @@
+# 1.6.37
+* FIX: Added a way to prioritize when endpoints should be loaded, which prevents issues with certain endpoints that overlap. [#754](https://github.com/Charitable/Charitable/issues/754)
+* FIX: Apply Divi button class to Charitable buttons when using Divi child theme. [#757](https://github.com/Charitable/Charitable/issues/757)
+* FIX: Avoid unexpected redirect when verifying email or resetting password when also using WooCommerce. [#755](https://github.com/Charitable/Charitable/issues/755)
+* FIX: Remove notice about having sent email verification email after an email address is verified. [#756](https://github.com/Charitable/Charitable/issues/756)
+* FIX: Clear notices after they are displayed at the top of a form to avoid showing the same notices repeatedly. [#758](https://github.com/Charitable/Charitable/issues/758)
+
 # 1.6.36
 * NEW: Added date and status filter options to the Campaigns page in the WordPress dashboard, allowing you to find campaigns based on when they were created, when they ended, or according to their current status. [#753](https://github.com/Charitable/Charitable/issues/753)
 * NEW: Added ability to define arbitrary attributes to apply to the fields in admin meta boxes and in the admin donation form. [#752](https://github.com/Charitable/Charitable/issues/752)
