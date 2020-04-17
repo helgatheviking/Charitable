@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.5.4
+ * @version   1.6.37
  */
 
 // Exit if accessed directly.
@@ -215,6 +215,26 @@ if ( ! class_exists( 'Charitable_Notices' ) ) :
 		 */
 		public function get_notices() {
 			return $this->notices;
+		}
+
+		/**
+		 * Remove a notice, based on the text of the notice.
+		 *
+		 * @since  1.6.37
+		 *
+		 * @param  string $text The text to search for. Regex supported.
+		 * @return void
+		 */
+		public function clear_notice( $text ) {
+			foreach ( $this->notices as $type => $notices ) {
+				foreach ( $notices as $i => $notice_text ) {
+					if ( $notice_text === $text || preg_match( $text, $notice_text ) ) {
+						unset( $this->notices[ $type ][ $i ] );
+					}
+				}
+			}
+
+			charitable_get_session()->set( 'notices', $this->notices );
 		}
 
 		/**
