@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Charitable package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Charitable 1.6.36\n"
+"Project-Id-Version: Charitable 1.6.37\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2020-04-04 05:42:12+00:00\n"
+"POT-Creation-Date: 2020-04-17 09:14:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5483,7 +5483,7 @@ msgid "Existing Donors"
 msgstr ""
 
 #: includes/admin/forms/views/class-charitable-admin-form-view.php:136
-#: includes/forms/views/class-charitable-public-form-view.php:205
+#: includes/forms/views/class-charitable-public-form-view.php:208
 msgid "There are no fields to render."
 msgstr ""
 
@@ -7078,19 +7078,19 @@ msgstr ""
 msgid "Refunded"
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:351
+#: includes/donations/class-charitable-donation-log.php:358
 msgid "%s was sent successfully."
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:354
+#: includes/donations/class-charitable-donation-log.php:361
 msgid "Resend it now"
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:370
+#: includes/donations/class-charitable-donation-log.php:377
 msgid "%s failed to send."
 msgstr ""
 
-#: includes/donations/class-charitable-donation-log.php:373
+#: includes/donations/class-charitable-donation-log.php:380
 msgid "Retry email send"
 msgstr ""
 
@@ -7212,19 +7212,19 @@ msgstr ""
 msgid "The link the user needs to verify their email address."
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:304
+#: includes/emails/class-charitable-email-email-verification.php:305
 msgid "Verify your email for [charitable_email show=site_name]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:323
+#: includes/emails/class-charitable-email-email-verification.php:324
 msgid "Verify your email address"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:336
+#: includes/emails/class-charitable-email-email-verification.php:337
 msgid "Welcome to [charitable_email show=site_name]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-email-verification.php:337
+#: includes/emails/class-charitable-email-email-verification.php:338
 msgid ""
 "To complete your registration, please confirm your email address by "
 "clicking the link below:"
@@ -7294,35 +7294,35 @@ msgstr ""
 msgid "Complete your donation"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:91
+#: includes/emails/class-charitable-email-password-reset.php:92
 msgid "User: Password Reset"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:133
+#: includes/emails/class-charitable-email-password-reset.php:134
 msgid "The link the user needs to click to reset their password"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:183
+#: includes/emails/class-charitable-email-password-reset.php:190
 msgid "Password Reset for [charitable_email show=site_name]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:202
+#: includes/emails/class-charitable-email-password-reset.php:209
 msgid "Reset your password"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:215
+#: includes/emails/class-charitable-email-password-reset.php:222
 msgid "Someone requested that the password be reset for the following account:"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:216
+#: includes/emails/class-charitable-email-password-reset.php:223
 msgid "Username: [charitable_email show=user_login]"
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:217
+#: includes/emails/class-charitable-email-password-reset.php:224
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: includes/emails/class-charitable-email-password-reset.php:218
+#: includes/emails/class-charitable-email-password-reset.php:225
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
@@ -7394,34 +7394,39 @@ msgstr ""
 msgid "Missing email_id in args for email preview endpoint URL."
 msgstr ""
 
-#: includes/endpoints/class-charitable-email-verification-endpoint.php:121
+#: includes/endpoints/class-charitable-email-verification-endpoint.php:124
 #: templates/account/email-verified.php:26
 msgid "Your email address has been verified."
 msgstr ""
 
-#: includes/endpoints/class-charitable-email-verification-endpoint.php:146
+#: includes/endpoints/class-charitable-email-verification-endpoint.php:149
 msgid "Email Verification"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:84
+#: includes/endpoints/class-charitable-endpoints.php:93
 msgid "Endpoint %s has already been registered."
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:179
+#: includes/endpoints/class-charitable-endpoints.php:195
 #. translators: %s: endpoint id
 msgid "Endpoint %s has not been registered."
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:458
+#: includes/endpoints/class-charitable-endpoints.php:474
 msgid "View All"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:471
+#: includes/endpoints/class-charitable-endpoints.php:487
 msgid "Select All"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:474
+#: includes/endpoints/class-charitable-endpoints.php:490
 msgid "Add to Menu"
+msgstr ""
+
+#: includes/endpoints/class-charitable-endpoints.php:587
+#. translators: %s: endpoint id
+msgid "Endpoint %s was incorrectly registered."
 msgstr ""
 
 #: includes/endpoints/class-charitable-forgot-password-endpoint.php:128
@@ -7429,7 +7434,7 @@ msgstr ""
 msgid "Forgot Password"
 msgstr ""
 
-#: includes/endpoints/class-charitable-login-endpoint.php:105
+#: includes/endpoints/class-charitable-login-endpoint.php:108
 msgid "Log In"
 msgstr ""
 
@@ -7437,7 +7442,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: includes/endpoints/class-charitable-registration-endpoint.php:97
+#: includes/endpoints/class-charitable-registration-endpoint.php:100
 #: includes/shortcodes/class-charitable-login-shortcode.php:41
 #: templates/shortcodes/registration.php:57
 msgid "Register"
@@ -8511,7 +8516,7 @@ msgstr ""
 msgid "Campaign Manager"
 msgstr ""
 
-#: includes/users/class-charitable-user.php:701
+#: includes/users/class-charitable-user.php:705
 msgid "Unable to add donor. Email not set for logged out user."
 msgstr ""
 
@@ -8946,12 +8951,12 @@ msgctxt "Taxonomy Singular Name"
 msgid "Campaign Tag"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:495
+#: includes/endpoints/class-charitable-endpoints.php:511
 msgctxt "customizer menu section title"
 msgid "Charitable"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:523
+#: includes/endpoints/class-charitable-endpoints.php:539
 msgctxt "customizer menu type label"
 msgid "Custom Link"
 msgstr ""
