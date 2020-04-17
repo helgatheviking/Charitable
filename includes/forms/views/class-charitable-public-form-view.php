@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.5.2
+ * @version   1.6.37
  */
 
 // Exit if accessed directly.
@@ -150,6 +150,9 @@ if ( ! class_exists( 'Charitable_Public_Form_View' ) ) :
 			);
 
 			$this->rendered_notices = true;
+
+			/* Clear all notices. */
+			charitable_get_notices()->clear();
 		}
 
 		/**

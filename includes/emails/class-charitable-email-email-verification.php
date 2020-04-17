@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.32
+ * @version   1.6.37
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -203,8 +203,9 @@ if ( ! class_exists( 'Charitable_Email_Email_Verification' ) ) :
 				}
 
 				$args = array(
-					'key'   => $key,
-					'login' => rawurlencode( $this->user->user_login ),
+					'key'        => $key,
+					'login'      => rawurlencode( $this->user->user_login ),
+					'charitable' => true,
 				);
 
 				$redirect_url = $this->get_redirect_url();

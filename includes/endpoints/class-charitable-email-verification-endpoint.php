@@ -26,6 +26,9 @@ if ( ! class_exists( 'Charitable_Email_Verification_Endpoint' ) ) :
 		/** Endpoint ID. */
 		const ID = 'email_verification';
 
+		/** Set priority */
+		const PRIORITY = 9;
+
 		/**
 		 * The verification result.
 		 *

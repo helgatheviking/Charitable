@@ -13,7 +13,7 @@ $filters = $_GET;
 unset(
 	$filters['post_type'],
 	$filters['paged'],
-	$filters['ids'],
+	$filters['ids']
 );
 
 ?>
