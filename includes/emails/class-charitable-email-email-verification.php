@@ -203,8 +203,9 @@ if ( ! class_exists( 'Charitable_Email_Email_Verification' ) ) :
 				}
 
 				$args = array(
-					'key'   => $key,
-					'login' => rawurlencode( $this->user->user_login ),
+					'key'        => $key,
+					'login'      => rawurlencode( $this->user->user_login ),
+					'charitable' => true,
 				);
 
 				$redirect_url = $this->get_redirect_url();

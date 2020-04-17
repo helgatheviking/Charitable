@@ -63,6 +63,11 @@ function charitable_load_compat_functions() {
 	if ( function_exists( 'gdpr_cookie_is_accepted' ) ) {
 		require_once( $includes_path . 'compat/charitable-gdpr-cookie-compliance-compat-functions.php' );
 	}
+
+	/* WooCommerce */
+	if ( defined( 'WC_PLUGIN_FILE' ) ) {
+		require_once( $includes_path . 'compat/charitable-woocommerce-compat-functions.php' );
+	}
 }
 
 /**
