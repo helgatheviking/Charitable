@@ -238,6 +238,22 @@ if ( ! class_exists( 'Charitable_Notices' ) ) :
 		}
 
 		/**
+		 * Clear notices by type.
+		 *
+		 * @since  1.6.37
+		 *
+		 * @param  string $type The type of notice.
+		 * @return void
+		 */
+		public function clear_notices_by_type( $type ) {
+			if ( array_key_exists( $type, $this->notices ) ) {
+				$this->notices[ $type ] = array();
+			}
+
+			charitable_get_session()->set( 'notices', $this->notices );
+		}
+
+		/**
 		 * Clear out all existing notices.
 		 *
 		 * @since  1.4.0
