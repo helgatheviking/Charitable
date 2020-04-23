@@ -13,7 +13,7 @@
 $campaign = $view_args['campaign'];
 
 ?>
-<form class="campaign-donation" method="post">
+<form class="campaign-donation" method="post" target="_blank">
 	<?php wp_nonce_field( 'charitable-donate', 'charitable-donate-now' ); ?>
 	<input type="hidden" name="charitable_action" value="start_donation" />
 	<input type="hidden" name="campaign_id" value="<?php echo $campaign->ID; ?>" />
