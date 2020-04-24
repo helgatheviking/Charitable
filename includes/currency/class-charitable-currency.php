@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.15
+ * @version   1.6.38
  */
 
 // Exit if accessed directly.
@@ -44,6 +44,7 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * @since 1.2.3
 		 */
 		private function __construct() {
+			add_filter( 'charitable_option_decimal_count', array( $this, 'maybe_force_zero_decimals' ) );
 		}
 
 		/**
@@ -68,12 +69,15 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 *
 		 * @since  1.0.0
 		 *
-		 * @param  string    $amount        The amount to convert.
-		 * @param  int|false $decimal_count Optional. If not set, default decimal count will be used.
-		 * @param  boolean   $db_format     Optional. Whether the amount is in db format (i.e. using decimals for cents, regardless of site settings).
+		 * @param  string    $amount          The amount to convert.
+		 * @param  int|false $decimal_count   Optional. If not set, default decimal count will be used.
+		 * @param  boolean   $db_format       Optional. Whether the amount is in db format (i.e. using decimals
+		 *                                    for cents, regardless of site settings).
+		 * @param  string    $symbol_position Optional. If specified, will use this symbol position setting instead
+		 *                                    of the site's currency format.
 		 * @return string|WP_Error
 		 */
-		public function get_monetary_amount( $amount, $decimal_count = false, $db_format = false ) {
+		public function get_monetary_amount( $amount, $decimal_count = false, $db_format = false, $symbol_position = '' ) {
 			if ( false === $decimal_count ) {
 				$decimal_count = charitable_get_option( 'decimal_count', 2 );
 			}
@@ -87,8 +91,16 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 				$this->get_thousands_separator()
 			);
 
-			$formatted = sprintf( $this->get_currency_format(), $this->get_currency_symbol(), $amount );
+			$formatted = sprintf( $this->get_currency_format( $symbol_position ), $this->get_currency_symbol(), $amount );
 
+			/**
+			 * Filter the amount.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param string $formatted The formatted amount.
+			 * @param string $amount    The original amount before formatting.
+			 */
 			return apply_filters( 'charitable_monetary_amount', $formatted, $amount );
 		}
 
@@ -211,11 +223,16 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * Return the currency format based on the position of the currency symbol.
 		 *
 		 * @since  1.0.0
+		 * @since  1.6.38 Added optional $symbol_position argument.
 		 *
+		 * @param  string $symbol_position The symbol position. If not set, the site's
+		 *                                 currency_format setting will be used.
 		 * @return string
 		 */
-		public function get_currency_format() {
-			$symbol_position = charitable_get_option( 'currency_format', 'left' );
+		public function get_currency_format( $symbol_position = '' ) {
+			if ( empty( $symbol_position ) ) {
+				$symbol_position = charitable_get_option( 'currency_format', 'left' );
+			}
 
 			switch ( $symbol_position ) {
 				case 'left':
@@ -284,20 +301,15 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 				$this->currencies = apply_filters(
 					'charitable_currencies',
 					array(
-						'AED' => sprintf(
+						'ARS' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'Emirati Dirham (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'AED' )
+							__( 'Argentine Peso (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'ARS' )
 						),
 						'AUD' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'Australian Dollars (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'AUD' )
-						),
-						'ARS' => sprintf(
-							/* translators: %s: currency symbol */
-							__( 'Argentine Peso (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'ARS' )
 						),
 						'BDT' => sprintf(
 							/* translators: %s: currency symbol */
@@ -313,6 +325,11 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 							/* translators: %s: currency symbol */
 							__( 'Brazilian Real (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'BRL' )
+						),
+						'BND' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Brunei Dollar (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'BND' )
 						),
 						'BGN' => sprintf(
 							/* translators: %s: currency symbol */
@@ -359,10 +376,20 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 							__( 'Egyptian Pound (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'EGP' )
 						),
+						'AED' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Emirati Dirham (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'AED' )
+						),
 						'EUR' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'Euro (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'EUR' )
+						),
+						'FJD' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Fijian Dollar (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'FJD' )
 						),
 						'GBP' => sprintf(
 							/* translators: %s: currency symbol */
@@ -414,20 +441,25 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 							__( 'Japanese Yen (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'JPY' )
 						),
-						'KRW' => sprintf(
+						'KWD' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'South Korean Won (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'KRW' )
+							__( 'Kuwaiti Dinar (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'KWD' )
+						),
+						'MYR' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Malaysian Ringgit (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'MYR' )
 						),
 						'MXN' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'Mexican Peso (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'MXN' )
 						),
-						'MYR' => sprintf(
+						'NZD' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'Malaysian Ringgit (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'MYR' )
+							__( 'New Zealand Dollar (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'NZD' )
 						),
 						'NGN' => sprintf(
 							/* translators: %s: currency symbol */
@@ -439,10 +471,10 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 							__( 'Norwegian Krone (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'NOK' )
 						),
-						'NZD' => sprintf(
+						'PGK' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'New Zealand Dollar (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'NZD' )
+							__( 'Papua New Guinean Kina (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'PGK' )
 						),
 						'PHP' => sprintf(
 							/* translators: %s: currency symbol */
@@ -464,45 +496,70 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 							__( 'Russian Ruble (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'RUB' )
 						),
-						'SEK' => sprintf(
+						'WST' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'Swedish Krona (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'SEK' )
+							__( 'Samoan Tālā (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'SGD' )
 						),
 						'SGD' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'Singapore Dollar (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'SGD' )
 						),
-						'THB' => sprintf(
+						'SBD' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'Thai Baht (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'THB' )
+							__( 'Solomon Islands Dollar (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'SBD' )
 						),
-						'TRY' => sprintf(
+						'ZAR' => sprintf(
 							/* translators: %s: currency symbol */
-							__( 'Turkish Lira (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'TRY' )
+							__( 'South African Rand (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'ZAR' )
+						),
+						'KRW' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'South Korean Won (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'KRW' )
+						),
+						'SEK' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Swedish Krona (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'SEK' )
 						),
 						'TWD' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'Taiwan New Dollar (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'TWD' )
 						),
+						'THB' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Thai Baht (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'THB' )
+						),
+						'TOP' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Tongan Pa&lsquo;anga (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'TOP' )
+						),
+						'TRY' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Turkish Lira (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'TRY' )
+						),
 						'USD' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'US Dollar (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'USD' )
 						),
+						'VUV' => sprintf(
+							/* translators: %s: currency symbol */
+							__( 'Vanuatu Vatu (%s)', 'charitable' ),
+							$this->get_currency_symbol( 'VUV' )
+						),
 						'VND' => sprintf(
 							/* translators: %s: currency symbol */
 							__( 'Vietnamese Dong (%s)', 'charitable' ),
 							$this->get_currency_symbol( 'VND' )
-						),
-						'ZAR' => sprintf(
-							/* translators: %s: currency symbol */
-							__( 'South African Rand (%s)', 'charitable' ),
-							$this->get_currency_symbol( 'ZAR' )
 						),
 					)
 				);
@@ -529,26 +586,13 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 			}
 
 			switch ( $currency ) {
-				case 'AED':
-					$currency_symbol = 'د.إ';
-					break;
-				case 'BDT':
-					$currency_symbol = '&#2547;';
-					break;
-				case 'BOB':
-					$currency_symbol = '&#66;&#115;&#46;';
-					break;
-				case 'BRL':
-					$currency_symbol = '&#82;&#36;';
-					break;
-				case 'BGN':
-					$currency_symbol = '&#1083;&#1074;.';
-					break;
 				case 'AUD':
 				case 'ARS':
+				case 'BND':
 				case 'CAD':
 				case 'CLP':
 				case 'COP':
+				case 'FJD':
 				case 'MXN':
 				case 'NZD':
 				case 'HKD':
@@ -556,43 +600,50 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 				case 'USD':
 					$currency_symbol = '&#36;';
 					break;
+
+				case 'CNY':
+				case 'RMB':
+				case 'JPY':
+					$currency_symbol = '&yen;';
+					break;
+				case 'AED':
+					$currency_symbol = 'د.إ';
+					break;
+				case 'BDT':
+					$currency_symbol = '&#2547;';
+					break;
+				case 'BGN':
+					$currency_symbol = '&#1083;&#1074;.';
+					break;
+				case 'BOB':
+					$currency_symbol = '&#66;&#115;&#46;';
+					break;
+				case 'BRL':
+					$currency_symbol = '&#82;&#36;';
+					break;
+				case 'CHF':
+					$currency_symbol = '&#67;&#72;&#70;';
+					break;
+				case 'CZK':
+					$currency_symbol = '&#75;&#269;';
+					break;
+				case 'DKK':
+					$currency_symbol = 'kr.';
+					break;
 				case 'EGP':
 					$currency_symbol = 'E&pound;';
 					break;
 				case 'EUR':
 					$currency_symbol = '&euro;';
 					break;
+				case 'GBP':
+					$currency_symbol = '&pound;';
+					break;
 				case 'GHS':
 					$currency_symbol = 'GH&#8373;';
 					break;
-				case 'CNY':
-				case 'RMB':
-				case 'JPY':
-					$currency_symbol = '&yen;';
-					break;
-				case 'RUB':
-					$currency_symbol = '&#1088;&#1091;&#1073;.';
-					break;
-				case 'KRW':
-					$currency_symbol = '&#8361;';
-					break;
-				case 'TRY':
-					$currency_symbol = '&#8378;';
-					break;
-				case 'NOK':
-					$currency_symbol = '&#107;&#114;';
-					break;
-				case 'ZAR':
-					$currency_symbol = '&#82;';
-					break;
-				case 'CZK':
-					$currency_symbol = '&#75;&#269;';
-					break;
-				case 'MYR':
-					$currency_symbol = '&#82;&#77;';
-					break;
-				case 'DKK':
-					$currency_symbol = 'kr.';
+				case 'HRK':
+					$currency_symbol = 'Kn';
 					break;
 				case 'HUF':
 					$currency_symbol = '&#70;&#116;';
@@ -600,14 +651,32 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 				case 'IDR':
 					$currency_symbol = 'Rp';
 					break;
+				case 'ILS':
+					$currency_symbol = '&#8362;';
+					break;
 				case 'INR':
 					$currency_symbol = 'Rs.';
 					break;
 				case 'ISK':
 					$currency_symbol = 'Kr.';
 					break;
-				case 'ILS':
-					$currency_symbol = '&#8362;';
+				case 'KWD':
+					$currency_symbol = 'KD';
+					break;
+				case 'KRW':
+					$currency_symbol = '&#8361;';
+					break;
+				case 'MYR':
+					$currency_symbol = '&#82;&#77;';
+					break;
+				case 'NGN':
+					$currency_symbol = '&#8358;';
+					break;
+				case 'NOK':
+					$currency_symbol = '&#107;&#114;';
+					break;
+				case 'PGK':
+					$currency_symbol = 'K';
 					break;
 				case 'PHP':
 					$currency_symbol = '&#8369;';
@@ -615,32 +684,41 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 				case 'PLN':
 					$currency_symbol = '&#122;&#322;';
 					break;
+				case 'RON':
+					$currency_symbol = 'lei';
+					break;
+				case 'RUB':
+					$currency_symbol = '&#1088;&#1091;&#1073;.';
+					break;
+				case 'SBD':
+					$currency_symbol = 'SI&#36;';
+					break;
 				case 'SEK':
 					$currency_symbol = '&#107;&#114;';
-					break;
-				case 'CHF':
-					$currency_symbol = '&#67;&#72;&#70;';
-					break;
-				case 'TWD':
-					$currency_symbol = '&#78;&#84;&#36;';
 					break;
 				case 'THB':
 					$currency_symbol = '&#3647;';
 					break;
-				case 'GBP':
-					$currency_symbol = '&pound;';
+				case 'TOP':
+					$currency_symbol = 'T&#36;';
 					break;
-				case 'RON':
-					$currency_symbol = 'lei';
+				case 'TRY':
+					$currency_symbol = '&#8378;';
+					break;
+				case 'TWD':
+					$currency_symbol = '&#78;&#84;&#36;';
 					break;
 				case 'VND':
 					$currency_symbol = '&#8363;';
 					break;
-				case 'NGN':
-					$currency_symbol = '&#8358;';
+				case 'VUV':
+					$currency_symbol = 'VT';
 					break;
-				case 'HRK':
-					$currency_symbol = 'Kn';
+				case 'WST':
+					$currency_symbol = 'WS&#36;';
+					break;
+				case 'ZAR':
+					$currency_symbol = '&#82;';
 					break;
 				default:
 					$currency_symbol = '';
@@ -686,7 +764,79 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * @return int
 		 */
 		public function get_decimals() {
-			return charitable_get_option( 'decimal_count', 2 );
+			$default = $this->is_zero_decimal_currency() ? 0 : 2;
+			return charitable_get_option( 'decimal_count', $default );
+		}
+
+		/**
+		 * Returns a list of currencies that do not use decimals.
+		 *
+		 * @since  1.6.38
+		 *
+		 * @return array
+		 */
+		public function get_zero_decimal_currencies() {
+			/**
+			 * Filter the list of zero decimal currencies.
+			 *
+			 * @since 1.6.38
+			 *
+			 * @param array $currencies All the zero-decimal currencies.
+			 */
+			return apply_filters(
+				'charitable_zero_decimal_currencies',
+				array(
+					'BIF',
+					'CLP',
+					'DJF',
+					'GNF',
+					'JPY',
+					'KMF',
+					'KRW',
+					'MGA',
+					'PYG',
+					'RWF',
+					'UGX',
+					'VND',
+					'VUV',
+					'XAF',
+					'XOF',
+					'XPF',
+				)
+			);
+		}
+
+		/**
+		 * Checks whether a given currency is a zero-decimal currency.
+		 *
+		 * @since  1.6.38
+		 *
+		 * @param  string $currency The currency code to check.
+		 * @return boolean
+		 */
+		public function is_zero_decimal_currency( $currency = '' ) {
+			if ( empty( $currency ) ) {
+				$currency = charitable_get_currency();
+			}
+
+			return in_array( $currency, $this->get_zero_decimal_currencies() );
+		}
+
+		/**
+		 * If we're using a zero-decimal currency, automatically set the
+		 * number of decimals to equal 0.
+		 *
+		 * @since  1.6.38
+		 *
+		 * @param  int $decimals The decimal count.
+		 * @return int
+		 */
+		public function maybe_force_zero_decimals( $decimals ) {
+			if ( $this->is_zero_decimal_currency() ) {
+				$decimals = 0;
+			}
+
+			return $decimals;
 		}
 	}
 

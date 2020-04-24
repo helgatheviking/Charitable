@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.29
+ * @version   1.6.37
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -62,6 +62,11 @@ function charitable_load_compat_functions() {
 	/* GDPR Cookie Compliance */
 	if ( function_exists( 'gdpr_cookie_is_accepted' ) ) {
 		require_once( $includes_path . 'compat/charitable-gdpr-cookie-compliance-compat-functions.php' );
+	}
+
+	/* WooCommerce */
+	if ( defined( 'WC_PLUGIN_FILE' ) ) {
+		require_once( $includes_path . 'compat/charitable-woocommerce-compat-functions.php' );
 	}
 }
 
@@ -122,7 +127,7 @@ add_filter( 'charitable_default_highlight_colour', 'charitable_compat_theme_high
  * @return array
  */
 function charitable_compat_button_classes( $classes, $button ) {
-	switch ( strtolower( wp_get_theme()->stylesheet ) ) {
+	switch ( strtolower( wp_get_theme()->template ) ) {
 		case 'divi':
 			$classes[] = 'et_pb_button';
 			break;

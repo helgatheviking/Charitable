@@ -8,11 +8,12 @@
  * the "campaign_creator" role; people who create fundraisers for campaigns
  * get the "fundraiser" role.
  *
- * @version     1.0.0
- * @package     Charitable/Classes/Charitable_User
- * @author      Eric Daams
- * @copyright   Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Classes/Charitable_User
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.37
  */
 
 // Exit if accessed directly.
@@ -260,7 +261,10 @@ if ( ! class_exists( 'Charitable_User' ) ) :
 			}
 
 			/* Delete the time that the verification email was sent. */
-			delete_user_meta( $this->user->ID, '_charitable_email_verification_email_send_time' );
+			delete_user_meta( $this->ID, '_charitable_email_verification_email_send_time' );
+
+			/* Check for a notice about having sent a verification email and remove it. */
+			charitable_get_notices()->clear_notice( "/We have sent you an email to confirm your email address. Haven\'t received the email\?/" );
 
 			/* Check for an existing donor account. */
 			$donor_id = $this->get_donor_id();

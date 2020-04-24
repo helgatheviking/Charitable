@@ -2,11 +2,12 @@
 /**
  * Class that models the Password Reset email.
  *
- * @version     1.4.0
- * @package     Charitable/Classes/Charitable_Email_Password_Reset
- * @author      Eric Daams
- * @copyright   Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Classes/Charitable_Email_Password_Reset
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.4.0
+ * @version   1.6.37
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -163,10 +164,16 @@ if ( ! class_exists( 'Charitable_Email_Password_Reset' ) ) :
 					return $key;
 				}
 
-				$this->reset_link = esc_url_raw( add_query_arg( array(
-					'key'   => $key,
-					'login' => rawurlencode( $this->user->user_login ),
-				), $base_url ) );
+				$this->reset_link = esc_url_raw(
+					add_query_arg(
+						array(
+							'key'        => $key,
+							'login'      => rawurlencode( $this->user->user_login ),
+							'charitable' => true,
+						),
+						$base_url
+					)
+				);
 			}
 
 			return $this->reset_link;

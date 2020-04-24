@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.6.29
- * @version   1.6.29
+ * @version   1.6.38
  */
 
 // Exit if accessed directly.
@@ -29,4 +29,6 @@ return [
 							. '.charitable-submit-field .button{font-size:20px;}'
 							. '.et_pb_widget .charitable-submit-field .button{font-size:1em;}'
 							. '.et_pb_widget .charitable-submit-field .et_pb_button:after{font-size:1.6em;}',
+	'solopine_style'     => '.charitable-button{background-color:#161616;color:#fff;font:700 10px/10px "Montserrat", sans-serif;border:none;text-transform:uppercase;padding:14px 15px 14px 16px;letter-spacing:1.5px;}'
+							. '.charitable-button.donate-button{background-color:' . $highlight_colour . ';}',
 ];
