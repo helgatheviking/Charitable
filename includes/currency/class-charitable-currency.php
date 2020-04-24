@@ -44,6 +44,7 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * @since 1.2.3
 		 */
 		private function __construct() {
+			add_filter( 'charitable_option_decimal_count', array( $this, 'maybe_force_zero_decimals' ) );
 		}
 
 		/**
@@ -68,12 +69,15 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 *
 		 * @since  1.0.0
 		 *
-		 * @param  string    $amount        The amount to convert.
-		 * @param  int|false $decimal_count Optional. If not set, default decimal count will be used.
-		 * @param  boolean   $db_format     Optional. Whether the amount is in db format (i.e. using decimals for cents, regardless of site settings).
+		 * @param  string    $amount          The amount to convert.
+		 * @param  int|false $decimal_count   Optional. If not set, default decimal count will be used.
+		 * @param  boolean   $db_format       Optional. Whether the amount is in db format (i.e. using decimals
+		 *                                    for cents, regardless of site settings).
+		 * @param  string    $symbol_position Optional. If specified, will use this symbol position setting instead
+		 *                                    of the site's currency format.
 		 * @return string|WP_Error
 		 */
-		public function get_monetary_amount( $amount, $decimal_count = false, $db_format = false ) {
+		public function get_monetary_amount( $amount, $decimal_count = false, $db_format = false, $symbol_position = '' ) {
 			if ( false === $decimal_count ) {
 				$decimal_count = charitable_get_option( 'decimal_count', 2 );
 			}
@@ -87,8 +91,16 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 				$this->get_thousands_separator()
 			);
 
-			$formatted = sprintf( $this->get_currency_format(), $this->get_currency_symbol(), $amount );
+			$formatted = sprintf( $this->get_currency_format( $symbol_position ), $this->get_currency_symbol(), $amount );
 
+			/**
+			 * Filter the amount.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param string $formatted The formatted amount.
+			 * @param string $amount    The original amount before formatting.
+			 */
 			return apply_filters( 'charitable_monetary_amount', $formatted, $amount );
 		}
 
@@ -211,11 +223,16 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * Return the currency format based on the position of the currency symbol.
 		 *
 		 * @since  1.0.0
+		 * @since  1.6.38 Added optional $symbol_position argument.
 		 *
+		 * @param  string $symbol_position The symbol position. If not set, the site's
+		 *                                 currency_format setting will be used.
 		 * @return string
 		 */
-		public function get_currency_format() {
-			$symbol_position = charitable_get_option( 'currency_format', 'left' );
+		public function get_currency_format( $symbol_position = '' ) {
+			if ( empty( $symbol_position ) ) {
+				$symbol_position = charitable_get_option( 'currency_format', 'left' );
+			}
 
 			switch ( $symbol_position ) {
 				case 'left':
@@ -747,7 +764,79 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * @return int
 		 */
 		public function get_decimals() {
-			return charitable_get_option( 'decimal_count', 2 );
+			$default = $this->is_zero_decimal_currency() ? 0 : 2;
+			return charitable_get_option( 'decimal_count', $default );
+		}
+
+		/**
+		 * Returns a list of currencies that do not use decimals.
+		 *
+		 * @since  1.6.38
+		 *
+		 * @return array
+		 */
+		public function get_zero_decimal_currencies() {
+			/**
+			 * Filter the list of zero decimal currencies.
+			 *
+			 * @since 1.6.38
+			 *
+			 * @param array $currencies All the zero-decimal currencies.
+			 */
+			return apply_filters(
+				'charitable_zero_decimal_currencies',
+				array(
+					'BIF',
+					'CLP',
+					'DJF',
+					'GNF',
+					'JPY',
+					'KMF',
+					'KRW',
+					'MGA',
+					'PYG',
+					'RWF',
+					'UGX',
+					'VND',
+					'VUV',
+					'XAF',
+					'XOF',
+					'XPF',
+				)
+			);
+		}
+
+		/**
+		 * Checks whether a given currency is a zero-decimal currency.
+		 *
+		 * @since  1.6.38
+		 *
+		 * @param  string $currency The currency code to check.
+		 * @return boolean
+		 */
+		public function is_zero_decimal_currency( $currency = '' ) {
+			if ( empty( $currency ) ) {
+				$currency = charitable_get_currency();
+			}
+
+			return in_array( $currency, $this->get_zero_decimal_currencies() );
+		}
+
+		/**
+		 * If we're using a zero-decimal currency, automatically set the
+		 * number of decimals to equal 0.
+		 *
+		 * @since  1.6.38
+		 *
+		 * @param  int $decimals The decimal count.
+		 * @return int
+		 */
+		public function maybe_force_zero_decimals( $decimals ) {
+			if ( $this->is_zero_decimal_currency() ) {
+				$decimals = 0;
+			}
+
+			return $decimals;
 		}
 	}
 

@@ -67,6 +67,8 @@ if ( ! class_exists( 'Charitable_General_Settings' ) ) :
 				return array();
 			}
 
+			$currency_helper = charitable_get_currency_helper();
+
 			$general_fields = array(
 				'section'               => array(
 					'title'             => '',
@@ -99,10 +101,10 @@ if ( ! class_exists( 'Charitable_General_Settings' ) ) :
 					'priority'          => 12,
 					'default'           => 'left',
 					'options'           => array(
-						'left'              => '$23.00',
-						'right'             => '23.00$',
-						'left-with-space'   => '$ 23.00',
-						'right-with-space'  => '23.00 $',
+						'left'              => $currency_helper->get_monetary_amount( '23', false, false, 'left' ),
+						'right'             => $currency_helper->get_monetary_amount( '23', false, false, 'right' ),
+						'left-with-space'   => $currency_helper->get_monetary_amount( '23', false, false, 'left-with-space' ),
+						'right-with-space'  => $currency_helper->get_monetary_amount( '23', false, false, 'right-with-space' ),
 					),
 				),
 				'decimal_separator'     => array(
@@ -206,6 +208,14 @@ if ( ! class_exists( 'Charitable_General_Settings' ) ) :
 					'help'              => __( 'Choose the page that users will be redirected to after donating. Leave it set to automatic to use the built-in Charitable receipt. If you choose a static page, it should contain the <code>[donation_receipt]</code> shortcode.', 'charitable' ),
 				),
 			);
+
+			/* If we're using a zero-decimal currency, get rid of the decimal separator and decimal number fields */
+			if ( $currency_helper->is_zero_decimal_currency() ) {
+				unset(
+					$general_fields['decimal_separator'],
+					$general_fields['decimal_count']
+				);
+			}
 
 			$fields = array_merge( $fields, $general_fields );
 

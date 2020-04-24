@@ -76,17 +76,15 @@ foreach ( $gateways as $gateway ) :
 <?php endforeach ?>
 <?php
 if ( ! empty( $upgrades ) ) :
-	if ( array_key_exists( 'payfast', $upgrades ) ) {
-		$message = sprintf(
-			/* translators: %s: hyperlink */
-			__( '<strong>Tip</strong>: Accept donations in South African Rand with <a href="%s" target="_blank">PayFast</a>.', 'charitable' ),
-			'https://www.wpcharitable.com/extensions/charitable-payfast/?utm_source=gateways-page&amp;utm_medium=wordpress-dashboard&amp;utm_campaign=payfast'
-		);
-	} elseif ( array_key_exists( 'payumoney', $upgrades ) ) {
-		$message = sprintf(
-			/* translators: %s: hyperlink */
-			__( '<strong>Tip</strong>: Accept donations in Indian Rupee with <a href="%s" target="_blank">PayUMoney</a>.', 'charitable' ),
-			'https://www.wpcharitable.com/extensions/charitable-payu-money/?utm_source=gateways-page&amp;utm_medium=wordpress-dashboard&amp;utm_campaign=payu-money'
+	if ( 1 === count( $upgrades ) ) {
+		$currencies = charitable_get_currency_helper()->get_all_currencies();
+		$gateway    = key( $upgrades );
+		$message    = sprintf(
+			/* translators: %1$s: currency; %2$s: hyperlink %3$s: payment gateway name */
+			__( '<strong>Tip</strong>: Accept donations in %1$s with <a href="%2$s" target="_blank">%3$s</a>.', 'charitable' ),
+			$currencies[ charitable_get_currency() ],
+			'https://www.wpcharitable.com/extensions/charitable-' . $gateway . '/?utm_source=gateways-page&amp;utm_medium=wordpress-dashboard&amp;utm_campaign=' . $gateway,
+			current( $upgrades )
 		);
 	} else {
 		$message = sprintf(

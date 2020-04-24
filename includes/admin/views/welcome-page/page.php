@@ -5,6 +5,7 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Welcome Page
  * @since   1.0.0
+ * @version 1.6.38
  */
 
 wp_enqueue_style( 'charitable-admin-pages' );
@@ -20,36 +21,37 @@ $languages       = wp_get_available_translations();
 $locale          = get_locale();
 $language        = isset( $languages[ $locale ]['native_name'] ) ? $languages[ $locale ]['native_name'] : $locale;
 $currency        = charitable_get_option( 'currency', 'AUD' );
-$extensions      = array();
+$currencies      = charitable_get_currency_helper()->get_all_currencies();
+$all_extensions  = array(
+	'payfast'                        => __( 'Accept donations in South African Rand', 'charitable' ),
+	'payu-money'                     => __( 'Accept donations in Indian Rupees with PayUmoney', 'charitable' ),
+	'easy-digital-downloads-connect' => __( 'Collect donations with Easy Digital Downloads', 'charitable' ),
+	'recurring-donations'            => __( 'Accept recurring donations', 'charitable' ),
+	'fee-relief'                     => __( 'Let donors cover the gateway fees', 'charitable' ),
+	'stripe'                         => __( 'Accept credit card donations with Stripe', 'charitable' ),
+	'authorize-net'                  => __( 'Collect donations with Authorize.Net', 'charitable' ),
+	'ambassadors'                    => __( 'Peer to peer fundraising or crowdfunding', 'charitable' ),
+	'windcave'                       => sprintf(
+		/* translators: %s: currency code */
+		__( 'Collect donations in %s', 'charitable' ),
+		$currencies[ $currency ]
+	),
+	'anonymous-donations'            => __( 'Let donors give anonymously', 'charitable' ),
+	'user-avatar'                    => __( 'Let your donors upload their own profile photo', 'charitable' ),
+);
 
 if ( 'en_ZA' == $locale || 'ZAR' == $currency ) {
-
-	$extensions['payfast']             = __( 'Accept donations in South African Rand', 'charitable' );
-	$extensions['recurring-donations'] = __( 'Accept recurring donations', 'charitable' );
-	$extensions['ambassadors']         = __( 'Peer to peer fundraising or crowdfunding', 'charitable' );
-	$extensions['anonymous-donations'] = __( 'Let donors give anonymously', 'charitable' );
-
+	$extensions = array_intersect_key( $all_extensions, array( 'payfast' => '', 'recurring-donations' => '', 'ambassadors' => '', 'fee-relief' => '' ) );
 } elseif ( 'hi_IN' == $locale || 'INR' == $currency ) {
-
-	$extensions['ambassadors']         = __( 'Peer to peer fundraising or crowdfunding', 'charitable' );
-	$extensions['payu-money'] 		   = __( 'Accept donations in Indian Rupees', 'charitable' );
-	$extensions['anonymous-donations'] = __( 'Let donors give anonymously', 'charitable' );
-	$extensions['user-avatar'] 		   = __( 'Let your donors upload their own profile photo', 'charitable' );
-
+	$extensions = array_intersect_key( $all_extensions, array( 'payu-money' => '', 'ambassadors' => '', 'fee-relief' => '', 'windcave' => '' ) );
+} elseif ( in_array( $locale, array( 'en_NZ', 'ms_MY', 'ja', 'zh_HK' ) ) || in_array( $currency, array( 'NZD', 'MYR', 'JPY', 'HKD' ) ) ) {
+	$extensions = array_intersect_key( $all_extensions, array( 'recurring-donations' => '', 'stripe' => '', 'windcave' => '', 'fee-relief' => '' ) );
+} elseif( in_array( $locale, array( 'th' ) ) || in_array( $currency, array( 'BND', 'FJD', 'KWD', 'PGK', 'SBD', 'THB', 'TOP', 'VUV', 'WST' ) ) ) {
+	$extensions = array_intersect_key( $all_extensions, array( 'windcave' => '', 'fee-relief' => '', 'ambassadors' => '', 'anonymous-donations' => '' ) );
 } elseif ( class_exists( 'EDD' ) ) {
-
-	$extensions['ambassadors']         = __( 'Peer to peer fundraising or crowdfunding', 'charitable' );
-	$extensions['easy-digital-downloads-connect'] = __( 'Collect donations with Easy Digital Downloads', 'charitable' );
-	$extensions['anonymous-donations'] = __( 'Let donors give anonymously', 'charitable' );
-	$extensions['user-avatar'] 		   = __( 'Let your donors upload their own profile photo', 'charitable' );
-
+	$extensions = array_intersect_key( $all_extensions, array( 'ambassadors' => '', 'easy-digital-downloads-connect' => '', 'anonymous-donations' => '', 'user-avatar' => '' ) );
 } else {
-
-	$extensions['recurring-donations'] = __( 'Accept recurring donations', 'charitable' );
-	$extensions['ambassadors']         = __( 'Peer to peer fundraising or crowdfunding', 'charitable' );
-	$extensions['stripe'] 	           = __( 'Accept credit card donations with Stripe', 'charitable' );
-	$extensions['authorize-net']       = __( 'Collect donations with Authorize.Net', 'charitable' );
-
+	$extensions = array_intersect_key( $all_extensions, array( 'recurring-donations' => '', 'stripe' => '', 'authorize-net' => '', 'fee-relief' => '' ) );
 }
 
 ?>
@@ -155,7 +157,7 @@ if ( 'en_ZA' == $locale || 'ZAR' == $currency ) {
 			<ul class="extensions">
 				<?php foreach ( $extensions as $extension => $description ) : ?>
 					<li class="<?php echo $extension; ?>">
-						<a href="https://www.wpcharitable.com/extensions/charitable-<?php echo $extension; ?>/?utm_source=welcome-page&amp;utm_medium=wordpress-dashboard&amp;utm_campaign=<?php echo $extension ?>"><img src="<?php echo charitable()->get_path( 'assets', false ); ?>images/extensions/<?php echo $extension ?>.png" width="615" height="289" alt="<?php echo esc_attr( sprintf( _x( '%s banner', 'extension banner', 'charitable' ), $extension ) ); ?>" /><?php echo $description; ?></a>
+						<a href="https://www.wpcharitable.com/extensions/charitable-<?php echo $extension; ?>/?utm_source=welcome-page&amp;utm_medium=wordpress-dashboard&amp;utm_campaign=<?php echo $extension ?>"><img src="<?php echo charitable()->get_path( 'assets', false ); ?>images/extensions/<?php echo $extension ?>.png" width="640" height="300" alt="<?php echo esc_attr( sprintf( _x( '%s banner', 'extension banner', 'charitable' ), $extension ) ); ?>" /><?php echo $description; ?></a>
 					</li>
 				<?php endforeach ?>
 			</ul>
