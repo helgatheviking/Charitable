@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.30
+ * @version   1.6.38
  */
 
 // Exit if accessed directly.
@@ -424,6 +424,7 @@ if ( ! class_exists( 'Charitable_Gateways' ) ) :
 				'payumoney'     => __( 'PayUMoney', 'charitable' ),
 				'stripe'        => __( 'Stripe', 'charitable' ),
 				'authorize_net' => __( 'Authorize.Net', 'charitable' ),
+				'windcave'      => __( 'Windcave', 'charitable' ),
 			);
 
 			/* If the user has already enabled one of these, leave them alone. :) */
@@ -442,6 +443,14 @@ if ( ! class_exists( 'Charitable_Gateways' ) ) :
 
 			if ( 'hi_IN' == $locale || 'INR' == $currency ) {
 				return charitable_array_subset( $gateways, array( 'payumoney' ) );
+			}
+
+			if ( in_array( $locale, array( 'en_NZ', 'ms_MY', 'ja', 'zh_HK' ) ) || in_array( $currency, array( 'NZD', 'MYR', 'JPY', 'HKD' ) ) ) {
+				return charitable_array_subset( $gateways, array( 'stripe', 'windcave' ) );
+			}
+
+			if ( in_array( $locale, array( 'th' ) ) || in_array( $currency, array( 'BND', 'FJD', 'KWD', 'PGK', 'SBD', 'THB', 'TOP', 'VUV', 'WST' ) ) ) {
+				return charitable_array_subset( $gateways, array( 'windcave' ) );
 			}
 
 			return charitable_array_subset( $gateways, array( 'stripe', 'authorize_net' ) );

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
 Tested up to: 5.4
-Stable tag: 1.6.37
+Stable tag: 1.6.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,7 @@ Looking for more functionality? Our paid extensions give you the flexibility and
 
 * [Stripe](https://www.wpcharitable.com/extensions/charitable-stripe/?utm_source=readme&utm_medium=description-tab&utm_content=upgrades&utm_campaign=plugin-page-referrals)
 * [Authorize.Net](https://www.wpcharitable.com/extensions/charitable-authorize-net/?utm_source=readme&utm_medium=description-tab&utm_content=upgrades&utm_campaign=plugin-page-referrals)
+* [Windcave](https://www.wpcharitable.com/extensions/charitable-windcave/?utm_source=readme&utm_medium=description-tab&utm_content=upgrades&utm_campaign=plugin-page-referrals)
 * [PayFast](https://www.wpcharitable.com/extensions/charitable-payfast/?utm_source=readme&utm_medium=description-tab&utm_content=upgrades&utm_campaign=plugin-page-referrals) - leading South African payment gateway.
 * [PayUMoney](https://www.wpcharitable.com/extensions/charitable-payu-money/?utm_source=readme&utm_medium=description-tab&utm_content=upgrades&utm_campaign=plugin-page-referrals) - Indian payment gateway.
 
@@ -225,6 +226,11 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.38 =
+* NEW: Added additional currencies supported by our new [Windcave payment gateway integration](https://www.wpcharitable.com/extensions/charitable-windcave/?utm_source=readme&utm_medium=changelog-tab&utm_campaign=windcave). [#760](https://github.com/Charitable/Charitable/issues/760)
+* FIX: If you are using a zero-decimal currency such as the Japanese Yen, the decimal count setting will now automatically be set to 0. [#761](https://github.com/Charitable/Charitable/issues/761)
+* FIX: When using Recurring Donations, the donation amount in the donor's session would not be used correctly in the donation form if the Variable recurring donation method is used. [#762](https://github.com/Charitable/Charitable/issues/762)
 
 = 1.6.37 =
 * FIX: Added a way to prioritize when endpoints should be loaded, which prevents issues with certain endpoints that overlap. [#754](https://github.com/Charitable/Charitable/issues/754)
