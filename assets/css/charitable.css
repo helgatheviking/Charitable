@@ -213,7 +213,7 @@
       .charitable-donation-form .donation-amounts .donation-amount input[type=radio] {
         margin: 0 6px 0 0;
         vertical-align: middle; }
-    .charitable-donation-form .donation-amounts .donation-amount.selected {
+    .charitable-donation-form .donation-amounts .donation-amount.selected label {
       color: #fff; }
     @media screen and (max-width: 37.5em) {
       .charitable-donation-form .donation-amounts .donation-amount {
