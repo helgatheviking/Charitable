@@ -203,7 +203,6 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 			return $args;
 		}
 
-
 		/**
 		 * Parse campaigns argument.
 		 *

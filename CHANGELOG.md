@@ -1,3 +1,10 @@
+# 1.6.39
+* SECURIY FIX: Prevent disclosure of campaign and donation information in the WordPress dashboard to users who should not have access to it. [#775](https://github.com/Charitable/Charitable/issues/775)
+* NEW: Add CSS classes via `post_class` filter to target campaigns that have/have not reached their fundraising goal, or which have/have not ended. [#769](https://github.com/Charitable/Charitable/issues/769)
+* FIX: Donation Receipt & Donation Notification didn't send when marking a donation as paid via the Donation Actions meta box or by editing the donation. [#771](https://github.com/Charitable/Charitable/issues/771)
+* FIX: Add default background colour of white to the custom donation amount field to avoid issues where themes do not provide a colour for the input field. [#766](https://github.com/Charitable/Charitable/issues/766)
+* FIX: Ensure that all campaign field values are correctly populated when viewing/editing a Draft campaign in the WordPress dashboard. [#763](https://github.com/Charitable/Charitable/issues/763)
+
 # 1.6.38
 * NEW: Added additional currencies supported by our new [Windcave payment gateway integration](https://www.wpcharitable.com/extensions/charitable-windcave/?utm_source=readme&utm_medium=changelog-tab&utm_campaign=windcave). [#760](https://github.com/Charitable/Charitable/issues/760)
 * FIX: If you are using a zero-decimal currency such as the Japanese Yen, the decimal count setting will now automatically be set to 0. [#761](https://github.com/Charitable/Charitable/issues/761)
