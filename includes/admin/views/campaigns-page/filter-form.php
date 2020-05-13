@@ -5,7 +5,7 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Campaigns Page
  * @since   1.6.36
- * @version 1.6.36
+ * @version 1.6.39
  */
 
 /**
@@ -57,7 +57,7 @@ $statuses = array(
 			<input type="text" id="charitable-filter-end_date_to" name="end_date_to" class="charitable-datepicker" value="<?php echo $end_date_to; ?>" placeholder="<?php esc_attr_e( 'To:', 'charitable' ); ?>" />
 		</fieldset>
 		<label for="charitable-campaigns-filter-status"><?php _e( 'Filter by Status', 'charitable' ); ?></label>
-		<select id="charitable-campaigns-filter-status" name="status">
+		<select id="charitable-campaigns-filter-status" name="post_status">
 			<?php foreach ( $statuses as $key => $label ) : ?>
 				<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $status, $key ); ?>><?php echo $label; ?></option>
 			<?php endforeach ?>

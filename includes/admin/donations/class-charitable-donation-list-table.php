@@ -618,7 +618,6 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				charitable_admin_view( 'donations-page/export-form' );
 				charitable_admin_view( 'donations-page/filter-form' );
 			}
-
 		}
 
 		/**
@@ -698,6 +697,11 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				$vars['post__in'] = charitable_get_table( 'campaign_donations' )->get_donation_ids_for_campaign( $_GET['campaign_id'] );
 			}
 
+			/* If the user cannot view/edit others donations, filter by author. */
+			if ( ! current_user_can( 'edit_others_donations' ) ) {
+				$vars['author'] = get_current_user_id();
+			}
+
 			return $vars;
 		}
 
@@ -765,6 +769,11 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 
 				if ( isset( $_GET['end_date'] ) && strlen( $_GET['end_date'] ) ) {
 					$args['end_date'] = $this->get_parsed_date( $_GET['end_date'] );
+				}
+
+				/* If the user cannot view/edit others donations, filter by author. */
+				if ( ! current_user_can( 'edit_others_donations' ) ) {
+					$args['author'] = get_current_user_id();
 				}
 
 				$status_counts = Charitable_Donations::count_by_status( $args );

@@ -51,6 +51,13 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 		 * @since  1.0.0
 		 */
 		private function __construct() {
+			/**
+			 * The default capability required to view Charitable pages.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param string $cap The capability required.
+			 */
 			$this->admin_menu_capability  = apply_filters( 'charitable_admin_menu_capability', 'view_charitable_sensitive_data' );
 			$this->admin_menu_parent_page = 'charitable';
 		}
@@ -137,16 +144,19 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 						'page_title' => $campaign_post_type->labels->menu_name,
 						'menu_title' => $campaign_post_type->labels->menu_name,
 						'menu_slug'  => 'edit.php?post_type=campaign',
+						'capability' => 'edit_campaigns',
 					),
 					array(
 						'page_title' => $campaign_post_type->labels->add_new,
 						'menu_title' => $campaign_post_type->labels->add_new,
 						'menu_slug'  => 'post-new.php?post_type=campaign',
+						'capability' => 'edit_campaigns',
 					),
 					array(
 						'page_title' => $donation_post_type->labels->menu_name,
 						'menu_title' => $donation_post_type->labels->menu_name,
 						'menu_slug'  => 'edit.php?post_type=donation',
+						'capability' => 'edit_donations',
 					),
 					array(
 						'page_title' => __( 'Donors', 'charitable' ),
@@ -158,11 +168,13 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 						'page_title' => __( 'Campaign Categories', 'charitable' ),
 						'menu_title' => __( 'Categories', 'charitable' ),
 						'menu_slug'  => 'edit-tags.php?taxonomy=campaign_category&post_type=campaign',
+						'capability' => 'manage_campaign_terms',
 					),
 					array(
 						'page_title' => __( 'Campaign Tags', 'charitable' ),
 						'menu_title' => __( 'Tags', 'charitable' ),
 						'menu_slug'  => 'edit-tags.php?taxonomy=campaign_tag&post_type=campaign',
+						'capability' => 'manage_campaign_terms',
 					),
 					array(
 						'page_title' => __( 'Customize', 'charitable' ),

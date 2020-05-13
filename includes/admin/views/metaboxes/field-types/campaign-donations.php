@@ -16,8 +16,9 @@ $campaigns = get_posts(
 	array(
 		'post_type'      => 'campaign',
 		'posts_per_page' => -1,
-		'post_status'    => 'any',
+		'post_status'    => array( 'draft', 'pending', 'private', 'publish' ),
 		'fields'         => 'ids',
+		'perm'           => 'readable',
 	)
 );
 

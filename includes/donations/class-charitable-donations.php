@@ -78,6 +78,7 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 				'start_date' => null,
 				'end_date'   => null,
 				'post_type'  => 'donation',
+				'author'     => null,
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -89,7 +90,6 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 			}
 
 			if ( ! empty( $args['start_date'] ) ) {
-
 				$year  = $args['start_date']['year'];
 				$month = $args['start_date']['month'];
 				$day   = $args['start_date']['day'];
@@ -100,16 +100,17 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 			}
 
 			if ( ! empty( $args['end_date'] ) ) {
-
 				$year  = $args['end_date']['year'];
 				$month = $args['end_date']['month'];
 				$day   = $args['end_date']['day'];
 
 				if ( false !== checkdate( $month, $day, $year ) ) {
-
 					$where_clause .= $wpdb->prepare( " AND post_date <= '%s'", date( 'Y-m-d', mktime( 0, 0, 0, $month, $day, $year ) ) );
-
 				}
+			}
+
+			if ( ! is_null( $args['author'] ) ) {
+				$where_clause .= $wpdb->prepare( " AND post_author = %d", $args['author'] );
 			}
 
 			$sql = "SELECT post_status, COUNT( * ) AS num_donations
