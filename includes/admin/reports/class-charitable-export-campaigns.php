@@ -327,6 +327,8 @@ if ( ! class_exists( 'Charitable_Export_Campaigns' ) ) :
 			 */
 			$query_args = apply_filters( 'charitable_export_campaigns_query_args', $query_args, $this->args );
 
+			error_log( var_export( $query_args, true ) );
+
 			return Charitable_Campaigns::query( $query_args )->posts;
 		}
 

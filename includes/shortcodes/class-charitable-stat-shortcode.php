@@ -110,13 +110,19 @@ if ( ! class_exists( 'Charitable_Stat_Shortcode' ) ) :
 		 */
 		private function parse_args( $atts ) {
 			$defaults = array(
-				'display'   => 'total',
-				'campaigns' => '',
-				'goal'      => false,
+				'display'          => 'total',
+				'campaigns'        => '',
+				'goal'             => false,
+				'category'         => '',
+				'tag'              => '',
+				'include_children' => true,
 			);
 
-			$args              = shortcode_atts( $defaults, $atts, 'charitable_stat' );
-			$args['campaigns'] = strlen( $args['campaigns'] ) ? explode( ',', $args['campaigns'] ) : array();
+			$args                     = shortcode_atts( $defaults, $atts, 'charitable_stat' );
+			$args['campaigns']        = strlen( $args['campaigns'] ) ? explode( ',', $args['campaigns'] ) : array();
+			$args['category']         = strlen( $args['category'] ) ? explode( ',', $args['category'] ) : null;
+			$args['tag']              = strlen( $args['tag'] ) ? explode( ',', $args['tag'] ) : null;
+			$args['include_children'] = (bool) $args['include_children'];
 
 			return $args;
 		}
