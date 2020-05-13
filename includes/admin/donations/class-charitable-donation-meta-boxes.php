@@ -513,6 +513,7 @@ if ( ! class_exists( 'Charitable_Donation_Meta_Boxes' ) ) :
 			if ( 'manual' !== $donation->get_gateway() ) {
 				return $send_email;
 			}
+
 			/**
 			 * Finally, if we're saving a manually created donation, only
 			 * send the email if that option was checked in the admin.
