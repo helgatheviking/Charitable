@@ -2,11 +2,12 @@
 /**
  * The class that is responsible for querying data about donations.
  *
- * @version		1.0.0
- * @package		Charitable/Classes/Charitable_Donations
- * @author 		Eric Daams
- * @copyright 	Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Classes/Charitable_Donations
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.0.0
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,18 +19,17 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 	/**
 	 * Charitable_Donations
 	 *
-	 * @since   1.0.0
-	 * @uses 	WP_Query
+	 * @since 1.0.0
 	 */
 	class Charitable_Donations {
 
 		/**
 		 * Return WP_Query object with predefined defaults to query only donations.
 		 *
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param 	array $args Query arguments.
-		 * @return 	WP_Query
+		 * @param  array $args Query arguments.
+		 * @return WP_Query
 		 */
 		public static function query( $args = array() ) {
 			$defaults = array(
@@ -45,11 +45,11 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 		/**
 		 * Return the number of all donations.
 		 *
-		 * @global 	WPDB   $wpdb
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param 	string $post_type Type of post to count.
-		 * @return 	int
+		 * @global WPDB $wpdb
+		 * @param  string $post_type Type of post to count.
+		 * @return int
 		 */
 		public static function count_all( $post_type = 'donation' ) {
 			global $wpdb;
@@ -64,11 +64,11 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 		/**
 		 * Return count of donations grouped by status.
 		 *
-		 * @global 	WPDB  $wpdb
-		 * @since   1.0.0
+		 * @since  1.0.0
 		 *
-		 * @param 	array $args Additional query arguments.
-		 * @return 	array
+		 * @global WPDB $wpdb
+		 * @param  array $args Additional query arguments.
+		 * @return array
 		 */
 		public static function count_by_status( $args = array() ) {
 			global $wpdb;
@@ -78,6 +78,7 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 				'start_date' => null,
 				'end_date'   => null,
 				'post_type'  => 'donation',
+				'author'     => null,
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -89,7 +90,6 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 			}
 
 			if ( ! empty( $args['start_date'] ) ) {
-
 				$year  = $args['start_date']['year'];
 				$month = $args['start_date']['month'];
 				$day   = $args['start_date']['day'];
@@ -100,16 +100,17 @@ if ( ! class_exists( 'Charitable_Donations' ) ) :
 			}
 
 			if ( ! empty( $args['end_date'] ) ) {
-
 				$year  = $args['end_date']['year'];
 				$month = $args['end_date']['month'];
 				$day   = $args['end_date']['day'];
 
 				if ( false !== checkdate( $month, $day, $year ) ) {
-
 					$where_clause .= $wpdb->prepare( " AND post_date <= '%s'", date( 'Y-m-d', mktime( 0, 0, 0, $month, $day, $year ) ) );
-
 				}
+			}
+
+			if ( ! is_null( $args['author'] ) ) {
+				$where_clause .= $wpdb->prepare( " AND post_author = %d", $args['author'] );
 			}
 
 			$sql = "SELECT post_status, COUNT( * ) AS num_donations

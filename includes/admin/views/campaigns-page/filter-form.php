@@ -5,7 +5,7 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Campaigns Page
  * @since   1.6.36
- * @version 1.6.36
+ * @version 1.6.39
  */
 
 /**
@@ -16,15 +16,6 @@
  * @param string $class The modal window class.
  */
 $modal_class = apply_filters( 'charitable_modal_window_class', 'charitable-modal' );
-
-$campaign_id = isset( $_GET['campaign_id'] ) ? intval( $_GET['campaign_id'] ) : '';
-$campaigns   = get_posts(
-	array(
-	'post_type'   => Charitable::CAMPAIGN_POST_TYPE,
-	'nopaging'    => true,
-	'post_status' => 'any',
-	)
-);
 
 $start_date_from = isset( $_GET['start_date_from'] ) ? sanitize_text_field( $_GET['start_date_from'] ) : null;
 $start_date_to   = isset( $_GET['start_date_to'] ) ? sanitize_text_field( $_GET['start_date_to'] ) : null;
@@ -57,7 +48,7 @@ $statuses = array(
 			<input type="text" id="charitable-filter-end_date_to" name="end_date_to" class="charitable-datepicker" value="<?php echo $end_date_to; ?>" placeholder="<?php esc_attr_e( 'To:', 'charitable' ); ?>" />
 		</fieldset>
 		<label for="charitable-campaigns-filter-status"><?php _e( 'Filter by Status', 'charitable' ); ?></label>
-		<select id="charitable-campaigns-filter-status" name="status">
+		<select id="charitable-campaigns-filter-status" name="post_status">
 			<?php foreach ( $statuses as $key => $label ) : ?>
 				<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $status, $key ); ?>><?php echo $label; ?></option>
 			<?php endforeach ?>

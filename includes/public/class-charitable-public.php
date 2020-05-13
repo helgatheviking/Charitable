@@ -6,8 +6,8 @@
  * @author    Eric Daams
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since    1.0.0
- * @version   1.2.0
+ * @since     1.0.0
+ * @version   1.6.39
  */
 
 // Exit if accessed directly.
@@ -291,8 +291,20 @@ if ( ! class_exists( 'Charitable_Public' ) ) :
 				return $classes;
 			}
 
-			$classes[] = $campaign->has_goal() ? 'campaign-has-goal' : 'campaign-has-no-goal';
-			$classes[] = $campaign->is_endless() ? 'campaign-is-endless' : 'campaign-has-end-date';
+			if ( $campaign->has_goal() ) {
+				$classes[] = 'campaign-has-goal';
+				$classes[] = $campaign->has_achieved_goal() ? 'campaign-has-achieved-goal' : 'campaign-has-not-achieved-goal';
+			} else {
+				$classes[] = 'campaign-has-no-goal';
+			}
+
+			if ( $campaign->is_endless() ) {
+				$classes[] = 'campaign-is-endless';
+			} else {
+				$classes[] = 'campaign-has-end-date';
+				$classes[] = $campaign->has_ended() ? 'campaign-has-ended' : 'campaign-has-not-ended';
+			}
+
 			return $classes;
 		}
 

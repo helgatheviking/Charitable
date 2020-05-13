@@ -3,8 +3,8 @@ Contributors: WPCharitable, ericdaams
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40164a%2ecom
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
-Tested up to: 5.4
-Stable tag: 1.6.38
+Tested up to: 5.4.1
+Stable tag: 1.6.39
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -226,6 +226,13 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.39 =
+* SECURIY FIX: Prevent disclosure of campaign and donation information in the WordPress dashboard to users who should not have access to it. [#775](https://github.com/Charitable/Charitable/issues/775)
+* NEW: Add CSS classes via `post_class` filter to target campaigns that have/have not reached their fundraising goal, or which have/have not ended. [#769](https://github.com/Charitable/Charitable/issues/769)
+* FIX: Donation Receipt & Donation Notification didn't send when marking a donation as paid via the Donation Actions meta box or by editing the donation. [#771](https://github.com/Charitable/Charitable/issues/771)
+* FIX: Add default background colour of white to the custom donation amount field to avoid issues where themes do not provide a colour for the input field. [#766](https://github.com/Charitable/Charitable/issues/766)
+* FIX: Ensure that all campaign field values are correctly populated when viewing/editing a Draft campaign in the WordPress dashboard. [#763](https://github.com/Charitable/Charitable/issues/763)
 
 = 1.6.38 =
 * NEW: Added additional currencies supported by our new [Windcave payment gateway integration](https://www.wpcharitable.com/extensions/charitable-windcave/?utm_source=readme&utm_medium=changelog-tab&utm_campaign=windcave). [#760](https://github.com/Charitable/Charitable/issues/760)

@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.0
+ * @version   1.6.39
  */
 
 // Exit if accessed directly.
@@ -46,8 +46,8 @@ add_action( 'save_post_' . Charitable::DONATION_POST_TYPE, array( Charitable_Don
  * @see Charitable_Donation_Meta_Boxes::maybe_block_new_donation_email()
  * @see Charitable_Donation_Meta_Boxes::maybe_block_donation_receipt_email()
  */
-add_filter( 'charitable_send_' . Charitable_Email_New_Donation::get_email_id(), array( Charitable_Donation_Meta_Boxes::get_instance(), 'maybe_block_new_donation_email' ) );
-add_filter( 'charitable_send_' . Charitable_Email_Donation_Receipt::get_email_id(), array( Charitable_Donation_Meta_Boxes::get_instance(), 'maybe_block_donation_receipt_email' ) );
+add_filter( 'charitable_send_' . Charitable_Email_New_Donation::get_email_id(), array( Charitable_Donation_Meta_Boxes::get_instance(), 'maybe_block_new_donation_email' ), 10, 2 );
+add_filter( 'charitable_send_' . Charitable_Email_Donation_Receipt::get_email_id(), array( Charitable_Donation_Meta_Boxes::get_instance(), 'maybe_block_donation_receipt_email' ), 10, 2 );
 
 /**
  * Save the donation.

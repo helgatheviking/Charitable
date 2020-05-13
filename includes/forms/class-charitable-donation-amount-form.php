@@ -149,11 +149,14 @@ if ( ! class_exists( 'Charitable_Donation_Amount_Form' ) ) :
 				Charitable_Public::get_instance()->enqueue_donation_form_scripts();
 			}
 
-			charitable_template( 'donation-form/form-donation.php', array(
-				'campaign' => $this->get_campaign(),
-				'form'     => $this,
-				'form_id'  => 'charitable-donation-amount-form',
-			) );
+			charitable_template(
+				'donation-form/form-donation.php',
+				array(
+					'campaign' => $this->get_campaign(),
+					'form'     => $this,
+					'form_id'  => 'charitable-donation-amount-form',
+				)
+			);
 		}
 	}
 

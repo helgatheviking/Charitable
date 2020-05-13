@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.2.0
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -270,6 +270,12 @@ if ( ! class_exists( 'Charitable_Post_Types' ) ) :
 				'show_admin_column' => true,
 				'show_in_nav_menus' => true,
 				'show_tagcloud'     => true,
+				'capabilities'      => array(
+					'manage_terms' => 'manage_campaign_terms',
+					'edit_terms'   => 'edit_campaign_terms',
+					'delete_terms' => 'delete_campaign_terms',
+					'assign_terms' => 'assign_campaign_terms',
+				),
 			);
 
 			register_taxonomy( 'campaign_category', array( 'campaign' ), $args );
@@ -302,6 +308,12 @@ if ( ! class_exists( 'Charitable_Post_Types' ) ) :
 				'show_admin_column' => true,
 				'show_in_nav_menus' => true,
 				'show_tagcloud'     => true,
+				'capabilities'      => array(
+					'manage_terms' => 'manage_campaign_terms',
+					'edit_terms'   => 'edit_campaign_terms',
+					'delete_terms' => 'delete_campaign_terms',
+					'assign_terms' => 'assign_campaign_terms',
+				),
 			);
 
 			register_taxonomy( 'campaign_tag', array( 'campaign' ), $args );

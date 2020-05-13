@@ -861,7 +861,7 @@ if ( ! class_exists( 'Charitable_Donation_Processor' ) ) :
 
 			if ( ! $ret ) {
 				$user = $this->get_donation_data_value( 'user', array() );
-				$ret  = array_key_exists( 'email', $user ) && strlen( $user['email'] );
+				$ret  = array_key_exists( 'email', $user ) && is_email( $user['email'] );
 			}
 
 			return $ret;
@@ -888,6 +888,14 @@ if ( ! class_exists( 'Charitable_Donation_Processor' ) ) :
 
 			$core_values['post_date'] = get_date_from_gmt( $core_values['post_date_gmt'] );
 
+			/**
+			 * Filter the core Donation post values to store.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param array                         $core_values The values to save to the posts table.
+			 * @param Charitable_Donation_Processor $processor   The donation processer object.
+			 */
 			return apply_filters( 'charitable_donation_values_core', $core_values, $this );
 		}
 

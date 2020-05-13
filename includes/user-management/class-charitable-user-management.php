@@ -400,17 +400,22 @@ if ( ! class_exists( 'Charitable_User_Management' ) ) :
 		 * @return  boolean
 		 */
 		private function user_has_admin_access() {
-
 			if ( ! is_user_logged_in() ) {
 				return false;
 			}
 
-			$ret = current_user_can( 'edit_posts' )
+			$has_access = current_user_can( 'edit_posts' )
 				|| current_user_can( 'manage_charitable_settings' )
 				|| current_user_can( 'edit_products' );
 
-			return apply_filters( 'charitable_user_has_admin_access', $ret );
-
+			/**
+			 * Filter whether the user should have access to the WordPress dashboard.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @param boolean $has_access Whether the user has access.
+			 */
+			return apply_filters( 'charitable_user_has_admin_access', $has_access );
 		}
 	}
 

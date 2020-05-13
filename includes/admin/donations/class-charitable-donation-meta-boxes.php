@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.5.0
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -237,15 +237,19 @@ if ( ! class_exists( 'Charitable_Donation_Meta_Boxes' ) ) :
 			$donation_actions = charitable_get_donation_actions();
 
 			foreach ( charitable_get_valid_donation_statuses() as $status => $label ) {
-				$donation_actions->register( 'change_status_to_' . $status, array(
-					'label'           => $label,
-					'callback'        => array( $this, 'change_donation_status' ),
-					'button_text'     => __( 'Update Status', 'charitable' ),
-					'active_callback' => array( $this, 'can_change_donation_status' ),
-					'success_message' => 13,
-					'failed_message'  => 14,
-					'fields'          => array( $this, 'get_donation_status_change_fields' ),
-				), __( 'Change Status', 'charitable' ) );
+				$donation_actions->register(
+					'change_status_to_' . $status,
+					array(
+						'label'           => $label,
+						'callback'        => array( $this, 'change_donation_status' ),
+						'button_text'     => __( 'Update Status', 'charitable' ),
+						'active_callback' => array( $this, 'can_change_donation_status' ),
+						'success_message' => 13,
+						'failed_message'  => 14,
+						'fields'          => array( $this, 'get_donation_status_change_fields' ),
+					),
+					__( 'Change Status', 'charitable' )
+				);
 			}
 		}
 
@@ -286,7 +290,6 @@ if ( ! class_exists( 'Charitable_Donation_Meta_Boxes' ) ) :
 			$success = $donation->update_status( $status );
 
 			if ( array_key_exists( 'gateway_refund', $_POST ) && $_POST['gateway_refund'] ) {
-
 				$gateway = $donation->get_gateway();
 
 				/**
@@ -454,15 +457,32 @@ if ( ! class_exists( 'Charitable_Donation_Meta_Boxes' ) ) :
 		 *
 		 * @since  1.6.15
 		 *
-		 * @param  boolean $send_email Whether to send the email.
+		 * @param  boolean             $send_email Whether to send the email.
+		 * @param  Charitable_Donation $donation   The donation object.
 		 * @return boolean
 		 */
-		public function maybe_block_new_donation_email( $send_email ) {
+		public function maybe_block_new_donation_email( $send_email, Charitable_Donation $donation ) {
 			if ( ! $send_email ) {
 				return $send_email;
 			}
 
-			return ! $this->is_admin_donation_save() && ! $this->is_donation_action();
+			/* Don't block sending it from donation actions. */
+			if ( $this->is_donation_action() ) {
+				return $send_email;
+			}
+
+			/* If we're not saving the donation, send the email. */
+			if ( ! $this->is_admin_donation_save() ) {
+				return $send_email;
+			}
+
+			/* If this isn't a manually created donation, send the email. */
+			if ( 'manual' !== $donation->get_gateway() ) {
+				return $send_email;
+			}
+
+			/* Do not send admin notifications for manually created donations. */
+			return false;
 		}
 
 		/**
@@ -471,22 +491,34 @@ if ( ! class_exists( 'Charitable_Donation_Meta_Boxes' ) ) :
 		 * @since  1.6.15
 		 *
 		 * @param  boolean $send_email Whether to send the email.
+		 * @param  Charitable_Donation $donation   The donation object.
 		 * @return boolean
 		 */
-		public function maybe_block_donation_receipt_email( $send_email ) {
+		public function maybe_block_donation_receipt_email( $send_email, Charitable_Donation $donation ) {
 			if ( ! $send_email ) {
 				return $send_email;
 			}
 
+			/* Don't block sending it from donation actions. */
 			if ( $this->is_donation_action() ) {
-				return false;
+				return $send_email;
 			}
 
-			if ( $this->is_admin_donation_save() ) {
-				$send_email = array_key_exists( 'send_donation_receipt', $_POST ) && $_POST['send_donation_receipt'];
+			/* If we're not saving the donation, send the email. */
+			if ( ! $this->is_admin_donation_save() ) {
+				return $send_email;
 			}
 
-			return $send_email;
+			/* If this isn't a manually created donation, send the email. */
+			if ( 'manual' !== $donation->get_gateway() ) {
+				return $send_email;
+			}
+
+			/**
+			 * Finally, if we're saving a manually created donation, only
+			 * send the email if that option was checked in the admin.
+			 */
+			return array_key_exists( 'send_donation_receipt', $_POST ) && $_POST['send_donation_receipt'];
 		}
 
 		/**

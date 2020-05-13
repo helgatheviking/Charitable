@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.35
+ * @version   1.6.39
  */
 
 // Exit if accessed directly.
@@ -144,6 +144,26 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 						'data-nonce' => wp_create_nonce( 'donor-select' ),
 					],
 				);
+			}
+
+			/* User can only create a donation for themselves. */
+			if ( ! current_user_can( 'edit_others_donations' ) ) {
+				$user = charitable_get_user( get_current_user_id() );
+
+				if ( array_key_exists( 'donor_id', $fields ) ) {
+					$fields['donor_id']['type']  = 'hidden';
+					$fields['donor_id']['value'] = $user->get_donor_id();
+				}
+
+				foreach ( $fields['user_fields']['fields'] as $key => $details ) {
+					$fields['user_fields']['fields'][ $key ]['value'] = $user->$key;
+
+					if ( $key === 'email' ) {
+						$fields['user_fields']['fields'][ $key ]['field_attrs'] = array(
+							'attrs' => array( 'disabled' => 'disabled' ),
+						);
+					}
+				}
 			}
 
 			/**
@@ -392,6 +412,21 @@ if ( ! class_exists( 'Charitable_Admin_Donation_Form' ) ) :
 			$values = $this->sanitize_submitted_date( $values );
 			$values = $this->sanitize_submitted_log_note( $values );
 			$values = $this->sanitize_submitted_donor( $values );
+
+			/* Ensure that the user has not created a donation for someone else. */
+			if ( ! current_user_can( 'edit_others_donations' ) ) {
+				$user = charitable_get_user( get_current_user_id() );
+
+				$values['donor_id'] = $user->get_donor_id();
+
+				if ( array_key_exists( 'user_id', $values ) ) {
+					$values['user_id'] = $user->ID;
+				}
+
+				if ( array_key_exists( 'user', $values ) && array_key_exists( 'email', $values['user'] ) ) {
+					$values['user']['email'] = $user->email;
+				}
+			}
 
 			foreach ( $this->get_merged_fields() as $key => $field ) {
 				if ( $this->should_field_be_added( $field, $key, $values ) ) {

@@ -423,7 +423,7 @@ if ( ! class_exists( 'Charitable_Campaign_Meta_Boxes' ) ) :
 
 			$campaign = charitable_get_campaign( $_GET['post'] );
 
-			if ( in_array( $campaign->post_status, array( 'auto-draft', 'draft' ) ) ) {
+			if ( in_array( $campaign->post_status, array( 'auto-draft' ) ) ) {
 				return $field;
 			}
 

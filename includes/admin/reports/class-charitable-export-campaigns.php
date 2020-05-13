@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.6.0
- * @version   1.6.25
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -239,6 +239,7 @@ if ( ! class_exists( 'Charitable_Export_Campaigns' ) ) :
 				'posts_per_page' => -1,
 				'meta_query'     => array(),
 				'date_query'     => array(),
+				'perm'           => 'readable',
 			);
 
 			if ( strlen( $this->args['start_date_from'] ) || strlen( $this->args['start_date_to'] ) ) {
@@ -273,6 +274,10 @@ if ( ! class_exists( 'Charitable_Export_Campaigns' ) ) :
 
 			if ( ! empty( $this->args['status'] ) ) {
 				switch ( $this->args['status'] ) {
+					case 'any':
+						$query_args['post_status'] = array( 'draft', 'pending', 'private', 'publish' );
+						break;
+
 					case 'active':
 						$query_args['post_status'] = 'publish';
 						$query_args['meta_query']  = array(
@@ -306,6 +311,10 @@ if ( ! class_exists( 'Charitable_Export_Campaigns' ) ) :
 					default:
 						$query_args['post_status'] = $this->args['status'];
 				}
+			}
+
+			if ( ! current_user_can( 'edit_others_campaigns' ) ) {
+				$query_args['author'] = get_current_user_id();
 			}
 
 			/**

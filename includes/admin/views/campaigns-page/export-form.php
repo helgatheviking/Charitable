@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.6.0
- * @version   1.6.0
+ * @version   1.6.39
  */
 
 /**
@@ -23,7 +23,7 @@ $start_date_from = isset( $_GET['start_date_from'] ) ? sanitize_text_field( $_GE
 $start_date_to   = isset( $_GET['start_date_to'] ) ? sanitize_text_field( $_GET['start_date_to'] ) : null;
 $end_date_from   = isset( $_GET['end_date_from'] ) ? sanitize_text_field( $_GET['end_date_from'] ) : null;
 $end_date_to     = isset( $_GET['end_date_to'] ) ? sanitize_text_field( $_GET['end_date_to'] ) : null;
-$status          = isset( $_GET['status'] ) ? $_GET['status'] : 'all';
+$status          = isset( $_GET['post_status'] ) ? $_GET['post_status'] : 'any';
 $report_type     = isset( $_GET['report_type'] ) ? $_GET['report_type'] : 'campaigns';
 
 /**
@@ -41,7 +41,7 @@ $report_types = apply_filters(
 );
 
 $statuses = array(
-	'all'     => __( 'All', 'charitable' ),
+	'any'     => __( 'All', 'charitable' ),
 	'pending' => __( 'Pending', 'charitable' ),
 	'draft'   => __( 'Draft', 'charitable' ),
 	'active'  => __( 'Active', 'charitable' ),
