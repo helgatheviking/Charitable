@@ -595,6 +595,10 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 		public function add_export( $which ) {
 			global $typenow;
 
+			if ( ! current_user_can( 'export_charitable_reports' ) ) {
+				return;
+			}
+
 			/* Add the export button. */
 			if ( 'top' == $which && in_array( $typenow, array( Charitable::DONATION_POST_TYPE ) ) ) {
 				charitable_admin_view( 'donations-page/export' );

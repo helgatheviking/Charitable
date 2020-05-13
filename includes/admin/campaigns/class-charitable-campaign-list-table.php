@@ -165,6 +165,10 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 		 * @return void
 		 */
 		public function add_export( $which ) {
+			if ( ! current_user_can( 'export_charitable_reports' ) ) {
+				return;
+			}
+
 			if ( 'top' == $which && $this->is_campaigns_page() ) {
 				charitable_admin_view( 'campaigns-page/export' );
 			}
