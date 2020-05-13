@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.5.0
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -77,14 +77,17 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 			 *
 			 * @param array $columns The list of columns.
 			 */
-			return apply_filters( 'charitable_donation_dashboard_column_names', array(
-				'cb'            => '<input type="checkbox"/>',
-				'id'            => __( 'Donation', 'charitable' ),
-				'amount'        => __( 'Amount Donated', 'charitable' ),
-				'campaigns'     => __( 'Campaign(s)', 'charitable' ),
-				'donation_date' => __( 'Date', 'charitable' ),
-				'post_status'   => __( 'Status', 'charitable' ),
-			) );
+			return apply_filters(
+				'charitable_donation_dashboard_column_names',
+				array(
+					'cb'            => '<input type="checkbox"/>',
+					'id'            => __( 'Donation', 'charitable' ),
+					'amount'        => __( 'Amount Donated', 'charitable' ),
+					'campaigns'     => __( 'Campaign(s)', 'charitable' ),
+					'donation_date' => __( 'Date', 'charitable' ),
+					'post_status'   => __( 'Status', 'charitable' ),
+				)
+			);
 		}
 
 		/**
@@ -615,7 +618,6 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				charitable_admin_view( 'donations-page/export-form' );
 				charitable_admin_view( 'donations-page/filter-form' );
 			}
-
 		}
 
 		/**
@@ -695,6 +697,11 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				$vars['post__in'] = charitable_get_table( 'campaign_donations' )->get_donation_ids_for_campaign( $_GET['campaign_id'] );
 			}
 
+			/* If the user cannot view/edit others donations, filter by author. */
+			if ( ! current_user_can( 'edit_others_donations' ) ) {
+				$vars['author'] = get_current_user_id();
+			}
+
 			return $vars;
 		}
 
@@ -702,11 +709,13 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 		 * Column sorting handler.
 		 *
 		 * @since  1.5.0
+         * @update 1.7.0
 		 *
 		 * @global string $typenow The current post type.
-		 * @global WPDB   $wpdb    The WPDB object.
+		 * @global WPDB $wpdb The WPDB object.
 		 *
 		 * @param  array $clauses Array of SQL query clauses.
+		 *
 		 * @return array
 		 */
 		public function sort_donations( $clauses ) {
@@ -716,18 +725,23 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				return $clauses;
 			}
 
-			if ( ! isset( $_GET['orderby'] ) ) {
-				return $clauses;
+			$campaign_table_name = $wpdb->prefix . "charitable_campaign_donations";
+			$clauses['join']     .= " LEFT JOIN $campaign_table_name cd ON cd.donation_id = $wpdb->posts.ID ";
+
+			// filter donations by donor id.
+			if ( ! empty( $_GET['donor_id'] ) ) {
+				$clauses['where'] = ' AND cd.donor_id = ' . absint( $_GET['donor_id'] ) . ' ';
 			}
 
-			/* Sorting */
-			$order = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) == 'ASC' ? 'ASC' : 'DESC';
+			if ( ! empty( $_GET['orderby'] ) ) {
+				/* Sorting */
+				$order = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) == 'ASC' ? 'ASC' : 'DESC';
 
-			switch ( $_GET['orderby'] ) {
-				case 'amount' :
-					$clauses['join'] = "JOIN {$wpdb->prefix}charitable_campaign_donations cd ON cd.donation_id = $wpdb->posts.ID ";
-					$clauses['orderby'] = 'cd.amount ' . $order;
-					break;
+				switch ( $_GET['orderby'] ) {
+					case 'amount' :
+						$clauses['orderby'] = 'cd.amount ' . $order;
+						break;
+				}
 			}
 
 			return $clauses;
@@ -755,6 +769,11 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 
 				if ( isset( $_GET['end_date'] ) && strlen( $_GET['end_date'] ) ) {
 					$args['end_date'] = $this->get_parsed_date( $_GET['end_date'] );
+				}
+
+				/* If the user cannot view/edit others donations, filter by author. */
+				if ( ! current_user_can( 'edit_others_donations' ) ) {
+					$args['author'] = get_current_user_id();
 				}
 
 				$status_counts = Charitable_Donations::count_by_status( $args );

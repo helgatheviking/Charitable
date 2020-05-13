@@ -5,7 +5,7 @@
  * @author  Studio 164a
  * @package Charitable/Admin View/Donations Page
  * @since   1.0.0
- * @version 1.0.0
+ * @version 1.6.39
  */
 
 /**
@@ -61,7 +61,8 @@ $report_types = apply_filters(
 			<?php
 			foreach ( get_posts( array(
 				'post_type'      => 'campaign',
-				'post_status'    => 'any',
+				'post_status'    => array( 'draft', 'pending', 'private', 'publish' ),
+				'perm'           => 'readable',
 				'posts_per_page' => -1,
 			) ) as $campaign ) :
 			?>

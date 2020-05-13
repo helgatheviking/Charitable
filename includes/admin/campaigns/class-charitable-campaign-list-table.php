@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.36
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -241,10 +241,11 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 			}
 
 			/* No Status: fix WP's crappy handling of "all" post status. */
-			if ( ! isset( $_GET['status'] ) || empty( $_GET['status'] ) || 'all' === $_GET['status'] ) {
+			if ( ! isset( $_GET['post_status'] ) || empty( $_GET['post_status'] ) || 'all' === $_GET['post_status'] ) {
 				$vars['post_status'] = array_keys( get_post_statuses() );
+				$vars['perm']        = 'readable';
 			} else {
-				switch ( $_GET['status'] ) {
+				switch ( $_GET['post_status'] ) {
 					case 'active':
 						$vars['post_status'] = 'publish';
 						$vars['meta_query']  = array(
@@ -276,7 +277,8 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 						break;
 
 					default:
-						$vars['post_status'] = $_GET['status'];
+						$vars['post_status'] = $_GET['post_status'];
+						$vars['perm']        = 'readable';
 				}
 			}
 
@@ -327,6 +329,11 @@ if ( ! class_exists( 'Charitable_Campaign_List_Table' ) ) :
 			/* Filter by campaign. */
 			if ( isset( $_GET['campaign_id'] ) && 'all' != $_GET['campaign_id'] ) {
 				$vars['post__in'] = charitable_get_table( 'campaign_donations' )->get_donation_ids_for_campaign( $_GET['campaign_id'] );
+			}
+
+			/* Restrict by author if user can only edit their own. */
+			if ( ! current_user_can( 'edit_others_campaigns' ) ) {
+				$vars['author'] = get_current_user_id();
 			}
 
 			/**

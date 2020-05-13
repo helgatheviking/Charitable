@@ -6,6 +6,7 @@
  * @package   Charitable/Admin Views/Metaboxes
  * @copyright Copyright (c) 2020, Studio 164a
  * @since     1.5.0
+ * @version   1.6.39
  */
 
 if ( ! array_key_exists( 'form_view', $view_args ) || ! $view_args['form_view']->field_has_required_args( $view_args ) ) {
@@ -16,8 +17,9 @@ $campaigns = get_posts(
 	array(
 		'post_type'      => 'campaign',
 		'posts_per_page' => -1,
-		'post_status'    => 'any',
+		'post_status'    => array( 'draft', 'pending', 'private', 'publish' ),
 		'fields'         => 'ids',
+		'perm'           => 'readable',
 	)
 );
 
