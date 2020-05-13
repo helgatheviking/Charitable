@@ -2,12 +2,12 @@
 /**
  * The class that is responsible for querying data about donations.
  *
- * @package	  Charitable/Classes/Charitable_Donations
- * @author 	  Eric Daams
+ * @package   Charitable/Classes/Charitable_Donations
+ * @author    Eric Daams
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version	  1.6.39
+ * @version   1.6.39
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

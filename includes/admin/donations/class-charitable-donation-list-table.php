@@ -709,13 +709,10 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 		 * Column sorting handler.
 		 *
 		 * @since  1.5.0
-         * @update 1.7.0
 		 *
 		 * @global string $typenow The current post type.
 		 * @global WPDB $wpdb The WPDB object.
-		 *
 		 * @param  array $clauses Array of SQL query clauses.
-		 *
 		 * @return array
 		 */
 		public function sort_donations( $clauses ) {
@@ -725,23 +722,18 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 				return $clauses;
 			}
 
-			$campaign_table_name = $wpdb->prefix . "charitable_campaign_donations";
-			$clauses['join']     .= " LEFT JOIN $campaign_table_name cd ON cd.donation_id = $wpdb->posts.ID ";
-
-			// filter donations by donor id.
-			if ( ! empty( $_GET['donor_id'] ) ) {
-				$clauses['where'] = ' AND cd.donor_id = ' . absint( $_GET['donor_id'] ) . ' ';
+			if ( ! isset( $_GET['orderby'] ) ) {
+				return $clauses;
 			}
 
-			if ( ! empty( $_GET['orderby'] ) ) {
-				/* Sorting */
-				$order = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) == 'ASC' ? 'ASC' : 'DESC';
+			/* Sorting */
+			$order = isset( $_GET['order'] ) && strtoupper( $_GET['order'] ) == 'ASC' ? 'ASC' : 'DESC';
 
-				switch ( $_GET['orderby'] ) {
-					case 'amount' :
-						$clauses['orderby'] = 'cd.amount ' . $order;
-						break;
-				}
+			switch ( $_GET['orderby'] ) {
+				case 'amount' :
+					$clauses['join'] = "JOIN {$wpdb->prefix}charitable_campaign_donations cd ON cd.donation_id = $wpdb->posts.ID ";
+					$clauses['orderby'] = 'cd.amount ' . $order;
+					break;
 			}
 
 			return $clauses;
