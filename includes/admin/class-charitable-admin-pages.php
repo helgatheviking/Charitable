@@ -88,7 +88,7 @@ if ( ! class_exists( 'Charitable_Admin_Pages' ) ) :
 			add_menu_page(
 				'Charitable',
 				'Charitable',
-				$this->admin_menu_capability,
+				'edit_campaigns',
 				$this->admin_menu_parent_page,
 				array( $this, 'render_welcome_page' )
 			);

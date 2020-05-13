@@ -342,6 +342,7 @@ if ( ! class_exists( 'Charitable_Donation_List_Table' ) ) :
 			foreach ( $post_ids as $post_id ) {
 				$donation = charitable_get_donation( $post_id );
 				$donation->update_status( $new_status );
+
 				do_action( 'charitable_donations_table_do_bulk_action', $post_id, $new_status );
 			}
 
