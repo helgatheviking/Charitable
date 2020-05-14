@@ -116,6 +116,10 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 		 * @return mixed
 		 */
 		private function run_report_query( $type ) {
+			if ( false === $this->args['campaigns'] ) {
+				return 0;
+			}
+
 			switch ( $type ) {
 				case 'amount':
 					return $this->run_amount_query();
@@ -203,13 +207,6 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 			$args['campaigns']   = $this->parse_campaigns( $args );
 			$args['report_type'] = $this->parse_report_type( $args );
 
-			error_log( var_export( $args, true ) );
-
-			echo '<pre>';
-			var_dump( $args );
-			echo '</pre>';
-			// die;
-
 			return $args;
 		}
 
@@ -219,7 +216,7 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 		 * @since  1.6.0
 		 *
 		 * @param  array $args The passed report arguments.
-		 * @return array
+		 * @return array|false
 		 */
 		private function parse_campaigns( $args ) {
 			if ( ! is_array( $args['campaigns'] ) ) {
@@ -262,10 +259,17 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 				return array();
 			}
 
-			return array_merge(
+			$campaigns = array_merge(
 				$campaigns,
 				get_posts( $query_args )
 			);
+
+			/* Return false if there are no campaigns matching the query. */
+			if ( empty( $campaigns ) ) {
+				return false;
+			}
+
+			return $campaigns;
 		}
 
 		/**
