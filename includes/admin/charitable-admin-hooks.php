@@ -61,7 +61,7 @@ add_filter( 'admin_body_class', array( Charitable_Admin::get_instance(), 'add_ad
  *
  * @see Charitable_Admin::remove_jquery_ui_styles_nf()
  */
-add_filter( 'media_buttons_context', array( Charitable_Admin::get_instance(), 'remove_jquery_ui_styles_nf' ), 20 );
+// add_filter( 'media_buttons_context', array( Charitable_Admin::get_instance(), 'remove_jquery_ui_styles_nf' ), 20 );
 
 /**
  * Add action links to the Charitable plugin block.
