@@ -255,6 +255,10 @@ if ( ! class_exists( 'Charitable_Donation_Report' ) ) :
 				unset( $query_args['post__in'] );
 			}
 
+			if ( 2 === count( $query_args['tax_query'] ) ) {
+				$query_args['tax_query']['relation'] = 'OR';
+			}
+
 			if ( empty( $campaigns ) && empty( $query_args['tax_query'] ) && ! $args['include_children'] ) {
 				return array();
 			}
