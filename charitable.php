@@ -282,8 +282,8 @@ if ( ! class_exists( 'Charitable' ) ) :
 			add_action( 'plugins_loaded', array( $this, 'charitable_install' ), 100 );
 			add_action( 'plugins_loaded', array( $this, 'charitable_start' ), 100 );
 			add_action( 'plugins_loaded', array( $this, 'endpoints' ), 100 );
-			add_action( 'plugins_loaded', array( $this, 'donation_fields' ), 100 );
-			add_action( 'plugins_loaded', array( $this, 'campaign_fields' ), 100 );
+			add_action( 'init', array( $this, 'donation_fields' ), -1 );
+			add_action( 'init', array( $this, 'campaign_fields' ), -1 );
 			add_action( 'plugins_loaded', array( $this, 'register_donormeta_table' ) );
 			add_action( 'plugins_loaded', 'charitable_load_compat_functions' );
 			add_action( 'setup_theme', array( 'Charitable_Customizer', 'start' ) );
@@ -581,6 +581,9 @@ if ( ! class_exists( 'Charitable' ) ) :
 		 * @return Charitable_Donation_Field_Registry
 		 */
 		public function donation_fields() {
+
+			// throw new Exception();
+			// die;
 			if ( ! $this->registry->has( 'donation_field_registry' ) ) {
 				$donation_fields = new Charitable_Donation_Field_Registry();
 
