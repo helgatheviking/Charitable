@@ -145,6 +145,8 @@ if ( ! class_exists( 'Charitable_Ghost_Page' ) ) :
 			$wp_query->is_post_type_archive = false;
 
 			$GLOBALS['wp_query'] = $wp_query;
+
+			set_query_var( 'do_not_redirect', 1 );
 		}
 
 		/**
