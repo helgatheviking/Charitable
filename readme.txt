@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
 Tested up to: 5.4.1
-Stable tag: 1.6.39
+Stable tag: 1.6.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -226,6 +226,10 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.40 =
+* FIX: Use the correct positioning of the currency symbol when formatting amounts with the symbol via Javascript (only affects Fee Relief). [#777](https://github.com/Charitable/Charitable/issues/777)
+* FIX: Get the month names for the current locale when showing a datepicker field in the front-end. Currently this only affects the front-end campaign in Charitable Ambassadors. [#781](https://github.com/Charitable/Charitable/issues/781)
 
 = 1.6.39 =
 * SECURIY FIX: Prevent disclosure of campaign and donation information in the WordPress dashboard to users who should not have access to it. [#775](https://github.com/Charitable/Charitable/issues/775)
