@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.6.38
+ * @version   1.6.40
  */
 
 // Exit if accessed directly.
@@ -270,6 +270,20 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 		 * @return string
 		 */
 		public function get_accounting_js_format() {
+			switch ( charitable_get_option( 'currency_format', 'left' ) ) {
+				case 'right':
+					$format = '%v%s';
+					break;
+				case 'left-with-space':
+					$format = '%s %v';
+					break;
+				case 'right-with-space':
+					$format = '%v %s';
+					break;
+				default:
+					$format = '%s%v';
+			}
+
 			/**
 			 * Filter the currency format to use with accounting.js.
 			 *
@@ -277,7 +291,7 @@ if ( ! class_exists( 'Charitable_Currency' ) ) :
 			 *
 			 * @param string $format The currency format.
 			 */
-			return apply_filters( 'charitable_accounting_js_currency_format', '%s%v' );
+			return apply_filters( 'charitable_accounting_js_currency_format', $format );
 		}
 
 		/**

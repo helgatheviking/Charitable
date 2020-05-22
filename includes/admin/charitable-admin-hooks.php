@@ -2,11 +2,12 @@
 /**
  * Charitable Admin Hooks.
  *
- * @package     Charitable/Functions/Admin
- * @version     1.3.0
- * @author      Eric Daams
- * @copyright   Copyright (c) 2020, Studio 164a
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @package   Charitable/Functions/Admin
+ * @author    Eric Daams
+ * @copyright Copyright (c) 2020, Studio 164a
+ * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since     1.3.0
+ * @version   1.6.40
  */
 
 // Exit if accessed directly.
@@ -61,7 +62,7 @@ add_filter( 'admin_body_class', array( Charitable_Admin::get_instance(), 'add_ad
  *
  * @see Charitable_Admin::remove_jquery_ui_styles_nf()
  */
-add_filter( 'media_buttons_context', array( Charitable_Admin::get_instance(), 'remove_jquery_ui_styles_nf' ), 20 );
+// add_filter( 'media_buttons_context', array( Charitable_Admin::get_instance(), 'remove_jquery_ui_styles_nf' ), 20 );
 
 /**
  * Add action links to the Charitable plugin block.
