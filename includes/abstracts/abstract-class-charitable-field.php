@@ -87,8 +87,8 @@ if ( ! class_exists( 'Charitable_Field' ) ) :
 		 * @param  mixed  $value   The field's value.
 		 * @return Charitable_Field
 		 */
-		public function set( $key, $setting = null, $value ) {
-			if ( is_null( $setting ) ) {
+		public function set( $key, $setting, $value ) {
+			if ( empty( $setting ) ) {
 				return $this->__set( $key, $value );
 			}
 

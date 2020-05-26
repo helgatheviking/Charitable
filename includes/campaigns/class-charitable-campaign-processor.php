@@ -253,7 +253,9 @@ if ( ! class_exists( 'Charitable_Campaign_Processor' ) ) :
 			);
 
 			foreach ( $data as $taxonomy => $terms ) {
-				wp_set_object_terms( $this->campaign_id, $terms, $taxonomy, false );
+				if ( false !== $terms ) {
+					wp_set_object_terms( $this->campaign_id, $terms, $taxonomy, false );
+				}
 			}
 		}
 
