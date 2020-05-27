@@ -166,15 +166,23 @@
         margin-bottom: 14px;
     }
 
-    .charitable-radio-list {
-        li {
-            display: block;
-        }
+	.charitable-radio-fieldset {
+		legend {
+			font-weight: bold;
+			margin-bottom: 0;
+		}
+		.charitable-helper { padding: 0; }
+		.charitable-radio-list {
+			margin-top: 6px;
+			li {
+				display: block;
+			}
 
-        label {
-            vertical-align: baseline;
-        }
-    }
+			label {
+				vertical-align: baseline;
+			}
+		}
+	}
 
     /* Select2 styling */
     .select2-selection.select2-selection--single { height: 46px; font-size: 14px; }
@@ -196,7 +204,7 @@
     }
 
     li {
-        margin-bottom: 10px;
+        margin-bottom: 6px;
     }
 }
 
