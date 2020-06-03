@@ -68,6 +68,11 @@ function charitable_load_compat_functions() {
 	if ( defined( 'WC_PLUGIN_FILE' ) ) {
 		require_once( $includes_path . 'compat/charitable-woocommerce-compat-functions.php' );
 	}
+
+	/* Polylang */
+	if ( defined( 'POLYLANG_VERSION' ) ) {
+		require_once( $includes_path . 'compat/charitable-polylang-compat-functions.php' );
+	}
 }
 
 /**
