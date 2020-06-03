@@ -73,6 +73,11 @@ function charitable_load_compat_functions() {
 	if ( defined( 'POLYLANG_VERSION' ) ) {
 		require_once( $includes_path . 'compat/charitable-polylang-compat-functions.php' );
 	}
+
+	/* Permalink Manager */
+	if ( defined( 'PERMALINK_MANAGER_PLUGIN_NAME' ) ) {
+		require_once( $includes_path . 'compat/charitable-permalink-manager-compat-functions.php' );
+	}
 }
 
 /**
