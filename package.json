@@ -1,6 +1,6 @@
 {
   "name": "charitable",
-  "version": "1.6.40",
+  "version": "1.6.41",
   "private": true,
   "engines": {
     "node": ">=8.0.0",

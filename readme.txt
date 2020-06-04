@@ -3,8 +3,8 @@ Contributors: WPCharitable, ericdaams
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40164a%2ecom
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
-Tested up to: 5.4.1
-Stable tag: 1.6.40
+Tested up to: 5.4.2
+Stable tag: 1.6.41
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -226,6 +226,14 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.41 =
+* NEW: Add the site currency, country code and test mode setting to the Javascript variables to allow scripts to take that into account. This was specifically required by the new Braintree extension (coming soon!). [#784](https://github.com/Charitable/Charitable/issues/784)
+* FIX: Improved styling for the campaign meta boxes and admin donation form fields.
+* FIX: In some cases, specifically with the Ambassadors front-end campaign form, campaign categories and tags were removed when updating a campaign due to an issue with the way `Charitable_Campaign_Processor` class. [#785](https://github.com/Charitable/Charitable/issues/785)
+* FIX: Prevent WordPress from treating any Charitable endpoints as a 404 page. This is a general fix but specifically resolves an issue encountered with Polylang when trying to verify your email address or change your password. [#776](https://github.com/Charitable/Charitable/issues/776)
+* FIX: Block redirects caused by the Permalink Manager plugin when the "canonical redirect" setting is enabled. [#765](https://github.com/Charitable/Charitable/issues/765)
+* FIX: Ensure that Polylang translations for donation form fields and campaign fields are picked up correctly when the language is determined from the content. [#776](https://github.com/Charitable/Charitable/issues/776)
 
 = 1.6.40 =
 * FIX: Use the correct positioning of the currency symbol when formatting amounts with the symbol via Javascript (only affects Fee Relief). [#777](https://github.com/Charitable/Charitable/issues/777)

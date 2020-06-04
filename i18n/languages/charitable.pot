@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Charitable package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Charitable 1.6.40\n"
+"Project-Id-Version: Charitable 1.6.41\n"
 "Report-Msgid-Bugs-To: https://www.wpcharitable.com/\n"
-"POT-Creation-Date: 2020-05-22 06:32:14+00:00\n"
+"POT-Creation-Date: 2020-06-04 03:35:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -6486,13 +6486,13 @@ msgstr ""
 msgid "List of donation reports."
 msgstr ""
 
-#: includes/campaigns/class-charitable-campaign-processor.php:482
+#: includes/campaigns/class-charitable-campaign-processor.php:484
 msgid ""
 "Campaign processor requires date in YYYY-MM-DD format. Date passed as %s. "
 "This message was added in Charitable version 1.5.9."
 msgstr ""
 
-#: includes/campaigns/class-charitable-campaign-processor.php:640
+#: includes/campaigns/class-charitable-campaign-processor.php:642
 msgid ""
 "%s is deprecated as a sanitizer on the %s hook. To prevent sanitization, "
 "use add_filter( 'charitable_campaign_processor_disable_sanitizer_%s', "
@@ -7438,28 +7438,28 @@ msgstr ""
 msgid "Email Verification"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:93
+#: includes/endpoints/class-charitable-endpoints.php:94
 msgid "Endpoint %s has already been registered."
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:195
+#: includes/endpoints/class-charitable-endpoints.php:196
 #. translators: %s: endpoint id
 msgid "Endpoint %s has not been registered."
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:474
+#: includes/endpoints/class-charitable-endpoints.php:494
 msgid "View All"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:487
+#: includes/endpoints/class-charitable-endpoints.php:507
 msgid "Select All"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:490
+#: includes/endpoints/class-charitable-endpoints.php:510
 msgid "Add to Menu"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:587
+#: includes/endpoints/class-charitable-endpoints.php:607
 #. translators: %s: endpoint id
 msgid "Endpoint %s was incorrectly registered."
 msgstr ""
@@ -8425,37 +8425,37 @@ msgstr ""
 msgid "You must donate at least %s."
 msgstr ""
 
-#: includes/public/class-charitable-public.php:130
+#: includes/public/class-charitable-public.php:132
 msgid "Please fill out all required fields."
 msgstr ""
 
-#: includes/public/class-charitable-public.php:131
+#: includes/public/class-charitable-public.php:133
 msgid "Your donation could not be processed. Please reload the page and try again."
 msgstr ""
 
-#: includes/public/class-charitable-public.php:132
+#: includes/public/class-charitable-public.php:134
 msgid "The credit card passed is not valid."
 msgstr ""
 
-#: includes/public/class-charitable-public.php:133
+#: includes/public/class-charitable-public.php:135
 msgid "The credit card expiry date is not valid."
 msgstr ""
 
-#: includes/public/class-charitable-public.php:215
+#: includes/public/class-charitable-public.php:218
 #. translators: %d: number of files
 msgid "You can only upload %d file"
 msgstr ""
 
-#: includes/public/class-charitable-public.php:216
+#: includes/public/class-charitable-public.php:219
 msgid "You can only upload a maximum of %d files"
 msgstr ""
 
-#: includes/public/class-charitable-public.php:217
+#: includes/public/class-charitable-public.php:220
 #. translators: %1$s: file name; %2$s: max upload size
 msgid "%1$s exceeds the max upload size of %2$s"
 msgstr ""
 
-#: includes/public/class-charitable-public.php:218
+#: includes/public/class-charitable-public.php:221
 #. translators: %s: file name
 msgid "%s failed to upload. Please try again."
 msgstr ""
@@ -8863,10 +8863,12 @@ msgctxt "go to campaign"
 msgid "Go to"
 msgstr ""
 
-#: includes/abstracts/abstract-class-charitable-field.php:101
-#. translators: %s: argument key
+#: includes/abstracts/abstract-class-charitable-field.php:102
+#. translators: %1$s: argument key; %2$s: setting
 msgctxt "argument key"
-msgid "Attempting to set an argument setting for a non-array argument. Argument: %s"
+msgid ""
+"Attempting to set an argument setting for a non-array argument. Argument: "
+"%1$s; Setting: %2$s"
 msgstr ""
 
 #: includes/admin/donations/class-charitable-donation-list-table.php:114
@@ -8990,12 +8992,12 @@ msgctxt "Taxonomy Singular Name"
 msgid "Campaign Tag"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:511
+#: includes/endpoints/class-charitable-endpoints.php:531
 msgctxt "customizer menu section title"
 msgid "Charitable"
 msgstr ""
 
-#: includes/endpoints/class-charitable-endpoints.php:539
+#: includes/endpoints/class-charitable-endpoints.php:559
 msgctxt "customizer menu type label"
 msgid "Custom Link"
 msgstr ""
@@ -9010,7 +9012,7 @@ msgctxt "decline months names: on or off"
 msgid "off"
 msgstr ""
 
-#: includes/public/class-charitable-public.php:214
+#: includes/public/class-charitable-public.php:217
 msgctxt "remove image button text"
 msgid "Remove"
 msgstr ""

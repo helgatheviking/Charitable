@@ -1,3 +1,11 @@
+# 1.6.41
+* NEW: Add the site currency, country code and test mode setting to the Javascript variables to allow scripts to take that into account. This was specifically required by the new Braintree extension (coming soon!). [#784](https://github.com/Charitable/Charitable/issues/784)
+* FIX: Improved styling for the campaign meta boxes and admin donation form fields.
+* FIX: In some cases, specifically with the Ambassadors front-end campaign form, campaign categories and tags were removed when updating a campaign due to an issue with the way `Charitable_Campaign_Processor` class. [#785](https://github.com/Charitable/Charitable/issues/785)
+* FIX: Prevent WordPress from treating any Charitable endpoints as a 404 page. This is a general fix but specifically resolves an issue encountered with Polylang when trying to verify your email address or change your password. [#776](https://github.com/Charitable/Charitable/issues/776)
+* FIX: Block redirects caused by the Permalink Manager plugin when the "canonical redirect" setting is enabled. [#765](https://github.com/Charitable/Charitable/issues/765)
+* FIX: Ensure that Polylang translations for donation form fields and campaign fields are picked up correctly when the language is determined from the content. [#776](https://github.com/Charitable/Charitable/issues/776)
+
 # 1.6.40
 * FIX: Use the correct positioning of the currency symbol when formatting amounts with the symbol via Javascript (only affects Fee Relief). [#777](https://github.com/Charitable/Charitable/issues/777)
 * FIX: Get the month names for the current locale when showing a datepicker field in the front-end. Currently this only affects the front-end campaign in Charitable Ambassadors. [#781](https://github.com/Charitable/Charitable/issues/781)
