@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.37
+ * @version   1.6.41
  */
 
 // Exit if accessed directly.
@@ -60,6 +60,7 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 			$this->endpoints = array();
 
 			add_action( 'wp', array( $this, 'disable_endpoint_cache' ) );
+			add_filter( 'pre_handle_404', array( $this, 'block_404_on_endpoints' ) );
 			add_action( 'init', array( $this, 'setup_rewrite_rules' ) );
 			add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
 			add_action( 'template_redirect', array( $this, 'maybe_redirect' ) );
@@ -233,6 +234,25 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 			 * @since 1.6.14
 			 */
 			do_action( 'charitable_do_not_cache' );
+		}
+
+		/**
+		 * If we're viewing a Charitable endpoint, we're not on a 404, even
+		 * though WordPress interprets some pages (like the Forgot Password)
+		 * as a 404 in certain cases.
+		 *
+		 * @since  1.6.41
+		 *
+		 * @param  boolean $not_a_404 Whether to preempt WordPress and instruct
+		 *                            it that this is not a 404 request.
+		 * @return boolean
+		 */
+		public function block_404_on_endpoints( $not_a_404 ) {
+			if ( false !== $this->get_current_endpoint() ) {
+				$not_a_404 = true;
+			}
+
+			return $not_a_404;
 		}
 
 		/**
@@ -594,7 +614,6 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 
 						if ( $this->is_page( $endpoint_id, array( 'strict' => true ) ) ) {
 							$this->current_endpoint = $endpoint_id;
-
 							return $this->current_endpoint;
 						}
 					}
