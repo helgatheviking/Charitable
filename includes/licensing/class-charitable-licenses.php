@@ -634,11 +634,14 @@ if ( ! class_exists( 'Charitable_Licenses' ) ) :
 			);
 
 			/* Call the custom API */
-			$response = wp_remote_post( $product_details['url'], array(
-				'timeout'   => 15,
-				'sslverify' => false,
-				'body'      => $api_params,
-			) );
+			$response = wp_remote_post(
+				$product_details['url'],
+				array(
+					'timeout'   => 15,
+					'sslverify' => false,
+					'body'      => $api_params,
+				)
+			);
 
 			/* Make sure the response came back okay */
 			if ( is_wp_error( $response ) ) {

@@ -221,7 +221,8 @@
         width: 100%;
         margin-right: 0; } }
   .charitable-donation-form .custom-donation-input {
-    max-width: 100%; }
+    max-width: 100%;
+    background-color: #fff; }
 
 #charitable-donor-fields > .charitable-form-field,
 #charitable-donor-fields .charitable-form-fields > .charitable-form-field {
