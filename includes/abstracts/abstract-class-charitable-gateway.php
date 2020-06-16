@@ -2,10 +2,10 @@
 /**
  * Gateway abstract model
  *
- * @version		1.0.0
- * @package		Charitable/Classes/Charitable_Gateway
- * @author 		Eric Daams
- * @copyright 	Copyright (c) 2020, Studio 164a
+ * @version     1.0.0
+ * @package     Charitable/Classes/Charitable_Gateway
+ * @author      Eric Daams
+ * @copyright   Copyright (c) 2020, Studio 164a
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -81,16 +81,16 @@ if ( ! class_exists( 'Charitable_Gateway' ) ) :
 		public function default_gateway_settings() {
 			return array(
 				'section_gateway' => array(
-					'type'      => 'heading',
-					'title'     => $this->get_name(),
-					'priority'  => 2,
+					'type'     => 'heading',
+					'title'    => $this->get_name(),
+					'priority' => 2,
 				),
-				'label' => array(
-					'type'      => 'text',
-					'title'     => __( 'Gateway Label', 'charitable' ),
-					'help'      => __( 'The label that will be shown to donors on the donation form.', 'charitable' ),
-					'priority'  => 4,
-					'default'   => $this->get_default_label(),
+				'label'           => array(
+					'type'     => 'text',
+					'title'    => __( 'Gateway Label', 'charitable' ),
+					'help'     => __( 'The label that will be shown to donors on the donation form.', 'charitable' ),
+					'priority' => 4,
+					'default'  => $this->get_default_label(),
 				),
 			);
 		}
@@ -184,21 +184,21 @@ if ( ! class_exists( 'Charitable_Gateway' ) ) :
 			return apply_filters(
 				'charitable_credit_card_fields',
 				array(
-					'cc_name' => array(
+					'cc_name'       => array(
 						'label'     => __( 'Name on Card', 'charitable' ),
 						'type'      => 'text',
 						'required'  => true,
 						'priority'  => 2,
 						'data_type' => 'gateway',
 					),
-					'cc_number' => array(
+					'cc_number'     => array(
 						'label'     => __( 'Card Number', 'charitable' ),
 						'type'      => 'text',
 						'required'  => true,
 						'priority'  => 4,
 						'data_type' => 'gateway',
 					),
-					'cc_cvc' => array(
+					'cc_cvc'        => array(
 						'label'     => __( 'CVV Number', 'charitable' ),
 						'type'      => 'text',
 						'required'  => true,
@@ -229,9 +229,12 @@ if ( ! class_exists( 'Charitable_Gateway' ) ) :
 		public static function redirect_to_processing( $result, $donation_id ) {
 			return array(
 				'safe'     => true,
-				'redirect' => charitable_get_permalink( 'donation_processing_page', array(
-					'donation_id' => $donation_id,
-				) ),
+				'redirect' => charitable_get_permalink(
+					'donation_processing_page',
+					array(
+						'donation_id' => $donation_id,
+					)
+				),
 			);
 		}
 
