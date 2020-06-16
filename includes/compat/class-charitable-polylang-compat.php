@@ -33,8 +33,8 @@ if ( ! class_exists( 'Charitable_Polylang_Compat' ) ) :
 			add_action( 'wp', array( $this, 'load_late_translations' ) );
 
 			/* Get Polylang translation of endpoints. */
-			add_filter( 'charitable_permalink_profile_page', array( $this, 'get_profile_page_url' ) );
-			add_filter( 'charitable_is_page_profile_page', array( $this, 'is_profile_page' ) );
+			add_filter( 'charitable_permalink_profile_page', array( $this, 'get_profile_page_url' ), 10, 2 );
+			add_filter( 'charitable_is_page_profile_page', array( $this, 'is_profile_page' ), 10, 2 );
 		}
 
 		/**
