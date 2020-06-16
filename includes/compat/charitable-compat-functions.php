@@ -71,6 +71,7 @@ function charitable_load_compat_functions() {
 
 	/* Polylang */
 	if ( defined( 'POLYLANG_VERSION' ) ) {
+		new Charitable_Polylang_Compat();
 		require_once( $includes_path . 'compat/charitable-polylang-compat-functions.php' );
 	}
 

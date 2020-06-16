@@ -250,6 +250,12 @@ if ( ! class_exists( 'Charitable_Endpoints' ) ) :
 		public function block_404_on_endpoints( $not_a_404 ) {
 			if ( false !== $this->get_current_endpoint() ) {
 				$not_a_404 = true;
+			} else {
+				/* Some endpoints will return false at this point since
+				 * it's so early, so we unset the class property to make
+				 * sure they are tested again later on.
+				 */
+				unset( $this->current_endpoint );
 			}
 
 			return $not_a_404;
