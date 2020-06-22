@@ -32,6 +32,15 @@ if ( ! class_exists( 'Charitable_User_Dashboard' ) ) :
 		private static $instance = null;
 
 		/**
+		 * Stores whether the current request is in the user dashboard.
+		 *
+		 * @since 1.6.42
+		 *
+		 * @var   boolean
+		 */
+		private $on_user_dashboard_page;
+
+		/**
 		 * Returns and/or create the single instance of this class.
 		 *
 		 * @since  1.2.0
@@ -179,23 +188,21 @@ if ( ! class_exists( 'Charitable_User_Dashboard' ) ) :
 		public function in_nav() {
 			global $wp;
 
-			$found = false;
-
-			$ret = wp_cache_get( 'charitable_in_user_dashboard', '', false, $found );
-
-			if ( false === $found ) {
-
+			if ( ! isset( $this->on_user_dashboard_page ) ) {
 				$current_url = trailingslashit( charitable_get_current_url() );
 
-				$ret = in_array( get_queried_object_id(), $this->nav_objects() ) || in_array( $current_url, $this->nav_objects() );
+				$this->on_user_dashboard_page = in_array( get_queried_object_id(), $this->nav_objects() ) || in_array( $current_url, $this->nav_objects() );
 
-				$ret = apply_filters( 'charitable_is_in_user_dashboard', $ret, $this->nav_objects() );
-
-				wp_cache_set( 'charitable_in_user_dashboard', $ret );
-
+				/**
+				 * Set whether we're in the user dashboard.
+				 *
+				 * @param  boolean $on_user_dashboard_page Whether we're in the user dashboard.
+				 * @param  array   $nav_objects            The navigation menu objects for the user dashboard.
+				 */
+				$this->on_user_dashboard_page = apply_filters( 'charitable_is_in_user_dashboard', $this->on_user_dashboard_page, $this->nav_objects() );
 			}
 
-			return $ret;
+			return $this->on_user_dashboard_page;
 		}
 
 		/**

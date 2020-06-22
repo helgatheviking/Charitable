@@ -39,7 +39,14 @@ if ( ! class_exists( 'Charitable_Polylang_Compat' ) ) :
 		 * @since 1.6.42
 		 */
 		public function __construct() {
+			/* Load Donation & Campaign field translations late */
 			add_action( 'wp', array( $this, 'load_late_translations' ) );
+
+			/* Handle Polylang translation of user dashboard menu */
+			add_action( 'wp_update_nav_menu', array( $this, 'flush_menu_object_cache' ) );
+			add_action( 'wp_update_nav_menu_item', array( $this, 'flush_menu_object_cache' ) );
+			add_filter( 'transient_charitable_user_dashboard_objects', array( $this, 'get_user_dashboard_objects' ) );
+			add_filter( 'pre_set_transient_charitable_user_dashboard_objects', array( $this, 'set_user_dashboard_objects' ) );
 
 			/* Profile Page */
 			add_filter( 'charitable_permalink_profile_page', array( $this, 'get_profile_page_url' ), 10, 2 );
@@ -60,6 +67,15 @@ if ( ! class_exists( 'Charitable_Polylang_Compat' ) ) :
 			/* Terms & Conditions and Privacy Policy */
 			add_filter( 'charitable_option_terms_conditions_page', array( $this, 'get_polylang_page_id' ) );
 			add_filter( 'charitable_option_privacy_policy_page', array( $this, 'get_polylang_page_id' ) );
+
+			/**
+			 * Do something with this class instance.
+			 *
+			 * @since 1.6.42
+			 *
+			 * @param Charitable_Polylang_Compat $helper Polylang compatibility class instance.
+			 */
+			do_action( 'charitable_polylang_compat', $this );
 		}
 
 		/**
@@ -137,6 +153,101 @@ if ( ! class_exists( 'Charitable_Polylang_Compat' ) ) :
 					}
 				}
 			}
+		}
+
+		/**
+		 * Returns the user dashboard menus, including any Polylang
+		 * translation versions.
+		 *
+		 * @since  1.6.42
+		 *
+		 * @return array
+		 */
+		public function get_user_dashboard_menus() {
+			$dashboard_menus = array();
+
+			/* Get all nav menu locations. */
+			$locations = get_nav_menu_locations();
+
+			foreach ( $locations as $location => $assigned_menu ) {
+				if ( 'charitable-dashboard' === substr( $location, 0, 20 ) ) {
+					$dashboard_menus[] = wp_get_nav_menu_object( $assigned_menu );
+				}
+			}
+
+			return $dashboard_menus;
+		}
+
+		/**
+		 * Flush the object cache when a menu assigned to the user dashboard
+		 * location (in any language) is edited.
+		 *
+		 * @since  1.6.42
+		 *
+		 * @param  int $menu_id The menu id.
+		 * @return void
+		 */
+		public function flush_menu_object_cache( $menu_id ) {
+			$dashboard_menus = $this->get_user_dashboard_menus();
+
+			if ( empty( $dashboard_menus ) ) {
+				delete_transient( 'charitable_user_dashboard_objects' );
+			}
+
+			if ( in_array( $menu_id, wp_list_pluck( $dashboard_menus, 'term_id' ) ) ) {
+				delete_transient( 'charitable_user_dashboard_objects' );
+			}
+		}
+
+		/**
+		 * Get the user dashboard objects for the current language.
+		 *
+		 * @since  1.6.42
+		 *
+		 * @return array
+		 */
+		public function get_user_dashboard_objects( $objects ) {
+			$language = pll_current_language();
+
+			if ( false === $objects ) {
+				return false;
+			}
+
+			if ( ! array_key_exists( $language, $objects ) ) {
+				return false;
+			}
+
+			return $objects[ $language ];
+		}
+
+		/**
+		 * When saving the user dashboard objects, include any objects in Polylang
+		 * locations of the user dashboard menu.
+		 *
+		 * @since  1.6.42
+		 *
+		 * @return array
+		 */
+		public function set_user_dashboard_objects( $menu_items ) {
+			$language = pll_current_language();
+
+			/* Temporarily switch off our filter. */
+			remove_filter( 'transient_charitable_user_dashboard_objects', array( $this, 'get_user_dashboard_objects' ) );
+
+			$all_menu_items = get_transient( 'charitable_user_dashboard_objects' );
+
+			if ( ! is_array( $all_menu_items ) ) {
+				$all_menu_items = array();
+			}
+
+			if ( ! array_key_exists( $language, $all_menu_items ) ) {
+				$all_menu_items[ $language ] = $menu_items;
+			}
+
+			/* Temporarily switch off our filter. */
+			add_filter( 'transient_charitable_user_dashboard_objects', array( $this, 'get_user_dashboard_objects' ) );
+
+			return $all_menu_items;
 		}
 
 		/**
