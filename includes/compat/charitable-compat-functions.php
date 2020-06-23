@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.5.0
- * @version   1.6.41
+ * @version   1.6.42
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -72,7 +72,6 @@ function charitable_load_compat_functions() {
 	/* Polylang */
 	if ( defined( 'POLYLANG_VERSION' ) ) {
 		new Charitable_Polylang_Compat();
-		require_once( $includes_path . 'compat/charitable-polylang-compat-functions.php' );
 	}
 
 	/* Permalink Manager */

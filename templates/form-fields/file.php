@@ -2,7 +2,7 @@
 /**
  * The template used to display file form fields.
  *
- * @author 	Studio 164a
+ * @author  Studio 164a
  * @package Charitable/Templates/Form Fields
  * @since   1.0.0
  * @version 1.0.0

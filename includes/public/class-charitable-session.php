@@ -418,11 +418,11 @@ if ( ! class_exists( 'Charitable_Session' ) ) :
 			$start_session = true;
 
 			if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
-				$blacklist = $this->get_blacklist();
+				$blocklist = $this->get_blocklist();
 				$uri       = ltrim( $_SERVER['REQUEST_URI'], '/' );
 				$uri       = untrailingslashit( $uri );
 
-				if ( in_array( $uri, $blacklist ) ) {
+				if ( in_array( $uri, $blocklist ) ) {
 					$start_session = false;
 				}
 
@@ -442,7 +442,7 @@ if ( ! class_exists( 'Charitable_Session' ) ) :
 		}
 
 		/**
-		 * Retrieve the URI blacklist
+		 * Retrieve the URI blocklist.
 		 *
 		 * These are the URIs where we never start sessions
 		 *
@@ -450,33 +450,46 @@ if ( ! class_exists( 'Charitable_Session' ) ) :
 		 *
 		 * @return array
 		 */
-		public function get_blacklist() {
+		public function get_blocklist() {
 			/**
-			 * Filter the blacklist of URIs where sessions should not be started.
+			 * Filter the blocklist of URIs where sessions should not be started.
 			 *
 			 * @since 1.4.17
 			 *
-			 * @param string[] $blacklist Array of URIs.
+			 * @param string[] $blocklist Array of URIs.
 			 */
-			$blacklist = apply_filters( 'charitable_session_start_uri_blacklist', array(
-				'feed',
-				'feed/rss',
-				'feed/rss2',
-				'feed/rdf',
-				'feed/atom',
-				'comments/feed',
-			) );
+			$blocklist = apply_filters(
+				'charitable_session_start_uri_blocklist',
+				array(
+					'feed',
+					'feed/rss',
+					'feed/rss2',
+					'feed/rdf',
+					'feed/atom',
+					'comments/feed',
+				)
+			);
+
+			/**
+			 * Deprecated filter retained for backwards compatibility.
+			 *
+			 * @since 1.4.17
+			 * @since 1.6.42 Deprecated in favour of charitable_session_start_uri_blocklist
+			 *
+			 * @param string[] $blocklist Array of URIs.
+			 */
+			$blocklist = apply_filters( 'charitable_session_start_uri_blacklist', $blocklist );
 
 			/* Look to see if WordPress is in a sub folder or this is a network site that uses sub folders */
 			$folder = str_replace( network_home_url(), '', get_site_url() );
 
 			if ( ! empty( $folder ) ) {
-				foreach ( $blacklist as $path ) {
-					$blacklist[] = $folder . '/' . $path;
+				foreach ( $blocklist as $path ) {
+					$blocklist[] = $folder . '/' . $path;
 				}
 			}
 
-			return $blacklist;
+			return $blocklist;
 		}
 	}
 
