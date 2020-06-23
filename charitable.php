@@ -265,6 +265,7 @@ if ( ! class_exists( 'Charitable' ) ) :
 				$this->registry->register_object( Charitable_Currency::get_instance() );
 
 				$this->registry->register_object( new Charitable_Privacy );
+				$this->registry->register_object( new Charitable_Debugging );
 			}
 
 			return $this->registry;
@@ -423,7 +424,7 @@ if ( ! class_exists( 'Charitable' ) ) :
 				return;
 			}
 
-			require_once( $this->get_path( 'includes' ) . 'class-charitable-install.php' );
+			require_once( $this->get_path( 'includes' ) . 'plugin/class-charitable-install.php' );
 
 			Charitable_Install::finish_installing();
 
@@ -744,18 +745,18 @@ if ( ! class_exists( 'Charitable' ) ) :
 		 * @return void
 		 */
 		public function activate( $network_wide = false ) {
-			require_once( $this->get_path( 'includes' ) . 'class-charitable-install.php' );
+			require_once( $this->get_path( 'includes' ) . 'plugin/class-charitable-install.php' );
 
 			if ( is_multisite() && $network_wide ) {
 				global $wpdb;
 
 				foreach ( $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" ) as $blog_id ) {
 					switch_to_blog( $blog_id );
-					new Charitable_Install();
+					new Charitable_Install( $this->includes_path );
 					restore_current_blog();
 				}
 			} else {
-				new Charitable_Install();
+				new Charitable_Install( $this->includes_path );
 			}
 		}
 
@@ -769,7 +770,7 @@ if ( ! class_exists( 'Charitable' ) ) :
 		 * @return void
 		 */
 		public function deactivate() {
-			require_once( $this->get_path( 'includes' ) . 'class-charitable-uninstall.php' );
+			require_once( $this->get_path( 'includes' ) . 'plugin/class-charitable-uninstall.php' );
 			new Charitable_Uninstall();
 		}
 
