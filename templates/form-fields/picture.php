@@ -104,10 +104,13 @@ wp_enqueue_style( 'charitable-plup-styles' );
 		<ul id="<?php echo $field['key']; ?>-dragdrop-images" class="charitable-drag-drop-images charitable-drag-drop-images-<?php echo $max_uploads; ?>">
 			<?php
 			foreach ( $pictures as $image ) :
-				charitable_template( 'form-fields/picture-preview.php', array(
-					'image' => $image,
-					'field' => $field,
-				) );
+				charitable_template(
+					'form-fields/picture-preview.php',
+					array(
+						'image' => $image,
+						'field' => $field,
+					)
+				);
 			endforeach;
 			?>
 		</ul>
