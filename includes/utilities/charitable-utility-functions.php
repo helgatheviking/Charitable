@@ -292,7 +292,7 @@ function charitable_get_pages_options( $args = array() ) {
 /**
  * Checks whether this is localhost.
  *
- * This is not fullproof. It uses a whitelist of IP addresses.
+ * This is not fullproof. It uses a safelist of IP addresses.
  *
  * @since  1.6.14
  *
@@ -306,7 +306,7 @@ function charitable_is_localhost() {
 	 *
 	 * @param array $ip_addresses The list of IP addresses.
 	 */
-	$whitelist = apply_filters(
+	$safelist = apply_filters(
 		'charitable_localhost_ips',
 		array(
 			'127.0.0.1',
@@ -314,5 +314,5 @@ function charitable_is_localhost() {
 		)
 	);
 
-	return in_array( $_SERVER['REMOTE_ADDR'], $whitelist );
+	return in_array( $_SERVER['REMOTE_ADDR'], $safelist );
 }
