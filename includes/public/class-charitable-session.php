@@ -444,7 +444,7 @@ if ( ! class_exists( 'Charitable_Session' ) ) :
 		/**
 		 * Retrieve the URI blocklist.
 		 *
-		 * These are the URIs where we never start sessions
+		 * These are the URIs where we never start sessions.
 		 *
 		 * @since  1.4.17
 		 *
