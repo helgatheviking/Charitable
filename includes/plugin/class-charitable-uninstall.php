@@ -67,7 +67,7 @@ if ( ! class_exists( 'Charitable_Uninstall' ) ) :
 				$posts = get_posts(
 					array(
 						'posts_per_page' => -1,
-						'post_type'	     => $post_type,
+						'post_type'      => $post_type,
 					)
 				);
 
