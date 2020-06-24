@@ -53,6 +53,13 @@ CHARITABLE = window.CHARITABLE || {};
         this.total = 0;
 
         /**
+         * Whether to scroll to the top of the form after a submission with errors.
+         *
+         * @access private
+         */
+        this.prevent_scroll_to_top = true;
+
+        /**
          * Reference to this object.
          *
          * @access private
@@ -729,6 +736,11 @@ CHARITABLE = window.CHARITABLE || {};
      * Scroll to the top of the form.
      */
     Donation_Form.prototype.scroll_to_top = function() {
+        if ( this.prevent_scroll_to_top ) {
+            this.prevent_scroll_to_top = false;
+            return;
+        }
+
         var $modal = this.form.parents( '.charitable-modal' );
 
         if ( $modal.length ) {
