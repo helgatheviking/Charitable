@@ -1,3 +1,10 @@
+# 1.6.42
+* NEW: Built-in support for WP Debugging plugin, which will automatically added `CHARITABLE_DEBUG` constant to your wp-config.php file if you enable debugging. [#793](https://github.com/Charitable/Charitable/issues/793)
+* FIX: When using Polylang, Charitable will now pick up the current language version of Charitable pages including the profile, login, registration, donation receipt, privacy policy and terms and conditions pages. [#790](https://github.com/Charitable/Charitable/issues/790)
+* FIX: On sites using the User Dashboard menu, Charitable now does a better job of picking up whether you're on a dashboard page. This also includes tweaks to ensure that Polylang language versions of the dashboard menu are picked up automatically.
+* FIX: Prevent Charitable from opening the donation form in a new window. [#789](https://github.com/Charitable/Charitable/issues/789)
+* FIX: Provide the ability to prevent scrolling to the top of the donation form when there is an error, to allow for situations where inline error messaging can provide more clarity. [#791](https://github.com/Charitable/Charitable/issues/791)
+
 # 1.6.41
 * NEW: Add the site currency, country code and test mode setting to the Javascript variables to allow scripts to take that into account. This was specifically required by the new Braintree extension (coming soon!). [#784](https://github.com/Charitable/Charitable/issues/784)
 * FIX: Improved styling for the campaign meta boxes and admin donation form fields.

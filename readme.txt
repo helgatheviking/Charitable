@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: donate, wordpress donation plugin, wpcharitable, peer to peer fundraising, recurring donations, donation plugin, donation form, paypal donations, stripe donations, give, fundraise, fundraising
 Requires at least: 4.1
 Tested up to: 5.4.2
-Stable tag: 1.6.41
+Stable tag: 1.6.42
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,8 @@ Charitable is the top-rated WordPress donation plugin available, with 5-star rev
 Join 10,000+ non-profits growing their online fundraising with Charitable.
 
 > Grow your online fundraising faster with Charitable's premium add-ons, with support for recurring donations, peer to peer fundraising, email marketing integrations, gateway fee recovery and much more. [Click here to unlock the most powerful WordPress fundraising software available.](https://www.wpcharitable.com/packages/?utm_source=readme&utm_medium=description-tab&utm_content=intro&utm_campaign=plugin-page-referrals)
+
+[youtube https://www.youtube.com/watch?v=CqNOJ4H8guI]
 
 = Unlimited fundraising campaigns =
 
@@ -226,6 +228,13 @@ You can post in the [support forum](https://wordpress.org/support/plugin/charita
 6. Setting up Charitable: The Email settings area.
 
 == Changelog ==
+
+= 1.6.42 =
+* NEW: Built-in support for WP Debugging plugin, which will automatically added `CHARITABLE_DEBUG` constant to your wp-config.php file if you enable debugging. [#793](https://github.com/Charitable/Charitable/issues/793)
+* FIX: When using Polylang, Charitable will now pick up the current language version of Charitable pages including the profile, login, registration, donation receipt, privacy policy and terms and conditions pages. [#790](https://github.com/Charitable/Charitable/issues/790)
+* FIX: On sites using the User Dashboard menu, Charitable now does a better job of picking up whether you're on a dashboard page. This also includes tweaks to ensure that Polylang language versions of the dashboard menu are picked up automatically.
+* FIX: Prevent Charitable from opening the donation form in a new window. [#789](https://github.com/Charitable/Charitable/issues/789)
+* FIX: Provide the ability to prevent scrolling to the top of the donation form when there is an error, to allow for situations where inline error messaging can provide more clarity. [#791](https://github.com/Charitable/Charitable/issues/791)
 
 = 1.6.41 =
 * NEW: Add the site currency, country code and test mode setting to the Javascript variables to allow scripts to take that into account. This was specifically required by the new Braintree extension (coming soon!). [#784](https://github.com/Charitable/Charitable/issues/784)
