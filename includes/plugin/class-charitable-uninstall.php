@@ -10,7 +10,7 @@
  * @copyright Copyright (c) 2020, Studio 164a
  * @license   http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since     1.0.0
- * @version   1.0.0
+ * @version   1.6.42
  */
 
 // Exit if accessed directly.
@@ -38,6 +38,7 @@ if ( ! class_exists( 'Charitable_Uninstall' ) ) :
 				$this->remove_caps();
 				$this->remove_post_data();
 				$this->remove_tables();
+				$this->remove_settings();
 
 				do_action( 'charitable_uninstall' );
 			}
@@ -60,20 +61,16 @@ if ( ! class_exists( 'Charitable_Uninstall' ) ) :
 		 *
 		 * @since  1.0.0
 		 *
+		 * @global WPDB $wpdb The WordPress database object.
 		 * @return void
 		 */
 		private function remove_post_data() {
-			foreach ( array( 'campaign', 'donation' ) as $post_type ) {
-				$posts = get_posts(
-					array(
-						'posts_per_page' => -1,
-						'post_type'      => $post_type,
-					)
-				);
+			global $wpdb;
 
-				foreach ( $posts as $post ) {
-					wp_delete_post( $post->ID, true );
-				}
+			$posts = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE post_type IN ( 'donation', 'campaign' );" );
+
+			foreach ( $posts as $post_id ) {
+				wp_delete_post( $post_id, true );
 			}
 		}
 
@@ -82,6 +79,7 @@ if ( ! class_exists( 'Charitable_Uninstall' ) ) :
 		 *
 		 * @since  1.0.0
 		 *
+		 * @global WPDB $wpdb The WordPress database object.
 		 * @return void
 		 */
 		private function remove_tables() {
@@ -89,11 +87,36 @@ if ( ! class_exists( 'Charitable_Uninstall' ) ) :
 
 			$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'charitable_campaign_donations' );
 			$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'charitable_donors' );
+			$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'charitable_donormeta' );
 			$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'charitable_benefactors' );
 
 			delete_option( $wpdb->prefix . 'charitable_campaign_donations_db_version' );
 			delete_option( $wpdb->prefix . 'charitable_donors_db_version' );
+			delete_option( $wpdb->prefix . 'charitable_donormeta_db_version' );
 			delete_option( $wpdb->prefix . 'charitable_benefactors_db_version' );
+		}
+
+		/**
+		 * Remove any other options added by Charitable.
+		 *
+		 * @since  1.6.42
+		 *
+		 * @return void
+		 */
+		private function remove_settings() {
+			delete_option( 'charitable_settings' );
+			delete_option( 'charitable_version' );
+			delete_option( 'charitable_upgrade_log' );
+			delete_option( 'charitable_skipped_donations_with_empty_donor_id' );
+
+			delete_transient( 'charitable_notices' );
+			delete_transient( 'charitable_user_dashboard_objects' );
+			delete_transient( 'charitable_custom_styles' );
+
+			/* Stop Charitable from re-adding the notices transient. */
+			if ( function_exists( 'charitable_get_admin_notices' ) ) {
+				remove_action( 'shutdown', array( charitable_get_admin_notices(), 'shutdown' ) );
+			}
 		}
 	}
 
